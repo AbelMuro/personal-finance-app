@@ -1,0 +1,19 @@
+.form{
+    display: flex;
+    width: 560px;
+    height: 422px;
+    padding: 32px;
+    flex-direction: column;
+    border-radius: 12px;
+    background-color: var(--color-white, #FFF);
+}
+
+.form_title{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 32px;
+}

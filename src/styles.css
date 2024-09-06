@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'public sans';
+    src: url('/public/fonts/PublicSans-VariableFont_wght.ttf');
+}
+
+* {
+    transition: all 0.2s linear;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+    background-color: var(--color-beige-100, #F8F4F0);
+}
+
+:root{
+    --font: 'public sans';
+}
