@@ -1,8 +1,9 @@
 .authentication{
+    width: 1280px;
     display: flex;
     align-items: center;
     gap: 160px;
-    margin: auto;
+    margin: 20px auto 20px auto;
 }
 
 .authentication_image{
@@ -16,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    flex-shrink: 0;
     padding: 40px;
 }
 
