@@ -11,6 +11,9 @@ function Form () {
             </strong>
             <EnterEmail/>
             <EnterPassword/>
+            <button className={styles.form_submit}>
+                Login
+            </button>
         </form>
     )
 }

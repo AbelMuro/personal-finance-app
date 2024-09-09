@@ -1,14 +1,15 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import * as styles from './styles.module.css';
 import icons from './icons';
 
 function EnterPassword() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const inputRef = useRef();
 
     const handleViewPassword = () => {
-        //this is where i left off, i will need to find a way to display the password programmatically
+        setShowPassword(!showPassword);
     }
 
     const handlePassword = (e) => {
@@ -32,6 +33,15 @@ function EnterPassword() {
             setError('can\'t be empty');
     }
 
+    useEffect(() => {
+        const input = inputRef.current;
+
+        if(showPassword)
+            input.type = 'text';
+        else
+            input.type = 'password';
+    }, [showPassword])
+
     return( 
         <fieldset className={styles.container}>
             <label className={styles.label}>
@@ -39,13 +49,17 @@ function EnterPassword() {
             </label>
             <input 
                 type='password' 
+                name='password'
+                ref={inputRef}
                 className={styles.input} 
                 value={password} 
                 onChange={handlePassword}
                 onBlur={handleBlur}
                 onInvalid={handleInvalid}
                 required/>
-            <img className={styles.password_icon} src={icons['show']} onClick={handleViewPassword}/>
+            {showPassword ? 
+                <img className={styles.password_icon} src={icons['hide']} onClick={handleViewPassword}/> : 
+                <img className={styles.password_icon} src={icons['show']} onClick={handleViewPassword}/>}
             {error === 'can\'t be empty' && <div className={styles.errorMessage}>{error}</div>}
         </fieldset>
     )

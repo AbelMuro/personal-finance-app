@@ -38,6 +38,7 @@ function EnterEmail() {
             </label>
             <input 
                 type='email' 
+                name='email'
                 className={styles.input} 
                 value={email} 
                 onChange={handleEmail}

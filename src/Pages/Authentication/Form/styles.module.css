@@ -17,3 +17,22 @@
     line-height: 120%;
     margin-bottom: 32px;
 }
+
+.form_submit{
+    height: 53px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--color-grey-900, #201F24);
+    cursor: pointer;
+    color: var(--color-white, #FFF);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 21px */
+}
+
+
+.form_submit:hover{
+    background-color: rgb(64, 64, 64);
+}
