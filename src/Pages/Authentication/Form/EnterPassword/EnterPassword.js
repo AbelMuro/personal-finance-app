@@ -2,6 +2,8 @@ import React, {useRef, useEffect, useState} from 'react';
 import * as styles from './styles.module.css';
 import icons from './icons';
 
+
+//need to figure out why pattern attribute is not working
 function EnterPassword() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -20,9 +22,13 @@ function EnterPassword() {
 
     const handleBlur = (e) => {
         const isEmpty = e.target.validity.valueMissing;
+        const patternMismatch = e.target.validity.patternMismatch;
 
         if(isEmpty)
-            setError('can\'t be empty');
+            setError('Can\'t be empty');
+        else if(patternMismatch)
+            setError('invalid')
+
     }
 
     const handleInvalid = (e) => {
@@ -30,7 +36,9 @@ function EnterPassword() {
         e.target.setCustomValidity(' ');
 
         if(isEmpty)
-            setError('can\'t be empty');
+            setError('Can\'t be empty');
+        else
+            setError('invalid')
     }
 
     useEffect(() => {
@@ -45,22 +53,26 @@ function EnterPassword() {
     return( 
         <fieldset className={styles.container}>
             <label className={styles.label}>
-                Email
+                Password
             </label>
-            <input 
-                type='password' 
-                name='password'
-                ref={inputRef}
-                className={styles.input} 
-                value={password} 
-                onChange={handlePassword}
-                onBlur={handleBlur}
-                onInvalid={handleInvalid}
-                required/>
-            {showPassword ? 
-                <img className={styles.password_icon} src={icons['hide']} onClick={handleViewPassword}/> : 
-                <img className={styles.password_icon} src={icons['show']} onClick={handleViewPassword}/>}
-            {error === 'can\'t be empty' && <div className={styles.errorMessage}>{error}</div>}
+            <div className={styles.input_container}>
+                <input 
+                    type='password' 
+                    name='password'
+                    ref={inputRef}
+                    className={styles.input} 
+                    value={password} 
+                    onChange={handlePassword}
+                    onBlur={handleBlur}
+                    onInvalid={handleInvalid}
+                    pattern={'/\(?=.*\d)\(?=.*[a-zA-Z])\(?=.*\W)\([A-Za-z\d\W]{8,})/'}
+                    required/>    
+                {showPassword ? 
+                    <img className={styles.password_icon} src={icons['hide']} onClick={handleViewPassword}/> : 
+                    <img className={styles.password_icon} src={icons['show']} onClick={handleViewPassword}/>}        
+            </div>
+            {error === 'Can\'t be empty' && <div className={styles.errorMessage}>{error}</div>}
+            {error === 'invalid' && <div className={styles.errorMessage}>Must have 1 letter, 1 digit, 1 symbol and minimum 8 chars</div>}
         </fieldset>
     )
 }

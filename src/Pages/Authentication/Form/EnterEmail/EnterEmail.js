@@ -26,7 +26,7 @@ function EnterEmail() {
         e.target.setCustomValidity(' ');
 
         if(isEmpty)
-            setError('can\'t be empty');
+            setError('Can\'t be empty');
         else 
             setError('invalid email')
     }

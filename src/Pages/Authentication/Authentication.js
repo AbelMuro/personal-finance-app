@@ -6,6 +6,9 @@ import * as styles from './styles.module.css';
 function Authentication() {
     return(
         <main className={styles.authentication}>
+            <header className={styles.authentication_header}>
+                <img src={icons['logo']}/>
+            </header>
             <div className={styles.authentication_image}> 
                 <img className={styles.authentication_logo} src={icons['logo']}/>
                 <section className={styles.authentication_content}>
