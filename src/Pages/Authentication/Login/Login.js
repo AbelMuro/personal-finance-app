@@ -1,15 +1,39 @@
 import React from 'react';
 import EnterEmail from './EnterEmail';
 import EnterPassword from './EnterPassword';
+import {useNavigate} from 'react-router-dom';
 import * as styles from './styles.module.css';
 
 function Login({setPage}) {
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
 
-        console.log(email, password);
+        const response = await fetch('http://localhost:4000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        });
+
+        if(response.status === 200){
+            console.log('Login Successfull');
+            navigate('/profile');
+        }
+        else{
+            const error = await response.json();
+            console.log(error);            
+            alert('Email or password is incorrect');
+        }   
+            
+
     }
 
     const handleSignUp = () => {

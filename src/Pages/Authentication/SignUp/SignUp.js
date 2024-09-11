@@ -10,12 +10,34 @@ function SignUp({setPage}) {
         setPage('Login');
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const name = e.target.elements.name.value;
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
-        console.log(name, email, password);
+        
+        const response = await fetch('http://localhost:4000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name, 
+                email,
+                password
+            })
+        });
+
+        if(response.status === 200){
+            setPage('Login');
+            alert('Account has been created, you can now login');
+        }
+        else{
+            const error = await response.json();
+            console.log(error);
+            alert('Email already exists');
+        }
+            
     }
 
     return(
