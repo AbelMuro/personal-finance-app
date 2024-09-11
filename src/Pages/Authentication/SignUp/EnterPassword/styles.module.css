@@ -55,6 +55,7 @@ input[type=password]::-ms-clear{
     cursor: pointer;
 }
 
+
 .input:focus{
     outline: none;
     border-color: black;
@@ -68,8 +69,13 @@ input[type=password]::-ms-clear{
     border-color: green;
 }
 
-.errorMessage{
-    font-size: 0.875rem;
+.requirements{
+    align-self: end;
+    color: var(--color-grey-500, #696868);
     font-family: var(--font);
-    color: red;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+    margin: 0px;
 }

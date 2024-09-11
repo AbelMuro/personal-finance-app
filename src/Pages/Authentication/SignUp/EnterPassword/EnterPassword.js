@@ -2,8 +2,6 @@ import React, {useRef, useEffect, useState} from 'react';
 import * as styles from './styles.module.css';
 import icons from './icons';
 
-
-//need to figure out why pattern attribute is not working
 function EnterPassword() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -22,23 +20,23 @@ function EnterPassword() {
 
     const handleBlur = (e) => {
         const isEmpty = e.target.validity.valueMissing;
-        const patternMismatch = e.target.validity.patternMismatch;
+        const lessThanEightChars = e.target.validity.patternMismatch; 
 
         if(isEmpty)
             setError('Can\'t be empty');
-        else if(patternMismatch)
+        else if(lessThanEightChars)
             setError('invalid')
 
     }
 
     const handleInvalid = (e) => {
+        e.target.setCustomValidity(' ');        
         const isEmpty = e.target.validity.valueMissing;
-        e.target.setCustomValidity(' ');
 
         if(isEmpty)
             setError('Can\'t be empty');
         else
-            setError('invalid')
+            setError('invalid');
     }
 
     useEffect(() => {
@@ -53,7 +51,7 @@ function EnterPassword() {
     return( 
         <fieldset className={styles.container}>
             <label className={styles.label}>
-                Password
+                Create Password
             </label>
             <div className={styles.input_container}>
                 <input 
@@ -65,14 +63,15 @@ function EnterPassword() {
                     onChange={handlePassword}
                     onBlur={handleBlur}
                     onInvalid={handleInvalid}
-                    pattern={'/\(?=.*\d)\(?=.*[a-zA-Z])\(?=.*\W)\([A-Za-z\d\W]{8,})/'}
+                    pattern={'[a-zA-Z0-9!@#$%^&*?]{8,}'}
                     required/>    
                 {showPassword ? 
                     <img className={styles.password_icon} src={icons['hide']} onClick={handleViewPassword}/> : 
                     <img className={styles.password_icon} src={icons['show']} onClick={handleViewPassword}/>}        
             </div>
-            {error === 'Can\'t be empty' && <div className={styles.errorMessage}>{error}</div>}
-            {error === 'invalid' && <div className={styles.errorMessage}>Must have 1 letter, 1 digit, 1 symbol and minimum 8 chars</div>}
+            <p className={styles.requirements} style={error ? {color: 'red'} : {}}>
+                Password must be at least 8 characters
+            </p>
         </fieldset>
     )
 }

@@ -1,9 +1,12 @@
-import React from 'react';
-import Form from './Form';
+import React, {useState} from 'react';
+import Login from './Login';
+import SignUp from './SignUp';
 import icons from './icons';
 import * as styles from './styles.module.css';
 
 function Authentication() {
+    const [page, setPage] = useState('Login');
+
     return(
         <main className={styles.authentication}>
             <header className={styles.authentication_header}>
@@ -22,7 +25,7 @@ function Authentication() {
                     </p>
                 </section>
             </div>
-            <Form/>
+            {page === 'Login' ? <Login setPage={setPage}/> : <SignUp setPage={setPage}/>}
         </main>
     );
 } 
