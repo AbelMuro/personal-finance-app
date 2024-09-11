@@ -10,8 +10,16 @@ function SignUp({setPage}) {
         setPage('Login');
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const name = e.target.elements.name.value;
+        const email = e.target.elements.email.value;
+        const password = e.target.elements.password.value;
+        console.log(name, email, password);
+    }
+
     return(
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <strong className={styles.form_title}>
                 Sign Up
             </strong>
