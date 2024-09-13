@@ -20,7 +20,8 @@ function Login({setPage}) {
             body: JSON.stringify({
                 email,
                 password
-            })
+            }),
+            credentials: 'include'
         });
 
         if(response.status === 200){
@@ -32,8 +33,6 @@ function Login({setPage}) {
             console.log(error);            
             alert('Email or password is incorrect');
         }   
-            
-
     }
 
     const handleSignUp = () => {

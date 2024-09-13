@@ -5,7 +5,13 @@ function Profile(){
 
 
     const getProfileData = async () => {
-        const response = await fetch('http://localhost:4000/profile');
+        const response = await fetch('http://localhost:4000/profile', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        const accessToken = await response.json();
+        console.log(accessToken);
     }
 
     useEffect(() => {
