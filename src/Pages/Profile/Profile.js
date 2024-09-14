@@ -10,8 +10,8 @@ function Profile(){
             credentials: 'include'
         });
 
-        const accessToken = await response.json();
-        console.log(accessToken);
+        const profile = await response.json();
+        console.log(profile);
     }
 
     useEffect(() => {
