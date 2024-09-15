@@ -5,7 +5,7 @@ import { dropdownVariant } from './Variants';
 import icons from './icons';
 
 
-//this is where i left off, i need to figure out why i keep getting a blank screen everytime i make changes here
+//this is where i left off
 function SelectCategory() {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState('Entertainment');
