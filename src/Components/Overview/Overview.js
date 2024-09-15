@@ -12,8 +12,9 @@ function Overview() {
             credentials: 'include'
         });
 
-        const profile = await response.json();
-        setProfile(profile);
+        const results = await response.json();
+        console.log(results.profile.data)
+        //setProfile(profile);
     }
 
     useEffect(() => {
