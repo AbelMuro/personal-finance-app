@@ -1,0 +1,115 @@
+.navigation{
+    width: 100%;
+    height: 74px;
+    border-radius: 8px 8px 0px 0px;
+    background-color: var(--color-grey-900, #201F24);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    grid-row: 2/3;
+}
+
+.navigation_links{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    display: flex;
+    align-items: end;
+    gap: 42px;
+}
+
+.navigation_link{
+    width: 104px;
+    height: 66px;
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    color: var(--color-grey-300, #B3B3B3);
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.navigation_link > .navigation_icon{
+    mask-repeat: no-repeat;
+    mask-position: center
+}
+
+.navigation_link:nth-of-type(1) > .navigation_icon{
+    width: 24px;
+    height: 24px;
+    background-color: #B3B3B3;
+    mask-image: url(../icons/icon-nav-overview.svg);
+    mask-size: 18px 18.748px;
+}
+
+.navigation_link:nth-of-type(2) > .navigation_icon{
+    width: 24px;
+    height: 24px;
+    background-color: #B3B3B3;
+    mask-image: url(../icons/icon-nav-transactions.svg);
+    mask-size: 16.501px 16.501px;
+}
+
+.navigation_link:nth-of-type(3) > .navigation_icon{
+    width: 24px;
+    height: 24px;
+    background-color: #B3B3B3;
+    mask-image: url(../icons/icon-nav-budgets.svg);
+    mask-size: 19.436px 19.436px;
+}
+
+.navigation_link:nth-of-type(4) > .navigation_icon{
+    width: 24px;
+    height: 24px;
+    background-color: #B3B3B3;
+    mask-image: url(../icons/icon-nav-pots.svg);
+    mask-size: 16.5px 21px;
+}
+
+.navigation_link:nth-of-type(5) > .navigation_icon{
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    background-color: #B3B3B3;
+    mask-image: url(../icons/icon-nav-recurring-bills.svg);
+    mask-size: 19.5px 19.5px;
+}
+
+.navigation_link:hover{
+    color: #F2F2F2;
+}
+
+.navigation_link:hover > .navigation_icon{
+    background-color: #F2F2F2;
+}
+
+
+@media(max-width: 700px){
+    .navigation_links{
+        gap: 20px;
+    }
+}
+
+@media(max-width: 620px){
+    .navigation{
+        height: 52px;
+    }   
+
+    .navigation_links{
+        gap: 0px;
+    }
+
+    .navigation_link{
+        width: 68.6px;
+        height: 44px;
+    }
+}

@@ -1,0 +1,80 @@
+.header_button{
+    width: 155px;
+    height: 53px;
+    border-radius: 8px;
+    background: var(--color-grey-900, #201F24);
+    color: var(--color-white, #FFF);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 21px */
+    cursor: pointer;
+}
+
+.header_button:hover{
+    background-color: #696868;
+}
+
+.overlay{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.dialog{
+    display: grid;
+    align-content: start;
+    grid-template-columns: 1fr 32px;
+    row-gap: 20px;
+    width: 560px;
+    height: 490px;
+    border-radius: var(--spacing-150, 12px);
+    background-color: var(--color-white, #FFF);
+    padding: 32px;
+    border: none;
+    inset: 0;
+    margin: auto;
+}
+
+.dialog_title{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+    margin: 0px;
+}
+
+.dialog_desc{
+    grid-column: 1/3;
+    grid-row: 2/3;
+    color: var(--color-grey-500, #696868);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+    margin: 0px;
+}
+
+.dialog_close{
+    width: 32px;
+    height: 32px;
+    background-color: #696868;
+    mask-image: url('./icons/icon-close-modal.svg');
+    mask-size: 25.5px 25.5px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    cursor: pointer;
+}
+
+.dialog_close:hover{
+    background-color: black;
+}
