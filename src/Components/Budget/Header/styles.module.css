@@ -1,0 +1,16 @@
+.header{
+    width: 1060px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_title{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+    margin: 0px;
+}

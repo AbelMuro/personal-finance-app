@@ -1,29 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Header from './Header';
+import Pots from './Pots';
+import Budgets from './Budgets';
 import * as styles from './styles.module.css';
 
-function Overview() {
-    const [profile, setProfile] = useState(null);
-
-
-    const getProfileData = async () => {
-        const response = await fetch('http://localhost:4000/profile', {
-            method: 'GET',
-            credentials: 'include'
-        });
-
-        const results = await response.json();
-        console.log(results.profile.data)
-        //setProfile(profile);
-    }
-
-    useEffect(() => {
-        getProfileData();
-    }, [])
-
+function Overview(){
     return(
-        <section className={styles.container}>
+        <section className={styles.overview}>
             <Header/>
+            <div className={styles.overview_misc}>
+                <Pots/>
+                <Budgets/>
+            </div>
         </section>
     )
 }

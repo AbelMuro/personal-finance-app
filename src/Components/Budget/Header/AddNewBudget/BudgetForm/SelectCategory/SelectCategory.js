@@ -5,7 +5,6 @@ import { dropdownVariant } from './Variants';
 import icons from './icons';
 
 
-//this is where i left off
 function SelectCategory() {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState('Entertainment');
@@ -63,7 +62,7 @@ function SelectCategory() {
                             </li>
                     </motion.ul>}
             </AnimatePresence>
-
+            <input type='hidden' name='category' value={category}/>
         </fieldset>
     )
 }

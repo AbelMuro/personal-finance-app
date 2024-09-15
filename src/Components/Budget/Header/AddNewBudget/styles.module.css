@@ -78,3 +78,16 @@
 .dialog_close:hover{
     background-color: black;
 }
+
+@media(max-width: 620px){
+    .dialog{
+        width: 335px;
+        padding: 24px 20px;
+        align-items: center;
+    } 
+
+    .dialog_title{
+        font-size: 1.25rem;
+        font-style: normal;
+    }
+}

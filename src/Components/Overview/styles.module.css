@@ -1,8 +1,13 @@
-.container{
-    width: 1060px;
+.overview{
+    width: 1140px;
     padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.overview_misc{
     display: grid;
-    grid-template-columns: 428px 608px;
-    row-gap: 32px;
-    column-gap: 24px
+    grid-template-columns: 608px 428px;
+    gap: 24px;
 }
