@@ -22,7 +22,7 @@ function Pots(){
                 </strong>
             </div>
             <div className={styles.pots_savings}>
-                <div className={styles.pots_color}/>
+                <div className={styles.pots_color} style={{backgroundColor: '#277C78'}}/>
                 <h2>
                     Savings
                 </h2>
@@ -31,27 +31,27 @@ function Pots(){
                 </strong>
             </div>
             <div className={styles.pots_savings}>
-                <div className={styles.pots_color}/>
+                <div className={styles.pots_color} style={{backgroundColor: '#82C9D7'}}/>
                 <h2>
-                    Savings
+                    Gift
                 </h2>
                 <strong>
-                    $159
+                    $40
+                </strong>
+            </div>
+            <div className={styles.pots_savings}> 
+                <div className={styles.pots_color} style={{backgroundColor: '#626070'}}/>
+                <h2>
+                    Concert Ticket
+                </h2>
+                <strong>
+                    $110
                 </strong>
             </div>
             <div className={styles.pots_savings}>
-                <div className={styles.pots_color}/>
+                <div className={styles.pots_color} style={{backgroundColor: '#F2CDAC'}}/>
                 <h2>
-                    Savings
-                </h2>
-                <strong>
-                    $159
-                </strong>
-            </div>
-            <div className={styles.pots_savings}>
-                <div className={styles.pots_color}/>
-                <h2>
-                    Saving
+                    New Laptop
                 </h2>
                 <strong>
                     $159
