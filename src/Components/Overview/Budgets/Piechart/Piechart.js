@@ -1,11 +1,26 @@
 import React from 'react';
 import * as styles from './styles.module.css';
+import {useMinimizeStyles} from '~/Hooks';
 
+
+// this is where i left off, need to continue working on the responsiveness
 function Piechart(){
+    const [resize] = useMinimizeStyles();
+
+    const resizePieChartStyle = {
+        width: '180px',
+        height: '180px'
+    }
+
+    const resizeWhiteCircleStyle = {
+        width: '140px',
+        height: '140px',
+    } 
+
     return(
         <>
-            <div className={styles.budgets_piechart}>
-                <div className={styles.budgets_whiteCircle}>
+            <div className={styles.budgets_piechart} style={resize ? resizePieChartStyle : {}}>
+                <div className={styles.budgets_whiteCircle} style={resize ? resizeWhiteCircleStyle : {}}>
                     <strong>
                         $407
                     </strong>

@@ -1,9 +1,16 @@
 import React from 'react';
+import {useMinimizeStyles} from '~/Hooks';
 import * as styles from './styles.module.css';
 
 function Header(){
+    const [resize] = useMinimizeStyles();
+
+    const resizeStyles = {
+        gridTemplateColumns: '1fr 1fr 1fr'
+    }
+
     return(
-        <header className={styles.header}>
+        <header className={styles.header} style={resize ? resizeStyles : {}}>
             <h1 className={styles.header_title}>
                 Overview
             </h1>   

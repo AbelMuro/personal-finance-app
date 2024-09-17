@@ -5,13 +5,15 @@ import * as styles from './styles.module.css';
 import {useNavigate} from 'react-router-dom';
 import {motion , useCycle} from 'framer-motion';
 import {menuVariants} from './Variants';
+import {useDispatch, useSelector} from 'react-redux';
 import icons from './icons';
 
 function NavigationBar() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [link, setLink] = useState('overview');
     const [tablet] = useMediaQuery('(max-width: 850px)');
-    const [minimize, toggleMinimize] = useCycle(false, true);
+    const minimize = useSelector(state => state.minimize);
 
     const selectedStyles = {
         borderLeft: '4px solid var(--color-green, #277C78)',
@@ -40,7 +42,7 @@ function NavigationBar() {
     }
 
     const handleMinimize = () => {
-        toggleMinimize();
+        dispatch({type: 'CHANGE_MENU', payload: !minimize})
     }
     
     useEffect(() => {

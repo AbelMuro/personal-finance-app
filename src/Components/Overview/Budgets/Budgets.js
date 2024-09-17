@@ -5,7 +5,6 @@ import * as styles from './styles.module.css';
 // this is where i left off, i should work on the responsiveness before implementing the functionality of the piechart
 function Budgets(){
 
-
     return(
         <section className={styles.budgets}>
             <h1 className={styles.budgets_title}>

@@ -1,10 +1,18 @@
 import React from 'react';
+import {useMinimizeStyles} from '~/Hooks'
 import * as styles from './styles.module.css';
 import icons from './icons';
 
 function Pots(){
+    const [resize] = useMinimizeStyles();
+
+    const resizeGridStyles = {
+        gridTemplateColumns: '0.95fr 0.5fr 0.5fr'
+    }
+
+
     return(
-        <article className={styles.pots}>
+        <article className={styles.pots} style={resize ? resizeGridStyles : {}}>
             <h1 className={styles.pots_title}>
                 Saving Pots
             </h1>
