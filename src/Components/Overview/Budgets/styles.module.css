@@ -8,9 +8,8 @@
     grid-template-columns: auto 101px;
     row-gap: 51px;
     column-gap: 19.5px;
-    grid-column: 2/3;
-    grid-row: 1/2;
 }
+
 
 .budgets_title{
     color: var(--color-grey-900, #201F24);
@@ -20,6 +19,7 @@
     font-weight: 700;
     line-height: 120%; /* 24px */
     margin: 0px;
+    white-space: nowrap;
 }
 
 .budgets_button{

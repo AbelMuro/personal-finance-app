@@ -1,0 +1,39 @@
+@media(max-width: 1430px){
+    .piechart{
+        width: 180px;
+        height: 180px;
+    }
+
+    .piechart_whiteCircle{
+        width: 140px;
+        height: 140px;
+    }
+    
+    .piechart_whiteCircle > strong{
+        font-size: 1.5rem;
+    }
+}
+
+@media(max-width: 1170px){
+    .piechart{
+        grid-column: 1/3;
+    }
+
+    .piechart_allBudgets{
+        justify-self: center;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        grid-column: 1/3;
+        grid-row: 3/4;
+        column-gap: 0px;
+    }
+}
+
+@media(max-width: 950px){
+    .piechart_allBudgets{
+        width: 100%;
+        justify-content: space-between;
+    }
+}

@@ -1,26 +1,34 @@
-import React from 'react';
-import {useMinimizeStyles} from '~/Hooks'
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import classnames from 'classnames';
 import * as styles from './styles.module.css';
+import * as mediaQueryMin from './mediaQueryMin.module.css';
+import * as mediaQueryMax from './mediaQueryMax.module.css';
 import icons from './icons';
 
-function Pots(){
-    const [resize] = useMinimizeStyles();
+//this is where i left off, i will need to alter the see details button by removing the arrow
+//and removing some gap from the overview component 
+function Pots(){    
+    const isMenuMimized = useSelector(state => state.minimize);
+    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
 
-    const resizeGridStyles = {
-        gridTemplateColumns: '0.95fr 0.5fr 0.5fr'
-    }
-
+    useEffect(() => {
+        if(isMenuMimized)
+            setMediaQuery(mediaQueryMin);
+        else
+            setMediaQuery(mediaQueryMax);
+    }, [isMenuMimized])
 
     return(
-        <article className={styles.pots} style={resize ? resizeGridStyles : {}}>
-            <h1 className={styles.pots_title}>
-                Saving Pots
+        <article className={classnames(styles.pots, mediaQuery.pots)}>
+            <h1 className={classnames(styles.pots_title, mediaQuery.pots_title)}>
+                Pots
             </h1>
-            <button className={styles.pots_button}>
+            <button className={classnames(styles.pots_button, mediaQuery.pots_button)}>
                 See Details
-                <div className={styles.pots_arrow}/>
+                <div className={classnames(styles.pots_arrow, mediaQuery.pots_arrow)}/>
             </button>
-            <div className={styles.pots_total}>
+            <div className={classnames(styles.pots_total, mediaQuery.pots_total)}>
                 <img className={styles.pots_icon} src={icons['dollarSign']}/>
                 <h2>
                     Total Saved
@@ -29,7 +37,7 @@ function Pots(){
                     $850
                 </strong>
             </div>
-            <div className={styles.pots_savings}>
+            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}>
                 <div className={styles.pots_color} style={{backgroundColor: '#277C78'}}/>
                 <h2>
                     Savings
@@ -38,7 +46,7 @@ function Pots(){
                     $159
                 </strong>
             </div>
-            <div className={styles.pots_savings}>
+            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}>
                 <div className={styles.pots_color} style={{backgroundColor: '#82C9D7'}}/>
                 <h2>
                     Gift
@@ -47,7 +55,7 @@ function Pots(){
                     $40
                 </strong>
             </div>
-            <div className={styles.pots_savings}> 
+            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}> 
                 <div className={styles.pots_color} style={{backgroundColor: '#626070'}}/>
                 <h2>
                     Concert Ticket
@@ -56,7 +64,7 @@ function Pots(){
                     $110
                 </strong>
             </div>
-            <div className={styles.pots_savings}>
+            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}>
                 <div className={styles.pots_color} style={{backgroundColor: '#F2CDAC'}}/>
                 <h2>
                     New Laptop

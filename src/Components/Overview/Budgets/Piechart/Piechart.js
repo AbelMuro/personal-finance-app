@@ -1,26 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+import classnames from 'classnames';
 import * as styles from './styles.module.css';
-import {useMinimizeStyles} from '~/Hooks';
+import * as mediaQueryMin from './mediaQueryMin.module.css';
+import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-
-// this is where i left off, need to continue working on the responsiveness
 function Piechart(){
-    const [resize] = useMinimizeStyles();
+    const isMenuMimized = useSelector(state => state.minimize);
+    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
 
-    const resizePieChartStyle = {
-        width: '180px',
-        height: '180px'
-    }
+    useEffect(() => {
+        if(isMenuMimized)
+            setMediaQuery(mediaQueryMin);
+        else
+            setMediaQuery(mediaQueryMax);
+    }, [isMenuMimized])
 
-    const resizeWhiteCircleStyle = {
-        width: '140px',
-        height: '140px',
-    } 
 
     return(
         <>
-            <div className={styles.budgets_piechart} style={resize ? resizePieChartStyle : {}}>
-                <div className={styles.budgets_whiteCircle} style={resize ? resizeWhiteCircleStyle : {}}>
+            <div className={classnames(styles.piechart, mediaQuery.piechart)}>
+                <div className={classnames(styles.piechart_whiteCircle, mediaQuery.piechart_whiteCircle)}>
                     <strong>
                         $407
                     </strong>
@@ -29,9 +29,9 @@ function Piechart(){
                     </p>
                 </div>
             </div>
-            <section className={styles.budgets_allBudgets}>
-                <div className={styles.budgets_budget}>
-                    <div className={styles.budgets_color} style={{backgroundColor: '#277C78'}}/>
+            <section className={classnames(styles.piechart_allBudgets, mediaQuery.piechart_allBudgets)}>
+                <div className={styles.piechart_budget}>
+                    <div className={styles.piechart_color} style={{backgroundColor: '#277C78'}}/>
                     <h2>
                         Entertainment
                     </h2>
@@ -39,8 +39,8 @@ function Piechart(){
                         $25.00
                     </strong>
                 </div>  
-                <div className={styles.budgets_budget}>
-                    <div className={styles.budgets_color} style={{backgroundColor: '#82C9D7'}}/>
+                <div className={styles.piechart_budget}>
+                    <div className={styles.piechart_color} style={{backgroundColor: '#82C9D7'}}/>
                     <h2>
                         Bills
                     </h2>
@@ -48,8 +48,8 @@ function Piechart(){
                         $250.00
                     </strong>
                 </div>
-                <div className={styles.budgets_budget}>
-                    <div className={styles.budgets_color} style={{backgroundColor: '#626070'}}/>
+                <div className={styles.piechart_budget}>
+                    <div className={styles.piechart_color} style={{backgroundColor: '#626070'}}/>
                     <h2>
                         Personal Care
                     </h2>
@@ -57,8 +57,8 @@ function Piechart(){
                         $65.00
                     </strong>
                 </div>
-                <div className={styles.budgets_budget}>
-                    <div className={styles.budgets_color} style={{backgroundColor: '#F2CDAC'}}/>
+                <div className={styles.piechart_budget}>
+                    <div className={styles.piechart_color} style={{backgroundColor: '#F2CDAC'}}/>
                     <h2>
                         Dining Out
                     </h2>

@@ -1,4 +1,4 @@
 import useMediaQuery from './useMediaQuery.js';
-import useMinimizeStyles from './useMinimizeStyles.js';
+import useMenuMinimized from './useMenuMinimized.js';
 
-export {useMediaQuery, useMinimizeStyles}
+export {useMediaQuery, useMenuMinimized};

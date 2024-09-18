@@ -10,6 +10,7 @@
     gap: 20px;
 }
 
+
 .pots_title{
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
@@ -42,6 +43,7 @@
     grid-row: 1/2;
     justify-self: end;
 }
+
 
 .pots_arrow{
     width: 12px;
@@ -126,6 +128,7 @@
     grid-column: 3/4;
     grid-row: 3/4;
 }
+
 
 .pots_color{
     width: 100%;

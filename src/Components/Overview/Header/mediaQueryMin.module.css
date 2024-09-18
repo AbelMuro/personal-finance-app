@@ -1,0 +1,11 @@
+@media(max-width: 1235px){
+    .header{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media(max-width: 970px){
+    .header{
+        column-gap: 15px;
+    }
+}
