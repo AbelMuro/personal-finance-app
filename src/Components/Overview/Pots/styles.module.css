@@ -5,7 +5,6 @@
     background-color: var(--color-white, #FFF);
     display: grid;
     grid-template-columns: 247px 130px 130px;
-    align-self: start;
     align-content: start;
     gap: 20px;
 }

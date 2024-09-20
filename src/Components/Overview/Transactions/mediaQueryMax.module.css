@@ -1,0 +1,14 @@
+@media(max-width: 1170px){
+    .transactions{
+        padding: 24px;
+    }
+
+    .transactions_title{
+        font-size: 0.875rem;
+        line-height: 80%;
+    }
+
+    .transactions_arrow{
+        display: none;
+    }
+}

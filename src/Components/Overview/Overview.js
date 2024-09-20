@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import Header from './Header';
 import Pots from './Pots';
 import Budgets from './Budgets';
+import Transactions from './Transactions';
+import RecurringBills from './RecurringBills';
 import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
@@ -29,8 +31,14 @@ function Overview(){
         <section className={chooseQueries('overview')}>
             <Header/>
             <div className={chooseQueries('overview_misc')}>
-                <Pots/>
-                <Budgets/>
+                <div className={chooseQueries('overview_columnOne')}>
+                    <Pots/>
+                    <Transactions/>
+                </div>
+                <div className={chooseQueries('overview_columnTwo')}>
+                    <Budgets/>
+                    <RecurringBills/>
+                </div>
             </div>
         </section>
     )

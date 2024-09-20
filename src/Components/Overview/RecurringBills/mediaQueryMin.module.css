@@ -1,0 +1,14 @@
+@media(max-width: 970px){
+    .bills{
+        padding: 24px;
+    }
+
+    .bills_title{
+        font-size: 0.875rem;
+        line-height: 80%;
+    }
+
+    .bills_arrow{
+        display: none;
+    }
+}

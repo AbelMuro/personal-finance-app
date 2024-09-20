@@ -1,5 +1,4 @@
 @media(max-width: 1430px){
-
     .pots{
         grid-template-columns: 0.95fr 0.5fr 0.5fr;
     }

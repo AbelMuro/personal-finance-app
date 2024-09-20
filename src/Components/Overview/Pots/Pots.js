@@ -6,8 +6,7 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 import icons from './icons';
 
-//this is where i left off, i will need to alter the see details button by removing the arrow
-//and removing some gap from the overview component 
+//this is where i left off, i will need to work on the tablet styles for this component
 function Pots(){    
     const isMenuMimized = useSelector(state => state.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);

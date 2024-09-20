@@ -12,10 +12,19 @@
     gap: 24px;
 }
 
+.overview_columnOne, .overview_columnTwo{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
 
 @media(max-width: 850px){
     .overview{
         width: 100%;
         padding: 32px 40px;
+    }
+
+    .overview_misc{
+        grid-template-columns: 1fr;
     }
 }
