@@ -1,0 +1,9 @@
+.transactions{
+    display: grid;
+    grid-template-columns: 1fr 170px 245px;
+    gap: 24px;
+    height: 500px;
+    padding: 32px;
+    border-radius: 12px;
+    background-color: var(--color-white, #FFF);
+}

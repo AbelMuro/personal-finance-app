@@ -59,3 +59,16 @@
 .budgets_button:hover > .budgets_arrow{
     background-color: #201F24;
 }
+
+@media(max-width: 850px){
+    .budgets{
+        column-gap: 16px;
+    }
+}
+
+@media(max-width: 620px){
+    .budgets{
+        padding: 24px 20px;
+        row-gap: 28px;
+    }
+}

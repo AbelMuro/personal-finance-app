@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
+import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
@@ -8,6 +9,11 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 function Piechart(){
     const isMenuMimized = useSelector(state => state.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
+    const [tablet] = useMediaQuery('(max-width: 850px)');
+
+    const chooseQueries = (className) => {
+        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
+    }
 
     useEffect(() => {
         if(isMenuMimized)
@@ -19,8 +25,8 @@ function Piechart(){
 
     return(
         <>
-            <div className={classnames(styles.piechart, mediaQuery.piechart)}>
-                <div className={classnames(styles.piechart_whiteCircle, mediaQuery.piechart_whiteCircle)}>
+            <div className={chooseQueries('piechart')}>
+                <div className={chooseQueries('piechart_whiteCircle')}>
                     <strong>
                         $407
                     </strong>
@@ -29,7 +35,7 @@ function Piechart(){
                     </p>
                 </div>
             </div>
-            <section className={classnames(styles.piechart_allBudgets, mediaQuery.piechart_allBudgets)}>
+            <section className={chooseQueries('piechart_allBudgets')}>
                 <div className={styles.piechart_budget}>
                     <div className={styles.piechart_color} style={{backgroundColor: '#277C78'}}/>
                     <h2>

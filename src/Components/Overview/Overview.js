@@ -16,16 +16,16 @@ function Overview(){
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 
+    const chooseQueries = (className) => {
+        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
+    }
+
     useEffect(() => {
         if(isMenuMimized)
             setMediaQuery(mediaQueryMin);
         else
             setMediaQuery(mediaQueryMax);
     }, [isMenuMimized]);
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
 
     return(
         <section className={chooseQueries('overview')}>

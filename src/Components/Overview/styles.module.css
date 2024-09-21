@@ -28,3 +28,13 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media(max-width: 620px){
+    .overview{
+        padding: 24px 16px;
+    }
+
+    .overview_columnOne, .overview_columnTwo{
+        gap: 16px;
+    }
+}

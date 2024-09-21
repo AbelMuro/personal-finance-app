@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
@@ -10,6 +11,12 @@ import icons from './icons';
 function Pots(){    
     const isMenuMimized = useSelector(state => state.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
+    const [tablet] = useMediaQuery('(max-width: 850px)');
+
+    const chooseQueries = (className) => {
+        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
+    }
+
 
     useEffect(() => {
         if(isMenuMimized)
@@ -19,15 +26,15 @@ function Pots(){
     }, [isMenuMimized])
 
     return(
-        <article className={classnames(styles.pots, mediaQuery.pots)}>
-            <h1 className={classnames(styles.pots_title, mediaQuery.pots_title)}>
+        <article className={chooseQueries('pots')}>
+            <h1 className={chooseQueries('pots_title')}>
                 Pots
             </h1>
-            <button className={classnames(styles.pots_button, mediaQuery.pots_button)}>
+            <button className={chooseQueries('pots_button')}>
                 See Details
-                <div className={classnames(styles.pots_arrow, mediaQuery.pots_arrow)}/>
+                <div className={chooseQueries('pots_arrow')}/>
             </button>
-            <div className={classnames(styles.pots_total, mediaQuery.pots_total)}>
+            <div className={chooseQueries('pots_total')}>
                 <img className={styles.pots_icon} src={icons['dollarSign']}/>
                 <h2>
                     Total Saved
@@ -36,7 +43,7 @@ function Pots(){
                     $850
                 </strong>
             </div>
-            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}>
+            <div className={chooseQueries('pots_savings')}>
                 <div className={styles.pots_color} style={{backgroundColor: '#277C78'}}/>
                 <h2>
                     Savings
@@ -45,7 +52,7 @@ function Pots(){
                     $159
                 </strong>
             </div>
-            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}>
+            <div className={chooseQueries('pots_savings')}>
                 <div className={styles.pots_color} style={{backgroundColor: '#82C9D7'}}/>
                 <h2>
                     Gift
@@ -54,7 +61,7 @@ function Pots(){
                     $40
                 </strong>
             </div>
-            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}> 
+            <div className={chooseQueries('pots_savings')}> 
                 <div className={styles.pots_color} style={{backgroundColor: '#626070'}}/>
                 <h2>
                     Concert Ticket
@@ -63,7 +70,7 @@ function Pots(){
                     $110
                 </strong>
             </div>
-            <div className={classnames(styles.pots_savings, mediaQuery.pots_savings)}>
+            <div className={chooseQueries('pots_savings')}>
                 <div className={styles.pots_color} style={{backgroundColor: '#F2CDAC'}}/>
                 <h2>
                     New Laptop

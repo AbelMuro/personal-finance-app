@@ -11,17 +11,16 @@ function RecurringBills(){
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 
+    const chooseQueries = (className) => {
+        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className]);
+    }    
+
     useEffect(() => {
         if(isMenuMimized)
             setMediaQuery(mediaQueryMin);
         else
             setMediaQuery(mediaQueryMax);
     }, [isMenuMimized]);
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
-
 
     return(
         <section className={chooseQueries('bills')}>
@@ -35,7 +34,7 @@ function RecurringBills(){
             <div className={styles.bills_details}>
                 <div className={styles.bills_detail}>
                     <h2>
-                        Total recurring bills
+                        Paid Bills
                     </h2>
                     <strong>
                         $1,550.00
@@ -43,7 +42,7 @@ function RecurringBills(){
                 </div>
                 <div className={styles.bills_detail}>
                     <h2>
-                        Remaining this month
+                        Total Upcoming
                     </h2>
                     <strong>
                         $1,230.00
@@ -51,7 +50,7 @@ function RecurringBills(){
                 </div>
                 <div className={styles.bills_detail}>
                     <h2>
-                        Total bills due soon
+                        Due Soon
                     </h2>
                     <strong>
                         $40.00
