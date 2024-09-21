@@ -1,0 +1,12 @@
+@media(max-width: 1160px){
+    .transactions{
+        padding: 24px;
+    }
+}
+
+@media(max-width: 1060px){
+    .transactions{
+        grid-template-columns: 1fr 113px 177px;
+        align-items: end;
+    }
+}

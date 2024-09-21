@@ -1,12 +1,41 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchBox from './SearchBox';
+import SortTransactions from './SortTransactions';
+import SelectCategory from './SelectCategory';
+import AllTransactions from './AllTransactions';
+import Pagination from './Pagination';
+import {useMediaQuery} from '~/Hooks';
+import classnames from 'classnames';
+import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
+import * as mediaQueryMax from './mediaQueryMax.module.css';
+import * as mediaQueryMin from './mediaQueryMin.module.css';
 
-//this is where i left off, i will need to work on the sorting component and the category component
+//this is where i left off, i will need to continue working on the responsiveness for tablet
+
 function DisplayTransactions() {
+    const isMenuMimized = useSelector(state => state.minimize);
+    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
+    const [tablet] = useMediaQuery('(max-width: 850px)');
+
+    const chooseQueries = (className) => {
+        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
+    }
+
+    useEffect(() => {
+        if(isMenuMimized)
+            setMediaQuery(mediaQueryMin);
+        else
+            setMediaQuery(mediaQueryMax);
+    }, [isMenuMimized]);
+
     return(
-        <div className={styles.transactions}>
+        <div className={chooseQueries('transactions')}>
             <SearchBox/>
+            <SortTransactions/>
+            <SelectCategory/>
+            <AllTransactions/>
+            <Pagination/>
         </div>
     )
 }

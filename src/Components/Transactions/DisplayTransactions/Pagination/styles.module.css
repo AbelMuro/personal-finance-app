@@ -1,0 +1,67 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 1/4;
+    padding-top: 24px;
+}
+
+.pagination button{
+    cursor: pointer;
+}
+
+.pagination button:hover{
+    background-color: #98908B;
+    color: #FFFFFF;
+}
+
+.pagination_prev, .pagination_next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 94px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--color-beige-500, #98908B);
+    background-color: var(--color-white, #FFF);
+
+}
+
+.pagination_prev_arrow, .pagination_next_arrow{
+    width: 16px;
+    height: 16px;
+    background-color: #98908B;
+    mask-image: url('./icons/icon-caret-right.svg');
+    mask-size: 6px 11px;
+    mask-position: center;
+    mask-repeat: no-repeat;
+}
+
+.pagination_prev:hover > .pagination_prev_arrow, 
+.pagination_next:hover > .pagination_next_arrow{
+    background-color: #FFFFFF;
+}
+
+.pagination_prev_arrow{
+    transform: rotate(180deg);
+}
+
+.pagination_pages{
+    display: flex;
+    gap: 8px;
+}
+
+.pagination_page{
+    width: 40px;
+    height: 40px;
+    border-radius: var(--spacing-100, 8px);
+    border: 1px solid var(--color-beige-500, #98908B);
+    background-color: var(--color-white, #FFF);
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+}

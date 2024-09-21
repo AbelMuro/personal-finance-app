@@ -1,0 +1,6 @@
+@media(max-width: 1175px){
+    .transactions{
+        width: 100%;
+        padding: 32px 20px;
+    }
+}

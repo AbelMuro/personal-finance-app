@@ -1,9 +1,13 @@
 .transactions{
     display: grid;
     grid-template-columns: 1fr 170px 245px;
+    align-content: space-between;
     gap: 24px;
-    height: 500px;
     padding: 32px;
     border-radius: 12px;
     background-color: var(--color-white, #FFF);
+}
+
+@media(max-width: 850px){
+    
 }

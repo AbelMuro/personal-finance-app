@@ -1,0 +1,6 @@
+@media(max-width: 1060px){
+    .sort{
+        width: 113px;
+        flex-direction: column;
+    }
+}

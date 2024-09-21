@@ -1,0 +1,6 @@
+@media(max-width: 1060px){
+    .category{
+        width: 177px;
+        flex-direction: column;
+    }
+}

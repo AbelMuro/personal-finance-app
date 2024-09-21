@@ -1,0 +1,5 @@
+@media(max-width: 985px){
+    .transactions_header, .transaction{
+        grid-template-columns: 1fr 85px 110px 0.2fr;
+    }
+}
