@@ -1,25 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import MobileSort from './MobileSort';
-import { dropdownVariant } from './Variants';
-import {motion, AnimatePresence} from 'framer-motion'
-import {useSelector} from 'react-redux';
-import {useMediaQuery} from '~/Hooks'
-import classnames from 'classnames';
-import icons from './icons';
+import React, {useState} from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {dropdownVariant} from './Variants';
 import * as styles from './styles.module.css';
-import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-function SortTransactions() {
-    const [query, setQuery] = useState('Latest');
+function MobileSort(){
     const [open, setOpen] = useState(false);
-    const isMenuMimized = useSelector(state => state.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
-    const [mobile] = useMediaQuery('(max-width: 620px)');
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
+    const [query, setQuery] = useState('Latest');
 
     const handleOpen = () => {
         setOpen(!open);
@@ -29,20 +15,10 @@ function SortTransactions() {
         setQuery(query);
     }
 
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery({});
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);    
-
-    return mobile ? <MobileSort/> : 
-        <div className={chooseQueries('sort')} onClick={handleOpen}>
-            Sort by
-            <div className={styles.sort_container}>
-                {query}
-                <img className={styles.sort_arrow} src={icons['arrow']} style={open ? {transform: 'rotate(180deg)'} : {}}/>
-                <AnimatePresence>
+    return(
+        <div className={styles.sort} onClick={handleOpen}>
+            <div className={styles.sort_icon}/>
+            <AnimatePresence>
                     {
                         open &&
                         <motion.div 
@@ -53,6 +29,9 @@ function SortTransactions() {
                             exit='exit'
                             >
                             <ul className={styles.sort_dropdown_list}>
+                                <li>
+                                    Sort by
+                                </li>
                                 <li onClick={() => handleQuery('Latest')} style={query === 'Latest' ? {fontWeight: 700} : {}}>
                                     Latest
                                 </li>
@@ -75,9 +54,8 @@ function SortTransactions() {
                         </motion.div>    
                     }                    
                 </AnimatePresence>
-            </div>
         </div>
-    
+    )
 }
 
-export default SortTransactions;
+export default MobileSort;

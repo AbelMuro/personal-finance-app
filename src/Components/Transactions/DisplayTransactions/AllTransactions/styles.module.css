@@ -44,7 +44,6 @@
     align-items: center;
     grid-template-columns: 1.24fr 120px 110px 0.74fr;
     column-gap: 32px;
-    row-gap: 24px;
 }
 
 .transaction:not(.transaction:last-child){
@@ -93,4 +92,15 @@
     line-height: 150%; /* 21px */
     margin: 0px;
     justify-self: end;
+}
+
+@media(max-width: 850px){
+    .transactions_header, 
+    .transaction{
+        grid-template-columns: 1.24fr 80px 88px 0.5fr;
+    }
+
+    .transactions{
+        padding: 0px;
+    }
 }

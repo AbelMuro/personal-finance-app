@@ -13,7 +13,7 @@
 .sort_container{
     width: 113px;
     height: 45px;
-    border-radius: var(--spacing-100, 8px);
+    border-radius: 8px;
     border: 1px solid var(--color-beige-500, #98908B);
     background-color: var(--color-white, #FFF);
     color: var(--color-grey-900, #201F24);
@@ -34,7 +34,7 @@
     border-color: #696868;
 }
 
-.sort_icon{
+.sort_arrow{
     width: 11.001px;
     height: 6px;
     flex-shrink: 0;
@@ -73,4 +73,10 @@
 .sort_dropdown_list > li:not(.sort_dropdown_list > li:last-child){
     padding-bottom: 12px;
     border-bottom: 1px solid #F2F2F2;
+}
+
+@media(max-width: 760px){
+    .sort{
+        flex-direction: column;
+    }
 }

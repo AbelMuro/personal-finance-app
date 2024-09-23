@@ -11,7 +11,7 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
-//this is where i left off, i will need to continue working on the responsiveness for tablet
+//this is where i left off, i will need to implement the functionality for these components now
 
 function DisplayTransactions() {
     const isMenuMimized = useSelector(state => state.minimize);

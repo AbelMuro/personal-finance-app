@@ -1,0 +1,27 @@
+.pagination{
+    display: flex;
+    gap: 8px;
+}
+
+.pagination_page{
+    width: 40px;
+    height: 40px;
+    border-radius: var(--spacing-100, 8px);
+    border: 1px solid var(--color-beige-500, #98908B);
+    background-color: var(--color-white, #FFF);
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+}
+
+.pagination_page{
+    cursor: pointer;
+}
+
+.pagination_page:hover{
+    background-color: #98908B;
+    color: #FFFFFF;
+}

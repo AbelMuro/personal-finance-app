@@ -74,7 +74,13 @@
     cursor: pointer;
 }
 
-.category_dropdown_list > li:not(.categoryt_dropdown_list > li:last-child){
+.category_dropdown_list > li:not(.category_dropdown_list > li:last-child){
     padding-bottom: 12px;
     border-bottom: 1px solid #F2F2F2;
+}
+
+@media(max-width: 760px){
+    .category{
+        flex-direction: column;
+    }
 }

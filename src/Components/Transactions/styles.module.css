@@ -20,4 +20,15 @@
     .transactions{
         width: 100%;
     }
+
+    .transactions > h1{
+        padding: 8px 0px
+    }
+}
+
+@media(max-width: 620px){
+    .transactions{
+        padding: 32px 16px;
+    }
+
 }

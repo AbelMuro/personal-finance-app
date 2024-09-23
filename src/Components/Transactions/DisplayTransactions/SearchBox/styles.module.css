@@ -51,3 +51,9 @@
         width: 100%;
     }
 }
+
+@media(max-width: 760px){
+    .container{
+        align-self: end;
+    }
+}

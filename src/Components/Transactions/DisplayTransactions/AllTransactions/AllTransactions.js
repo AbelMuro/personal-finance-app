@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import MobileTransactions from './MobileTransactions';
 import icons from './icons';
 import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames'
@@ -11,6 +12,7 @@ function AllTransactions() {
     const isMenuMimized = useSelector(state => state.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
+    const [mobile] = useMediaQuery('(max-width: 620px)');
 
     const chooseQueries = (className) => {
         return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
@@ -25,7 +27,7 @@ function AllTransactions() {
 
     return(
         <div className={chooseQueries('transactions')}>
-            <div className={chooseQueries('transactions_header')}>
+            {!mobile && <div className={chooseQueries('transactions_header')}>
                 <p>
                     Recipient/Sender
                 </p>    
@@ -38,179 +40,180 @@ function AllTransactions() {
                 <p>
                     Amount
                 </p>                 
-            </div>
-            <section className={styles.transactions_all}>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-                <article className={chooseQueries('transaction')}>
-                    <div>
-                        <img className={styles.transaction_image} src={icons['placeholder']}/>
-                        <h1 className={styles.transaction_title}>
-                            Emma Richardson
-                        </h1>                        
-                    </div>
-                    <p className={styles.transaction_category}>
-                        General
-                    </p>
-                    <p className={styles.transaction_date}>
-                        19 Aug 2024
-                    </p>
-                    <p className={styles.transaction_amount}>
-                        +75.50
-                    </p>
-                </article>
-            </section>
+            </div>}
+            {mobile ? <MobileTransactions/> : 
+                <section className={styles.transactions_all}>
+                     <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+                    <article className={chooseQueries('transaction')}>
+                        <div>
+                            <img className={styles.transaction_image} src={icons['placeholder']}/>
+                            <h1 className={styles.transaction_title}>
+                                Emma Richardson
+                            </h1>                        
+                        </div>
+                        <p className={styles.transaction_category}>
+                            General
+                        </p>
+                        <p className={styles.transaction_date}>
+                            19 Aug 2024
+                        </p>
+                        <p className={styles.transaction_amount}>
+                            +75.50
+                        </p>
+                    </article>
+            </section> }
         </div>
     )
 }

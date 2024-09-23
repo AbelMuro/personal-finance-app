@@ -1,50 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import MobileCategory from './MobileCategory';
-import {dropdownVariant} from './Variants';
-import {motion, AnimatePresence} from 'framer-motion'
-import icons from './icons';
-import {useSelector} from 'react-redux'
-import {useMediaQuery} from '~/Hooks'
-import classnames from 'classnames';
+import React, {useState} from 'react';
 import * as styles from './styles.module.css';
-import * as mediaQueryMax from './mediaQueryMax.module.css';
+import { AnimatePresence, motion } from 'framer-motion';
+import {dropdownVariant} from './Variants';
 
-function SelectCategory() {
-    const [category, setCategory] = useState('All Transactions');
+function MobileCategory() {
     const [open, setOpen] = useState(false);
-    const isMenuMimized = useSelector(state => state.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
-    const [mobile] = useMediaQuery('(max-width: 620px)');
+    const [category, setCategory] = useState('All Transactions');
 
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
+    const handleCategory = (category) => {
+        setCategory(category);
     }
 
     const handleOpen = () => {
         setOpen(!open);
     }
 
-    const handleCategory = (category) => {
-        setCategory(category);
-    }
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery({});
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);    
-
-    return mobile ? <MobileCategory/> : 
-        <div className={chooseQueries('category')} onClick={handleOpen}>
-            Category
-            <div className={styles.category_container}>
-                <strong>
-                    {category}
-                </strong>
-                <img className={styles.category_icon} src={icons['arrow']} style={open ? {transform: 'rotate(180deg)'} : {}}/>
-                <AnimatePresence>
+    return(
+        <div className={styles.category} onClick={handleOpen}>
+            <div className={styles.category_icon}/>
+            <AnimatePresence>
                     {
                         open &&
                         <motion.div 
@@ -55,6 +29,9 @@ function SelectCategory() {
                             exit='exit'
                             >
                             <ul className={styles.category_dropdown_list}>
+                                <li>
+                                    Category
+                                </li>
                                 <li onClick={() => handleCategory('All Transactions')} style={category === 'All Transactions' ? {fontWeight: 700} : {}}>
                                     All Transactions
                                 </li>
@@ -80,9 +57,8 @@ function SelectCategory() {
                         </motion.div>    
                     }                    
                 </AnimatePresence>
-            </div>
         </div>
-    
+    )
 }
 
-export default SelectCategory;
+export default MobileCategory;
