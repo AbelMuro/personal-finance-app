@@ -8,7 +8,7 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function Transactions() {
-    const isMenuMimized = useSelector(state => state.minimize);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 

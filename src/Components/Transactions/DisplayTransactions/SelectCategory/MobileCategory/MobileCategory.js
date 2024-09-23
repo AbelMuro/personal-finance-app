@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import * as styles from './styles.module.css';
+import {useSelector, useDispatch} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import {dropdownVariant} from './Variants';
 
 function MobileCategory() {
+    const category = useSelector(state => state.transactions.category);
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
-    const [category, setCategory] = useState('All Transactions');
 
     const handleCategory = (category) => {
-        setCategory(category);
+        dispatch({type: 'UPDATE_CATEGORY', payload: category})
     }
 
     const handleOpen = () => {

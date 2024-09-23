@@ -14,7 +14,7 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 //this is where i left off, i will need to implement the functionality for these components now
 
 function DisplayTransactions() {
-    const isMenuMimized = useSelector(state => state.minimize);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 

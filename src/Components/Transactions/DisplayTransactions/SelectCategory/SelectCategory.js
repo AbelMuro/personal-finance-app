@@ -3,16 +3,17 @@ import MobileCategory from './MobileCategory';
 import {dropdownVariant} from './Variants';
 import {motion, AnimatePresence} from 'framer-motion'
 import icons from './icons';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {useMediaQuery} from '~/Hooks'
 import classnames from 'classnames';
 import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function SelectCategory() {
-    const [category, setCategory] = useState('All Transactions');
+    const dispatch = useDispatch();
+    const category = useSelector(state => state.transactions.category);
     const [open, setOpen] = useState(false);
-    const isMenuMimized = useSelector(state => state.minimize);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
@@ -26,7 +27,7 @@ function SelectCategory() {
     }
 
     const handleCategory = (category) => {
-        setCategory(category);
+        dispatch({type: 'UPDATE_CATEGORY', payload: category})
     }
 
     useEffect(() => {

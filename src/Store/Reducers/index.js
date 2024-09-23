@@ -1,3 +1,10 @@
+import { combineReducers } from 'redux';
 import menuReducer from './menuReducer.js';
+import transactionsReducer from './transactionsReducer.js';
 
-export default menuReducer
+const rootReducer = combineReducers({
+    menu: menuReducer,
+    transactions: transactionsReducer
+})
+
+export default rootReducer;

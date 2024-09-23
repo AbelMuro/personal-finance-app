@@ -9,7 +9,7 @@ import icons from './icons';
 
 //this is where i left off, i will need to work on the tablet styles for this component
 function Pots(){    
-    const isMenuMimized = useSelector(state => state.minimize);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 

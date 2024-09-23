@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import icons from './icons';
 import classnames from 'classnames'
 import {useMediaQuery} from '~/Hooks';
@@ -8,8 +8,9 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function SearchBox() {
-    const [search, setSearch] = useState('');
-    const isMenuMimized = useSelector(state => state.minimize);
+    const dispatch = useDispatch();
+    const search = useSelector(state => state.transactions.search);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 
@@ -18,7 +19,7 @@ function SearchBox() {
     }
 
     const handleSearch = (e) => {
-        setSearch(e.target.search);
+        dispatch({type: 'UPDATE_SEARCH', payload: e.target.value});
     }
 
     useEffect(() => {

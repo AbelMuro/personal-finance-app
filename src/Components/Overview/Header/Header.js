@@ -9,7 +9,7 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 //this is where i left off, i will need to apply the tablet styles to this component in styles.module.css
 
 function Header(){
-    const isMenuMimized = useSelector(state => state.minimize);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
 

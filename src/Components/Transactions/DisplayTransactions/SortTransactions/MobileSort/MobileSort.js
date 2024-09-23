@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import {dropdownVariant} from './Variants';
 import * as styles from './styles.module.css';
 
 function MobileSort(){
+    const dispatch = useDispatch();
+    const sort = useSelector(state => state.transactions.sort);
     const [open, setOpen] = useState(false);
-    const [query, setQuery] = useState('Latest');
 
     const handleOpen = () => {
         setOpen(!open);
     }
 
-    const handleQuery = (query) => {
-        setQuery(query);
+    const handleSort = (query) => {
+        dispatch({type: 'UPDATE_SORT', payload: query});
     }
 
     return(
@@ -32,22 +34,22 @@ function MobileSort(){
                                 <li>
                                     Sort by
                                 </li>
-                                <li onClick={() => handleQuery('Latest')} style={query === 'Latest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Latest')} style={sort === 'Latest' ? {fontWeight: 700} : {}}>
                                     Latest
                                 </li>
-                                <li onClick={() => handleQuery('Oldest')} style={query === 'Oldest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Oldest')} style={sort === 'Oldest' ? {fontWeight: 700} : {}}>
                                     Oldest
                                 </li>
-                                <li onClick={() => handleQuery('A to Z')} style={query === 'A to Z' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('A to Z')} style={sort === 'A to Z' ? {fontWeight: 700} : {}}>
                                     A to Z
                                 </li>
-                                <li onClick={() => handleQuery('Z to A')} style={query === 'Z to A' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Z to A')} style={sort === 'Z to A' ? {fontWeight: 700} : {}}>
                                     Z to A
                                 </li>
-                                <li onClick={() => handleQuery('Highest')} style={query === 'Highest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Highest')} style={sort === 'Highest' ? {fontWeight: 700} : {}}>
                                     Highest
                                 </li>
-                                <li onClick={() => handleQuery('Lowest')} style={query === 'Lowest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Lowest')} style={sort === 'Lowest' ? {fontWeight: 700} : {}}>
                                     Lowest
                                 </li>
                             </ul>

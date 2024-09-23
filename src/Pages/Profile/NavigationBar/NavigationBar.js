@@ -13,7 +13,7 @@ function NavigationBar() {
     const navigate = useNavigate();
     const [link, setLink] = useState('overview');
     const [tablet] = useMediaQuery('(max-width: 850px)');
-    const minimize = useSelector(state => state.minimize);
+    const minimize = useSelector(state => state.menu.minimize);
 
     const selectedStyles = {
         borderLeft: '4px solid var(--color-green, #277C78)',
@@ -67,8 +67,8 @@ function NavigationBar() {
                             <div className={styles.navigation_icon} aria-description='arrows' style={link === 'transactions' ? selectedIcon : {}}/>
                             {!minimize && 'Transactions'}
                         </li>
-                        <li className={styles.navigation_link} onClick={() => handleLink('budgets')} style={link === 'budgets' ? selectedStyles : {}}>
-                            <div className={styles.navigation_icon} aria-description='circular progress bar' style={link === 'budgets' ? selectedIcon : {}}/>
+                        <li className={styles.navigation_link} onClick={() => handleLink('budget')} style={link === 'budget' ? selectedStyles : {}}>
+                            <div className={styles.navigation_icon} aria-description='circular progress bar' style={link === 'budget' ? selectedIcon : {}}/>
                             {!minimize && 'Budgets'}
                         </li>
                         <li className={styles.navigation_link} onClick={() => handleLink('pots')} style={link === 'pots' ? selectedStyles : {}}>

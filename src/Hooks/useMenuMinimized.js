@@ -3,7 +3,7 @@ import useMediaQuery from './useMediaQuery.js';
 import {useSelector} from 'react-redux';
 
 function useMenuMinimized(minQuery,  maxQuery) {
-    const menuIsMinimized = useSelector(state => state.minimize);
+    const menuIsMinimized = useSelector(state => state.menu.minimize);
     const [resize, setMediaQuery] = useMediaQuery(maxQuery);
 
     useEffect(() => {

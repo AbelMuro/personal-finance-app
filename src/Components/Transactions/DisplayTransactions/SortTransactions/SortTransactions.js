@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import MobileSort from './MobileSort';
 import { dropdownVariant } from './Variants';
 import {motion, AnimatePresence} from 'framer-motion'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useMediaQuery} from '~/Hooks'
 import classnames from 'classnames';
 import icons from './icons';
@@ -10,9 +10,10 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function SortTransactions() {
-    const [query, setQuery] = useState('Latest');
+    const dispatch = useDispatch();
+    const sort = useSelector(state => state.transactions.sort);
     const [open, setOpen] = useState(false);
-    const isMenuMimized = useSelector(state => state.minimize);
+    const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
@@ -25,8 +26,8 @@ function SortTransactions() {
         setOpen(!open);
     }
 
-    const handleQuery = (query) => {
-        setQuery(query);
+    const handleSort = (query) => {
+        dispatch({type: 'UPDATE_SORT', payload: query})
     }
 
     useEffect(() => {
@@ -40,7 +41,7 @@ function SortTransactions() {
         <div className={chooseQueries('sort')} onClick={handleOpen}>
             Sort by
             <div className={styles.sort_container}>
-                {query}
+                {sort}
                 <img className={styles.sort_arrow} src={icons['arrow']} style={open ? {transform: 'rotate(180deg)'} : {}}/>
                 <AnimatePresence>
                     {
@@ -53,22 +54,22 @@ function SortTransactions() {
                             exit='exit'
                             >
                             <ul className={styles.sort_dropdown_list}>
-                                <li onClick={() => handleQuery('Latest')} style={query === 'Latest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Latest')} style={sort === 'Latest' ? {fontWeight: 700} : {}}>
                                     Latest
                                 </li>
-                                <li onClick={() => handleQuery('Oldest')} style={query === 'Oldest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Oldest')} style={sort === 'Oldest' ? {fontWeight: 700} : {}}>
                                     Oldest
                                 </li>
-                                <li onClick={() => handleQuery('A to Z')} style={query === 'A to Z' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('A to Z')} style={sort === 'A to Z' ? {fontWeight: 700} : {}}>
                                     A to Z
                                 </li>
-                                <li onClick={() => handleQuery('Z to A')} style={query === 'Z to A' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Z to A')} style={sort === 'Z to A' ? {fontWeight: 700} : {}}>
                                     Z to A
                                 </li>
-                                <li onClick={() => handleQuery('Highest')} style={query === 'Highest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Highest')} style={sort === 'Highest' ? {fontWeight: 700} : {}}>
                                     Highest
                                 </li>
-                                <li onClick={() => handleQuery('Lowest')} style={query === 'Lowest' ? {fontWeight: 700} : {}}>
+                                <li onClick={() => handleSort('Lowest')} style={sort === 'Lowest' ? {fontWeight: 700} : {}}>
                                     Lowest
                                 </li>
                             </ul>
