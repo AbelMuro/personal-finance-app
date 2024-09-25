@@ -30,8 +30,8 @@ function MobileNavBar({link, setLink}){
                     <div className={styles.navigation_icon} aria-description='transactions' style={link === 'transactions' ? selectedIcon : {}}/>
                     {!mobile && 'Transactions'}
                 </li>
-                <li className={styles.navigation_link} onClick={() => handleLink('budget')} style={link === 'budget' ? selectedStyles : {}}>
-                    <div className={styles.navigation_icon} aria-description='circular progress bar' style={link === 'budget' ? selectedIcon : {}}/>
+                <li className={styles.navigation_link} onClick={() => handleLink('budgets')} style={link === 'budgets' ? selectedStyles : {}}>
+                    <div className={styles.navigation_icon} aria-description='circular progress bar' style={link === 'budgets' ? selectedIcon : {}}/>
                     {!mobile && 'Budgets'}
                 </li>
                 <li className={styles.navigation_link} onClick={() => handleLink('pots')} style={link === 'pots' ? selectedStyles : {}}>

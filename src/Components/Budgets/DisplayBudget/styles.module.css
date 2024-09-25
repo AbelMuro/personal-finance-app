@@ -1,0 +1,42 @@
+.budget{
+    width: 100%;
+    height: 510px;
+    padding: 32px;
+    border-radius: var(--spacing-150, 12px);
+    background-color: var(--color-white, #FFF);
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.budget_header{
+    display: grid;
+    grid-template-columns: 16px 1fr 16px;
+    column-gap: 16px; 
+    align-items: center;
+}
+
+.budget_color{
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background-color: #277C78;
+}
+
+.budget_edit{
+    width: 16px;
+    height: 16px;
+    cursor: pointer
+}
+
+.budget_title{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 24px */
+    margin: 0px;
+}
