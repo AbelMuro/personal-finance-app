@@ -1,0 +1,30 @@
+@media(max-width: 1170px){
+    .spending_transaction{
+        grid-template-columns: 32px 1fr;
+    }
+
+    .spending_total{
+        justify-self: start;
+        grid-column: 2/3;
+        grid-row: 3/4;
+    }
+
+    .spending_date{
+        grid-column: 2/3;
+        grid-row: 4/5;
+    }
+}
+
+
+@media(max-width: 950px){
+    .spending_total{
+        justify-self: end;
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+
+    .spending_date{
+        grid-column: 3/4;
+        grid-row: 2/3;
+    }
+}

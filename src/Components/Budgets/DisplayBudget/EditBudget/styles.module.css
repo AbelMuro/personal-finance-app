@@ -1,21 +1,15 @@
-.header_button{
-    width: 155px;
-    height: 53px;
-    border-radius: 8px;
-    background-color: var(--color-grey-900, #201F24);
+.budget_button{
+    background-color: transparent;
     border: none;
-    color: var(--color-white, #FFF);
-    font-family: var(--font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 150%; /* 21px */
-    cursor: pointer;
+    padding: 0px;
+    cursor: pointer
 }
 
-.header_button:hover{
-    background-color: #696868;
+.budget_button > img{
+    width: 16px;
+    height: 16px;
 }
+
 
 .overlay{
     width: 100%;

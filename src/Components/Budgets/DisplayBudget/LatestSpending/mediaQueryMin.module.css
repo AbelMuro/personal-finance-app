@@ -1,0 +1,5 @@
+@media(max-width: 970px){
+    .spending_transaction{
+        grid-template-columns: 32px 1fr;
+    }
+}

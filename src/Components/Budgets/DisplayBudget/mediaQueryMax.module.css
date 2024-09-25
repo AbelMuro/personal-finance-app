@@ -1,0 +1,12 @@
+@media(max-width: 1170px){
+    .budget{
+        padding: 24px;
+    }
+}
+
+@media(max-width: 950px){
+    .budget{
+        grid-column: 1/3;
+        grid-row: 3/4;
+    }
+}

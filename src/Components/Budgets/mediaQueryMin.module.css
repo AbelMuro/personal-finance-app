@@ -1,0 +1,7 @@
+@media(max-width: 1230px){
+    .container{
+        width: 100%;
+        grid-template-columns: 0.6fr 1fr;
+        padding: 24px;
+    }
+}

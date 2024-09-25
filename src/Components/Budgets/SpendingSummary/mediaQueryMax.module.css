@@ -1,0 +1,68 @@
+@media(max-width: 1170px){
+    .spending{
+        padding: 24px;
+    }
+
+    .spending_detail{
+        grid-template-columns: 4px 1fr;
+        row-gap: 6px;
+    }
+
+    .spending_flex{
+        grid-column: 2/3;
+        grid-row: 2/3;
+        justify-self: start;
+    }
+
+    .spending_piechart{
+        width: 180px;
+        height: 180px;
+    }
+
+    .spending_whiteCircle{
+        width: 140px;
+        height: 140px;
+    }
+
+    .spending_piechartTitle{
+        font-size: 1.5rem;
+    }
+
+    .spending_title{
+        text-align: center;
+    }
+}
+
+@media(max-width: 950px){
+    .spending{
+        grid-column: 1/3;
+        grid-row: 2/3;
+        gap: 32px;
+    }
+
+    .spending_piechart{
+        width: 240px;
+        height: 240px;
+    }
+
+    .spending_whiteCircle{
+        width: 187.5px;
+        height: 187.5px;
+    }
+
+    .spending_piechartTitle{
+        font-size: 2rem;
+    }
+
+    .spending_detail{
+        grid-template-columns: 4px 1fr 1fr;
+        row-gap: 6px;
+    }
+
+    .spending_flex{
+        grid-column: 3/4;
+        grid-row: initial;
+        justify-self: end;
+    }
+
+}

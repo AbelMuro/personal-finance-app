@@ -10,6 +10,7 @@
     background-color: var(--color-white, #FFF);
     grid-column: 1/2;
     grid-row: 2/3;
+    transition: all 0.2s linear, width 0s;
 }
 
 .spending_piechart{
@@ -45,7 +46,7 @@
     gap: 8px;
 }
 
-.spending_whiteCircle > strong{
+.spending_piechartTitle{
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 2rem;
@@ -54,10 +55,10 @@
     line-height: 120%; /* 38.4px */
 }
 
-.spending_whiteCircle > p{
+.spending_piechartLimit{
     color: var(--color-grey-500, #696868);
     font-family: var(--font);
-    font-size: 0.75;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 18px */
@@ -88,9 +89,10 @@
     display: grid;
     grid-template-columns: 4px 1fr 1fr;
     column-gap: 16px;
+    align-items: center;
 }
 
-.spending_detail > div{
+.spending_flex{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -133,6 +135,7 @@
     margin: 0px;
     justify-self: end;
     align-self: center;
+    text-align: center;
 }
 
 .color{

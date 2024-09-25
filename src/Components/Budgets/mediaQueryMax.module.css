@@ -1,0 +1,13 @@
+@media(max-width: 1430px){
+    .container{
+        width: 100%;
+        grid-template-columns: 0.73fr 1fr;
+        padding: 24px;
+    }
+}
+
+@media(max-width: 920px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+}
