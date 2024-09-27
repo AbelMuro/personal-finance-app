@@ -16,3 +16,9 @@
     line-height: 120%; /* 38.4px */
     margin: 0px;
 }
+
+@media(max-width: 850px){
+    .header{
+        grid-column: 1/2;
+    }
+}

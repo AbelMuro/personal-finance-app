@@ -8,3 +8,27 @@
     align-content: start;
     align-items: start;
 }
+
+.allBudgets{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    grid-column: 2/3;
+}
+
+@media(max-width: 850px){
+    .container{
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .allBudgets{
+        grid-column: 1/2;
+    }
+}
+
+@media(max-width: 620px){
+    .container{
+        padding: 24px 16px;
+    }
+}

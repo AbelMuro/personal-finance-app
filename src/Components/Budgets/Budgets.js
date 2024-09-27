@@ -31,7 +31,10 @@ function Budgets() {
         <section className={chooseQueries('container')}>
             <Header/>
             <SpendingSummary/>
-            <DisplayBudget/>
+            <div className={chooseQueries('allBudgets')}>
+                <DisplayBudget/>
+                <DisplayBudget/>
+            </div>
         </section>
     )
 }

@@ -2,7 +2,10 @@
     background-color: transparent;
     border: none;
     padding: 0px;
-    cursor: pointer
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .budget_button > img{
