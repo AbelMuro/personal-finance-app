@@ -17,6 +17,7 @@
     font-weight: 700;
     line-height: 150%; /* 21px */
     cursor: pointer;
+    border: none;
 }
 
 .form_submit:hover{

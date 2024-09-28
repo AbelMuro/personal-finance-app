@@ -2,6 +2,7 @@
     width: 155px;
     height: 53px;
     border-radius: 8px;
+    border: none;
     background-color: var(--color-grey-900, #201F24);
     border: none;
     color: var(--color-white, #FFF);

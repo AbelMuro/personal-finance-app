@@ -60,6 +60,9 @@ function SelectCategory() {
                             <li onClick={() => handleCategory('Education')}>
                                 Education
                             </li>
+                            <li onClick={() => handleCategory('General')}>
+                                General
+                            </li>
                     </motion.ul>}
             </AnimatePresence>
             <input type='hidden' name='category' value={category}/>

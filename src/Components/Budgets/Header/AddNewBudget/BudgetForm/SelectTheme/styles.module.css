@@ -71,7 +71,7 @@
     list-style-type: none;
     transition: all 0.2s linear, transform 0s;
     position: absolute;
-    bottom: -330px;
+    top: 79px;
 }
 
 .dropdown > li{
