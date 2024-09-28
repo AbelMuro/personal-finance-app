@@ -45,6 +45,11 @@ function SelectTheme() {
                         >
                             <li onClick={() => handleColor('Green')}>
                                <img src={icons['Green']}/> Green
+                               {/* 
+                                    <p>
+                                        Already used
+                                    </p> 
+                               */}
                             </li>
                             <li onClick={() => handleColor('Yellow')}>
                                 <img src={icons['Yellow']}/> Yellow

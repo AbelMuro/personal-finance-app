@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ProgressBar from './ProgressBar';
 import LatestSpending from './LatestSpending';
-import EditBudget from './EditBudget';
+import EditOrDeleteBudget from './EditOrDeleteBudget';
 import classnames from 'classnames';
 import {useMediaQuery} from '~/Hooks';
 import {useSelector} from 'react-redux';
@@ -32,7 +32,7 @@ function DisplayBudget() {
                 <h2 className={styles.budget_title}>
                     Entertainment
                 </h2>
-                <EditBudget/>
+                <EditOrDeleteBudget/>
             </div>
             <ProgressBar/>
             <LatestSpending/>
