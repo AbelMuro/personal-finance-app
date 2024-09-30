@@ -4,8 +4,6 @@ import EnterMaxSpending from './EnterMaxSpending';
 import SelectTheme from './SelectTheme';
 import * as styles from './styles.module.css';
 
-//this is where i left off, i will need to create an endpoint in node.js that tells me which themes and which categories have already been used
-//then i will need to disable those categories and themes in the inputs below
 function BudgetForm() {
 
     const handleSubmit = async (e) => {

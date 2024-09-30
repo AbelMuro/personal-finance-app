@@ -9,7 +9,7 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
-function DisplayBudget() {
+function DisplayBudget({category, maxSpending, theme}) {
     const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
@@ -17,6 +17,7 @@ function DisplayBudget() {
     const chooseQueries = (className) => {
         return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
     }
+
 
     useEffect(() => {
         if(isMenuMimized)
@@ -28,13 +29,13 @@ function DisplayBudget() {
     return(
         <section className={chooseQueries('budget')}>
             <div className={styles.budget_header}>
-                <div className={styles.budget_color}/>
+                <div className={styles.budget_color} style={{backgroundColor: theme}}/>
                 <h2 className={styles.budget_title}>
                     Entertainment
                 </h2>
                 <EditOrDeleteBudget/>
             </div>
-            <ProgressBar/>
+            <ProgressBar maxSpending={maxSpending} theme={theme}/>
             <LatestSpending/>
         </section>
     )
