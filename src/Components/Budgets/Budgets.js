@@ -27,16 +27,7 @@ function Budgets() {
 
         if(response.status === 200){
             const budgets = await response.json();
-            const allBudgets = budgets.map((budget) => {
-                return (
-                    <DisplayBudget 
-                        key={budget.category}
-                        category={budget.category} 
-                        maxSpending={budget.maxSpending} 
-                        theme={budget.theme}/>
-                )
-            });
-            setAllBudgets(allBudgets);
+            setAllBudgets(budgets);
         }
         else{
             const message = await response.text();
@@ -58,9 +49,19 @@ function Budgets() {
     return(
         <section className={chooseQueries('container')}>
             <Header/>
-            <SpendingSummary/>
+            <SpendingSummary budgets={allBudgets}/>
             <div className={chooseQueries('allBudgets')}>
-                {allBudgets}
+                {allBudgets.length !== 0 && allBudgets.map((budget) => {
+                    return (
+                        <DisplayBudget 
+                            key={budget.category}
+                            budgetId={budget.id}
+                            category={budget.category} 
+                            maxSpending={budget.limit} 
+                            theme={budget.theme}
+                            transactions={budget.transactions}/>
+                    )
+                })}
             </div>
         </section>
     )

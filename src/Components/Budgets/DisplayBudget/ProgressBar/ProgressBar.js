@@ -1,33 +1,32 @@
 import React from 'react';
 import * as styles from './styles.module.css';
+import themes from '~/Themes';
 
-//this is where i left off, i will need to make this component dynamic based on the props
-//and i will need to create a global chart that i can use to map the names of colors with their hexadecimal values
-
-//refactor the progress bar into a div
 function ProgressBar({maxSpending, theme}) {
     return(
         <div className={styles.progress}>
             <p className={styles.progress_limit}>
                 Maximum of ${maxSpending}
             </p>
-            <progress className={styles.progress_bar} value={75} max={100} style={{backgroundColor: theme}}/>
+            <div className={styles.progress_container}>
+                <div className={styles.progress_bar} aria-description='progress bar' style={{width: '75%', backgroundColor: themes[theme]}}/>
+            </div>
             <div className={styles.progress_spent}>
-                <div className={styles.progress_color} style={{backgroundColor: theme}}/>
+                <div className={styles.progress_color} style={{backgroundColor: themes[theme]}}/>
                 <p className={styles.progress_title}>
                     Spent
                 </p>
                 <strong className={styles.progress_total}>
-                    $25.00
+                    $0.00
                 </strong>
             </div>
             <div className={styles.progress_remaining}>
-                <div className={styles.progress_color} style={{backgroundColor: theme}}/>
+                <div className={styles.progress_color}/>
                 <p className={styles.progress_title}>
-                    Free
+                    Remaining
                 </p>
                 <strong className={styles.progress_total}>
-                    $50.00
+                    ${Number(maxSpending).toFixed(2)}
                 </strong>
             </div>
         </div>

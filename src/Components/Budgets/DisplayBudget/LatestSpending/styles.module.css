@@ -120,6 +120,17 @@
     justify-self: end;
 }
 
+.no_transactions{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 24px */
+    grid-column: 1/3;
+    text-align: center;
+}
+
 @media(max-width: 620px){
     .spending{
         padding: 16px;

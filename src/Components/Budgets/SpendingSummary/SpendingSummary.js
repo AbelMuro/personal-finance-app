@@ -2,11 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames';
 import {useSelector} from 'react-redux';
+import Themes from '~/Themes';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-function SpendingSummary() {
+function SpendingSummary({budgets}) {
+    const [totalSpent, setTotalSpent] = useState(0);
+    const [limit, setLimit] = useState(0);
+    const [piechart, setPiechart] = useState(``);
     const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
@@ -22,50 +26,74 @@ function SpendingSummary() {
             setMediaQuery(mediaQueryMax);
     }, [isMenuMimized]);
 
+    useEffect(() => {
+        let limit = 0;
+        let totalSpent = 0;
+
+        budgets.forEach((budget) => {
+            limit += budget.limit;
+            totalSpent += budget.totalSpent
+        });
+
+        setLimit(limit);
+        setTotalSpent(totalSpent);
+
+        const piechartValues = [];
+        budgets.reduce((acc, budget, i) => {
+            const currentPercent = budget.totalSpent/totalSpent * 100;
+            const endPercent = acc[i - 1] ? acc[i - 1] + currentPercent : currentPercent;       //acc[i - 1] is the previous percent value
+            const startPercent = acc[i - 1] ? acc[i - 1] : 0;
+            acc.push(endPercent);
+            piechartValues.push(`${Themes[budget.theme]} ${startPercent}% ${endPercent}%`);
+                return acc;
+        }, []);  
+
+        let piechart = `conic-gradient(${piechartValues.join(',')})`;
+        setPiechart(piechart);
+    }, [budgets])
+
     return(
         <section className={chooseQueries('spending')}>
-            <div className={chooseQueries('spending_piechart')}>
-                <div className={chooseQueries('spending_whiteCircle')}>
-                    <strong className={chooseQueries('spending_piechartTitle')}>
-                        $407
-                    </strong>
-                    <p className={chooseQueries('spending_piechartLimit')}>
-                        of $975 limit
-                    </p>
-                </div>
+            <div 
+                className={chooseQueries('spending_piechart')} 
+                style={{background: piechart}}>
+                    <div className={chooseQueries('spending_whiteCircle')}>
+                        <strong className={chooseQueries('spending_piechartTitle')}>
+                            ${totalSpent}
+                        </strong>
+                        <p className={chooseQueries('spending_piechartLimit')}>
+                            of ${limit} limit
+                        </p>
+                    </div>
             </div>
             <ul className={styles.spending_summary}>
                 <li className={chooseQueries('spending_title')}>
                     Spending Summary
                 </li>
-                <li className={chooseQueries('spending_detail')}>
-                    <div className={styles.color}/>
-                    <p className={styles.spending_category}>
-                        Entertainment
-                    </p>
-                    <div className={chooseQueries('spending_flex')}>
-                        <strong className={styles.spending_total}>
-                            $155.00
-                        </strong>
-                        <p className={styles.spending_limit}>
-                            of $500.00
-                        </p>                        
-                    </div>
-                </li>
-                <li className={chooseQueries('spending_detail')}>
-                    <div className={styles.color}/>
-                    <p className={styles.spending_category}>
-                        Entertainment
-                    </p>
-                    <div className={chooseQueries('spending_flex')}>
-                        <strong className={styles.spending_total}>
-                            $15.00
-                        </strong>
-                        <p className={styles.spending_limit}>
-                            of $50.00
-                        </p>                        
-                    </div>
-                </li>
+
+                {budgets && budgets.map((budget) => {
+                    const category = budget.category;
+                    const totalSpent = budget.totalSpent;
+                    const limit = budget.limit;
+                    const theme = budget.theme;
+
+                    return(
+                        <li className={chooseQueries('spending_detail')} key={category}>
+                            <div className={styles.color} style={{backgroundColor: Themes[theme]}}/>
+                            <p className={styles.spending_category}>
+                                {category}
+                            </p>
+                            <div className={chooseQueries('spending_flex')}>
+                                <strong className={styles.spending_total}>
+                                    ${totalSpent}
+                                </strong>
+                                <p className={styles.spending_limit}>
+                                    of ${limit}
+                                </p>                        
+                            </div>
+                        </li>
+                    )
+                })}
             </ul>
         </section>
     )

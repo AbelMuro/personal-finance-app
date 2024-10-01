@@ -8,17 +8,18 @@ function BudgetForm() {
 
     const handleSubmit = async (e) => {
         const category = e.target.elements.category.value;
-        const maxSpending = e.target.elements.maxSpending.value;
+        const limit = e.target.elements.limit.value;
         const theme = e.target.elements.theme.value;
 
-        const response = await fetch('http://localhost:4000/add_budget', {
+        const response = await fetch('http://localhost:4000/edit_budget', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                id: budgetId,
                 category,
-                maxSpending,
+                limit,
                 theme
             })
         })
@@ -30,7 +31,7 @@ function BudgetForm() {
             <EnterMaxSpending/>
             <SelectTheme/>
             <button className={styles.form_submit}>
-                Add Budget
+                Edit Budget
             </button>
         </form>
     )

@@ -36,7 +36,7 @@ function EnterMaxSpending() {
                 <input 
                     type='text' 
                     id='maxSpending' 
-                    name='maxSpending'
+                    name='limit'
                     placeholder='e.g. 2000'
                     className={styles.input}
                     value={spending}
