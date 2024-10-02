@@ -1,3 +1,3 @@
-import {overlayVariant, dialogVariant, dropdownVariant} from './Variants.js';
+import { dropdownVariant } from "./Variants.js";
 
-export {overlayVariant, dialogVariant, dropdownVariant}
+export {dropdownVariant};

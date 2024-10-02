@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import BudgetForm from './BudgetForm';
 import icons from './icons';
 import * as styles from './styles.module.css';
-import {overlayVariant, dialogVariant, dropdownVariant} from './Variants';
+import EditBudget from './EditBudget';
+import DeleteBudget from './DeleteBudget';
+import {dropdownVariant} from './Variants';
 import { AnimatePresence, motion } from 'framer-motion';
 
 //this is where i left off, i will need to create the delete budget dialog here
@@ -53,30 +54,11 @@ function EditOrDeleteBudget() {
             </div>
             <AnimatePresence>
                 {
-                openEdit && 
-                <motion.div 
-                    className={styles.overlay} 
-                    variants={overlayVariant} 
-                    initial='hide' 
-                    animate='show'
-                    exit='exit'>
-                        <motion.dialog 
-                            open={true}
-                            className={styles.dialog}
-                            variants={dialogVariant}
-                            initial='hide'
-                            animate='show'
-                            exit='exit'>
-                                <h1 className={styles.dialog_title}>
-                                    Edit Budget
-                                </h1>
-                                <button className={styles.dialog_close} onClick={handleOpenEdit}></button>
-                                <p className={styles.dialog_desc}>
-                                    As your budgets change, feel free to update your spending limits
-                                </p>
-                                <BudgetForm/>
-                        </motion.dialog>
-                </motion.div>}
+                    openEdit && <EditBudget handleOpen={handleOpenEdit} key='edit'/>
+                }
+                {
+                    openDelete && <DeleteBudget handleOpen={handleOpenDelete} key='delete'/>
+                }
             </AnimatePresence>
         </>
     )
