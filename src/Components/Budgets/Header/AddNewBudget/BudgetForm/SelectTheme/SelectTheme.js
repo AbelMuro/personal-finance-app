@@ -35,7 +35,7 @@ function SelectTheme() {
             const formatThemes = allThemesRef.current.map((theme) => {
                 if(budgetThemes.includes(theme))
                     return (
-                        <li onClick={() => handleColor(theme)} key={theme} style={{pointerEvents: 'none'}}>
+                        <li key={theme} style={{pointerEvents: 'none'}}>
                             <img src={icons[theme]} style={{opacity: 0.25}}/> 
                             <span style={{color: '#696868'}}>{theme}</span>
                             <p>

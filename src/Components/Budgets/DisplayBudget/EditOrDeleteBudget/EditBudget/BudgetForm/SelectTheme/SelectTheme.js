@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect, useRef} from 'react';
+import {Budget} from '`/DisplayBudget';
 import * as styles from './styles.module.css';
 import { dropdownVariant } from './Variants';
 import {motion, AnimatePresence} from 'framer-motion';
 import icons from './icons';
 
 function SelectTheme() {
+    const {theme} = useContext(Budget);
+    const [allThemes, setAllThemes] = useState();
     const [open, setOpen] = useState(false);
-    const [color, setColor] = useState('Green')
+    const [color, setColor] = useState(theme);
+    const allThemesRef = useRef(['Green', 'Yellow', 'Cyan', 'Navy', 'Red', 'Purple', 'Turquoise']);
 
     const openArrowStyles = {
         transform: 'rotate(180deg)'
@@ -19,6 +23,47 @@ function SelectTheme() {
     const handleColor = (color) => {
         setColor(color)
     }
+
+    const getBudgets = async () => {
+        const response = await fetch('http://localhost:4000/get_budgets', {
+            method: 'GET',        
+            credentials: 'include',
+        }); 
+
+        if(response.status === 200){
+            const budgets = await response.json();
+            const budgetThemes = budgets.map(budget => budget.theme)
+            const formatThemes = allThemesRef.current.map((theme) => {
+                if(budgetThemes.includes(theme))
+                    return (
+                        <li key={theme} style={{pointerEvents: 'none'}}>
+                            <img src={icons[theme]} style={{opacity: 0.25}}/> 
+                            <span style={{color: '#696868'}}>{theme}</span>
+                            <p>
+                                Already used
+                            </p> 
+                         </li>
+                    )
+                else{
+                    return (                         
+                        <li onClick={() => handleColor(theme)} key={theme}>
+                            <img src={icons[theme]}/> 
+                            <span>{theme}</span>
+                        </li>
+                    )                     
+                }
+            });
+            setAllThemes(formatThemes);
+        }
+        else{
+            const message = await response.text();
+            console.log(message)
+        }        
+    }
+
+    useEffect(() => {
+        getBudgets();
+    }, [])
 
 
     return(
@@ -43,27 +88,7 @@ function SelectTheme() {
                         animate='show'
                         exit='exit'
                         >
-                            <li onClick={() => handleColor('Green')}>
-                               <img src={icons['Green']}/> Green
-                            </li>
-                            <li onClick={() => handleColor('Yellow')}>
-                                <img src={icons['Yellow']}/> Yellow
-                            </li>
-                            <li onClick={() => handleColor('Cyan')}>
-                                <img src={icons['Cyan']}/> Cyan
-                            </li>
-                            <li onClick={() => handleColor('Navy')}>
-                                <img src={icons['Navy']}/> Navy
-                            </li>
-                            <li onClick={() => handleColor('Red')}>
-                                <img src={icons['Red']}/> Red
-                            </li>
-                            <li onClick={() => handleColor('Purple')}>
-                                <img src={icons['Purple']}/> Purple
-                            </li>
-                            <li onClick={() => handleColor('Turquoise')}>
-                                <img src={icons['Turquoise']}/> Turquoise
-                            </li>
+                            {allThemes}
                     </motion.ul>}
             </AnimatePresence>
             <input type='hidden' name='theme' value={color}/>

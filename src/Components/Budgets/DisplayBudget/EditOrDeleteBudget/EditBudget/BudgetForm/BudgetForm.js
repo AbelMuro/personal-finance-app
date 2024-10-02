@@ -1,28 +1,50 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
+import { ClipLoader } from 'react-spinners';
+import {useNavigate} from 'react-router-dom';
+import {Budget} from '`/DisplayBudget';
 import SelectCategory from './SelectCategory';
 import EnterMaxSpending from './EnterMaxSpending';
 import SelectTheme from './SelectTheme';
 import * as styles from './styles.module.css';
 
-function BudgetForm() {
+function BudgetForm({handleOpen}) {
+    const [loading, setLoading] = useState(false);
+    const {budgetId} = useContext(Budget);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
         const category = e.target.elements.category.value;
         const limit = e.target.elements.limit.value;
         const theme = e.target.elements.theme.value;
 
         const response = await fetch('http://localhost:4000/edit_budget', {
-            method: 'POST',
+            method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 id: budgetId,
                 category,
-                limit,
+                limit: Number(limit),
                 theme
             })
-        })
+        });
+        
+        if(response.status === 200){
+            handleOpen();
+            const event = new Event('database-update');
+            document.dispatchEvent(event);            
+        }
+        else{
+            const message = await response.text();
+            console.log(message);
+            alert('Your login has expired, please log in again');
+            navigate('/');
+        }
+        setLoading(false);
     }
 
     return(
@@ -31,7 +53,7 @@ function BudgetForm() {
             <EnterMaxSpending/>
             <SelectTheme/>
             <button className={styles.form_submit}>
-                Edit Budget
+                {loading ? <ClipLoader size={35} color='white'/> : 'Edit Budget'}
             </button>
         </form>
     )

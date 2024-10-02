@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { ClipLoader } from 'react-spinners';
 import SelectCategory from './SelectCategory';
 import EnterMaxSpending from './EnterMaxSpending';
 import SelectTheme from './SelectTheme';
 import {v4 as uuid} from 'uuid';
 import * as styles from './styles.module.css';
 
-function BudgetForm() {
+function BudgetForm({handleOpen}) {
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const category = e.target.elements.category.value;
         const limit = e.target.elements.limit.value;
         const theme = e.target.elements.theme.value;
@@ -24,18 +27,27 @@ function BudgetForm() {
                 id,
                 category,
                 limit : Number(limit),
+                totalSpent: 0,
                 theme,
                 transactions: []
             })
         });
 
-        if(response.status === 200)
-            console.log('profile updated');
-        else{
-            const result = await response.text();
-            console.log(result);
+        if(response.status === 200){
+            console.log('profile updated'); 
+            handleOpen();
+            const event = new Event('database-update');
+            document.dispatchEvent(event)
+            setLoading(false);             
         }
             
+        else{
+            const message = await response.text();
+            console.log(result);
+            alert('Your login has expired, please log in again');
+            navigate('/');
+        }
+
     }
 
     return(
@@ -44,7 +56,7 @@ function BudgetForm() {
             <EnterMaxSpending/>
             <SelectTheme/>
             <button className={styles.form_submit}>
-                Add Budget
+                {loading ? <ClipLoader size={35} color='white'/> : 'Add Budget'}
             </button>
         </form>
     )

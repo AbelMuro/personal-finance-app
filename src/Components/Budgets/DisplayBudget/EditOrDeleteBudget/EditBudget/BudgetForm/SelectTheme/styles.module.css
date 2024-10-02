@@ -85,7 +85,23 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    position: relative;
 }
+
+.dropdown > li > p{
+    color: var(--color-grey-500, #696868);
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
 
 .dropdown > li:hover{
     color: #696868;

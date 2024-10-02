@@ -1,11 +1,10 @@
 import React from 'react';
 import BudgetForm from './BudgetForm';
 import {overlayVariant, dialogVariant} from './Variants';
-import {motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 import * as styles from './styles.module.css';
 
 function EditBudget({handleOpen}) {
-
 
     return <motion.div 
             className={styles.overlay} 
@@ -27,7 +26,7 @@ function EditBudget({handleOpen}) {
                         <p className={styles.dialog_desc}>
                             As your budgets change, feel free to update your spending limits
                         </p>
-                        <BudgetForm/>
+                        <BudgetForm handleOpen={handleOpen}/>
                 </motion.dialog>
         </motion.div>
 }

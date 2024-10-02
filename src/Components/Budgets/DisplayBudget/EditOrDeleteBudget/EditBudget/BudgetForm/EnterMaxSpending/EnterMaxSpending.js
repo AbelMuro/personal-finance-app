@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {Budget} from '`/DisplayBudget';
 import * as styles from './styles.module.css';
 import icons from './icons';
 
 function EnterMaxSpending() {
-    const [spending, setSpending] = useState('');
+    const {limit} = useContext(Budget);
+    const [spending, setSpending] = useState(limit);
     const [error, setError] = useState('');
     
     const handleSpending = (e) => {
@@ -11,7 +13,7 @@ function EnterMaxSpending() {
         e.target.setCustomValidity('');
         setError('');
 
-        if(input.match(/\d/) && Number(input) <= 10000000)
+        if((input.match(/\d/) && Number(input) <= 10000) || input === '')
             setSpending(input);
     }
 

@@ -11,7 +11,7 @@ function EnterMaxSpending() {
         e.target.setCustomValidity('');
         setError('');
 
-        if(input.match(/\d/) && Number(input) <= 10000000)
+        if((input.match(/\d/) && Number(input) <= 10000) || input === '')
             setSpending(input);
     }
 

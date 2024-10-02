@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Budget} from '`/DisplayBudget';
 import * as styles from './styles.module.css';
 import themes from '~/Themes';
 
-function ProgressBar({maxSpending, theme}) {
+//i will need to find the percentage of totalSpent from limit
+function ProgressBar() {
+    const {limit, theme, totalSpent} = useContext(Budget);
+
     return(
         <div className={styles.progress}>
             <p className={styles.progress_limit}>
-                Maximum of ${maxSpending}
+                Maximum of ${limit}
             </p>
             <div className={styles.progress_container}>
                 <div className={styles.progress_bar} aria-description='progress bar' style={{width: '75%', backgroundColor: themes[theme]}}/>
@@ -26,7 +30,7 @@ function ProgressBar({maxSpending, theme}) {
                     Remaining
                 </p>
                 <strong className={styles.progress_total}>
-                    ${Number(maxSpending).toFixed(2)}
+                    ${Number(limit).toFixed(2)}
                 </strong>
             </div>
         </div>

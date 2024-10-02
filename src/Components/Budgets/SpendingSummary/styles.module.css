@@ -8,8 +8,6 @@
     padding: 32px;
     border-radius: var(--spacing-150, 12px);
     background-color: var(--color-white, #FFF);
-    grid-column: 1/2;
-    grid-row: 2/3;
     transition: all 0.2s linear, width 0s;
 }
 
