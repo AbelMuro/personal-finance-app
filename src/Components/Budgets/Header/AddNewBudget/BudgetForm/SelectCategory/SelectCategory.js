@@ -8,7 +8,6 @@ import icons from './icons';
 
 function SelectCategory() {
     const [open, setOpen] = useState(false);
-    const navigate = useNavigate();
     const [category, setCategory] = useState('');
     const allCategoriesRef = useRef(['Entertainment', 'Bills', 'Groceries', 'Dining Out', 'Transportation', 'Personal Care', 'Education', 'General']);
     const [allCategories, setAllCategories] = useState([]);
