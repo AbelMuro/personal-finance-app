@@ -6,6 +6,7 @@
     padding: 32px;
     border-radius: 12px;
     background-color: var(--color-white, #FFF);
+    grid-column: 1/3;
 }
 
 @media(max-width: 760px){

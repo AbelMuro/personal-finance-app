@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import AddTransaction from './AddTransaction';
 import DisplayTransactions from './DisplayTransactions';
 import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames'
@@ -28,6 +29,7 @@ function Transactions() {
             <h1>
                 Transactions 
             </h1>
+            <AddTransaction/>
             <DisplayTransactions/>
         </section>
     )

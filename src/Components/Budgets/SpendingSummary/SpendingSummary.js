@@ -38,18 +38,29 @@ function SpendingSummary({budgets}) {
         setLimit(limit);
         setTotalSpent(totalSpent);
 
-        const piechartValues = [];
-        budgets.reduce((acc, budget, i) => {
-            const currentPercent = budget.totalSpent/totalSpent * 100;
-            const endPercent = acc[i - 1] ? acc[i - 1] + currentPercent : currentPercent;       //acc[i - 1] is the previous percent value
-            const startPercent = acc[i - 1] ? acc[i - 1] : 0;
-            acc.push(endPercent);
-            piechartValues.push(`${Themes[budget.theme]} ${startPercent}% ${endPercent}%`);
-                return acc;
-        }, []);  
+        if(totalSpent){
+            const piechartValues = [];
+            budgets.reduce((acc, budget, i) => {
+                const currentPercent = budget.totalSpent/totalSpent * 100;
+                const endPercent = acc[i - 1] ? acc[i - 1] + currentPercent : currentPercent;       //acc[i - 1] is the previous percent value
+                const startPercent = acc[i - 1] ? acc[i - 1] : 0;
+                acc.push(endPercent);
+                piechartValues.push(`${Themes[budget.theme]} ${startPercent}% ${endPercent}%`);
+                    return acc;
+            }, []);  
 
-        let piechart = `conic-gradient(${piechartValues.join(',')})`;
-        setPiechart(piechart);
+            let piechart = `conic-gradient(${piechartValues.join(',')})`;
+            setPiechart(piechart);
+        }
+        else{
+            setPiechart(`
+                conic-gradient(
+                    grey 0% 100%
+                )`
+            )
+        }
+
+
     }, [budgets])
 
     return(

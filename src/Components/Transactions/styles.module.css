@@ -1,6 +1,8 @@
 .transactions{
     width: 1060px;
-    display: flex;
+    display: grid;
+    align-content: start;
+    grid-template-columns: 1fr auto;
     flex-direction: column;
     gap: 32px;
     padding: 32px 40px;
@@ -30,5 +32,4 @@
     .transactions{
         padding: 32px 16px;
     }
-
 }

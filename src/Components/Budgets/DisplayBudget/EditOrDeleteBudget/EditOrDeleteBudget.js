@@ -6,7 +6,6 @@ import DeleteBudget from './DeleteBudget';
 import {dropdownVariant} from './Variants';
 import { AnimatePresence, motion } from 'framer-motion';
 
-//this is where i left off, i will need to create the delete budget dialog here
 function EditOrDeleteBudget() {
     const [openEdit, setOpenEdit] = useState(false);
     const [openDelete, setOpenDelete] = useState(false);

@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+
+.container > label{
+    color: var(--color-grey-500, #696868);
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 18px */
+}
+
+.container > input {
+    color: #201F24;
+    height: 45px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--color-beige-500, #98908B);
+    background-color: white;
+}
+
+.container > input::placeholder{
+    color: var(--color-beige-500, #98908B);
+}
+
+.container > input:focus{
+    outline: none;
+    border-color: #696868;
+}
+
+.container > input:hover{
+    border-color: #696868;
+}

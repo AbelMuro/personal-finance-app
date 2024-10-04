@@ -1,19 +1,27 @@
-import React, {useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Budget} from '`/DisplayBudget';
 import * as styles from './styles.module.css';
 import themes from '~/Themes';
 
-//i will need to find the percentage of totalSpent from limit
 function ProgressBar() {
     const {limit, theme, totalSpent} = useContext(Budget);
+    const [percent, setPercent] = useState('0%');
+
+    useEffect(() => {
+        const percent = totalSpent / limit * 100;
+        setPercent(percent);
+    }, [limit, totalSpent])
 
     return(
         <div className={styles.progress}>
             <p className={styles.progress_limit}>
-                Maximum of ${limit}
+                Maximum of ${limit.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}
             </p>
             <div className={styles.progress_container}>
-                <div className={styles.progress_bar} aria-description='progress bar' style={{width: '75%', backgroundColor: themes[theme]}}/>
+                <div className={styles.progress_bar} aria-description='progress bar' style={{width: percent, backgroundColor: themes[theme]}}/>
             </div>
             <div className={styles.progress_spent}>
                 <div className={styles.progress_color} style={{backgroundColor: themes[theme]}}/>
@@ -21,7 +29,10 @@ function ProgressBar() {
                     Spent
                 </p>
                 <strong className={styles.progress_total}>
-                    $0.00
+                    ${totalSpent.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}
                 </strong>
             </div>
             <div className={styles.progress_remaining}>
@@ -30,7 +41,10 @@ function ProgressBar() {
                     Remaining
                 </p>
                 <strong className={styles.progress_total}>
-                    ${Number(limit).toFixed(2)}
+                    ${limit.toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}
                 </strong>
             </div>
         </div>

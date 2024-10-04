@@ -6,7 +6,7 @@ import * as styles from './styles.module.css';
 
 function EditBudget({handleOpen}) {
 
-    return <motion.div 
+    return (<motion.div 
             className={styles.overlay} 
             variants={overlayVariant} 
             initial='hide' 
@@ -28,7 +28,7 @@ function EditBudget({handleOpen}) {
                         </p>
                         <BudgetForm handleOpen={handleOpen}/>
                 </motion.dialog>
-        </motion.div>
+        </motion.div>)
 }
 
 export default EditBudget;
