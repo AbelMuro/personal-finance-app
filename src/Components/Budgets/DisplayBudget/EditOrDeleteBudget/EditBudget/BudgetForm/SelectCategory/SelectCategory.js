@@ -2,10 +2,12 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import {Budget} from '`/DisplayBudget';
 import * as styles from './styles.module.css';
 import {motion, AnimatePresence} from 'framer-motion'
+import {useNavigate} from 'react-router-dom';
 import { dropdownVariant } from './Variants';
 import icons from './icons';
 
 function SelectCategory() {
+    const navigate = useNavigate();
     const budgetData = useContext(Budget);
     const initialCategory = budgetData.category;
     const [open, setOpen] = useState(false);
@@ -52,9 +54,13 @@ function SelectCategory() {
             });
             setAllCategories(formatCategories);
         }
-        else{
+        else if(response.status === 500){
             const message = await response.text();
-            console.log(message)
+            console.log(message);
+            navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
         }        
     }
 

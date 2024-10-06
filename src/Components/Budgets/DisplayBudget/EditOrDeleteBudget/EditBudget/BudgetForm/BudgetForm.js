@@ -38,11 +38,13 @@ function BudgetForm({handleOpen}) {
             const event = new Event('database-update');
             document.dispatchEvent(event);            
         }
-        else{
+        else if(response.status === 500){
             const message = await response.text();
             console.log(message);
-            alert('Your login has expired, please log in again');
             navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
         }
         setLoading(false);
     }

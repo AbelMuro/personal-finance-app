@@ -40,12 +40,13 @@ function BudgetForm({handleOpen}) {
             document.dispatchEvent(event)
             setLoading(false);             
         }
-            
-        else{
+        else if(response.status === 500){
             const message = await response.text();
-            console.log(result);
-            alert('Your login has expired, please log in again');
+            console.log(message);
             navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
         }
 
     }

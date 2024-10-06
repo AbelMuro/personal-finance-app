@@ -1,10 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
 import * as styles from './styles.module.css';
+import {useNavigate} from 'react-router-dom'
 import { dropdownVariant } from './Variants';
 import {motion, AnimatePresence} from 'framer-motion';
 import icons from './icons';
 
 function SelectTheme() {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState('');
     const [allThemes, setAllThemes] = useState([]);
@@ -61,9 +63,13 @@ function SelectTheme() {
             }
             setAllThemes(formatThemes);
         }
-        else{
+        else if(response.status === 500){
             const message = await response.text();
-            console.log(message)
+            console.log(message);
+            navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
         }        
     }
 

@@ -2,10 +2,12 @@ import React, {useContext, useState} from 'react';
 import { ClipLoader } from 'react-spinners';
 import {Budget} from '`/DisplayBudget';
 import {motion} from 'framer-motion';
+import {useNavigate} from 'react-router-dom'
 import * as styles from './styles.module.css';
 import { overlayVariant, dialogVariant } from './Variants';
 
 function DeleteBudget({handleOpen}) {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const {category, budgetId} = useContext(Budget);
 
@@ -22,9 +24,14 @@ function DeleteBudget({handleOpen}) {
             const event = new Event('database-update');
             document.dispatchEvent(event);
         }
-        else{
+        else if(response.status === 500){
             const message = await response.text();
             console.log(message);
+            navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000);
+            return
         }
         handleOpen();
         setLoading(false);

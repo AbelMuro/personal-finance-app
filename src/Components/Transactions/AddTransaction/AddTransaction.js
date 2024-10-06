@@ -4,6 +4,7 @@ import * as styles from './styles.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
 import {overlayVariant, dialogVariant} from './Variants';
 
+//this is where i left off, i will need to work on the mobile version of this component
 function AddTransaction() {
     const [open, setOpen] = useState(false);
 
@@ -39,7 +40,7 @@ function AddTransaction() {
                                 <p className={styles.dialog_desc}>
                                     Enter transaction details
                                 </p>
-                                <TransactionForm/>
+                                <TransactionForm handleOpen={handleOpen}/>
                         </motion.dialog>
                 </motion.div>}
             </AnimatePresence>

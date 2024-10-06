@@ -7,11 +7,13 @@ import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
 import {useMediaQuery} from '~/Hooks';
 import {useSelector} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function Budgets() {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [allBudgets, setAllBudgets] = useState([]);
     const isMenuMimized = useSelector(state => state.menu.minimize);
@@ -34,9 +36,13 @@ function Budgets() {
             const budgets = await response.json();
             setAllBudgets(budgets);
         }
-        else{
+        else if(response.status === 500){
             const message = await response.text();
             console.log(message);
+            navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
         }   
         setLoading(false);     
     }

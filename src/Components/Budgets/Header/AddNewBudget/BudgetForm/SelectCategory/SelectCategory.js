@@ -7,6 +7,7 @@ import icons from './icons';
 
 
 function SelectCategory() {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState('');
     const allCategoriesRef = useRef(['Entertainment', 'Bills', 'Groceries', 'Dining Out', 'Transportation', 'Personal Care', 'Education', 'General']);
@@ -57,12 +58,15 @@ function SelectCategory() {
                 window.location.reload();
                 return;
             }
-
             setAllCategories(formatCategories);
         }
-        else{
+        else if(response.status === 500){
             const message = await response.text();
-            console.log(message)
+            console.log(message);
+            navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
         }        
     }
 
