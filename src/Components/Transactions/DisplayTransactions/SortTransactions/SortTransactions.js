@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
+import {useDispatch} from 'react-redux'
 import MobileSort from './MobileSort';
 import { dropdownVariant } from './Variants';
 import {motion, AnimatePresence} from 'framer-motion'
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useMediaQuery} from '~/Hooks'
 import classnames from 'classnames';
 import icons from './icons';
@@ -11,7 +12,7 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function SortTransactions() {
     const dispatch = useDispatch();
-    const sort = useSelector(state => state.transactions.sort);
+    const sort = useSelector(state => state.transactions.sort)
     const [open, setOpen] = useState(false);
     const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
@@ -27,7 +28,7 @@ function SortTransactions() {
     }
 
     const handleSort = (query) => {
-        dispatch({type: 'UPDATE_SORT', payload: query})
+        dispatch({type: 'UPDATE_SORT', payload: query});
     }
 
     useEffect(() => {
@@ -36,6 +37,7 @@ function SortTransactions() {
         else
             setMediaQuery(mediaQueryMax);
     }, [isMenuMimized]);    
+
 
     return mobile ? <MobileSort/> : 
         <div className={chooseQueries('sort')} onClick={handleOpen}>
@@ -81,4 +83,4 @@ function SortTransactions() {
     
 }
 
-export default SortTransactions;
+export default memo(SortTransactions);

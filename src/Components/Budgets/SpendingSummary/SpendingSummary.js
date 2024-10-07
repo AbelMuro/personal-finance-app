@@ -7,7 +7,8 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-function SpendingSummary({budgets}) {
+function SpendingSummary() {
+    const budgets = useSelector(state => state.budgets.budgets);
     const [totalSpent, setTotalSpent] = useState(0);
     const [limit, setLimit] = useState(0);
     const [piechart, setPiechart] = useState(``);
@@ -59,8 +60,6 @@ function SpendingSummary({budgets}) {
                 )`
             )
         }
-
-
     }, [budgets])
 
     return(
@@ -82,7 +81,8 @@ function SpendingSummary({budgets}) {
                     Spending Summary
                 </li>
 
-                {budgets && budgets.map((budget) => {
+                {budgets && budgets.map((budget, i) => {
+                    if(i >= 5) return;
                     const category = budget.category;
                     const totalSpent = budget.totalSpent;
                     const limit = budget.limit;

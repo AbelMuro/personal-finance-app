@@ -1,3 +1,3 @@
-import placeholder from './bytewise.jpg';
+import placeholder from './icon-transaction-placeholder.png';
 
 export default {placeholder};

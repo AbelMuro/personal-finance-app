@@ -1,3 +1,3 @@
-import placeholder from './icon-transactions-placeholder.jpg';
+import placeholder from './icon-transaction-placeholder.png';
 
 export default {placeholder}

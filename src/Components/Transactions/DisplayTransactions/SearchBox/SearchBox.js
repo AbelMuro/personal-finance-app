@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import icons from './icons';
 import classnames from 'classnames'
@@ -19,7 +19,8 @@ function SearchBox() {
     }
 
     const handleSearch = (e) => {
-        dispatch({type: 'UPDATE_SEARCH', payload: e.target.value});
+        const input = e.target.value;
+        dispatch({type: 'UPDATE_SEARCH', payload: input});
     }
 
     useEffect(() => {
@@ -44,4 +45,4 @@ function SearchBox() {
     )
 }
 
-export default SearchBox;
+export default memo(SearchBox);

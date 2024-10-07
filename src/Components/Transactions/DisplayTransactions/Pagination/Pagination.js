@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import * as styles from './styles.module.css'
 import {useMediaQuery} from '~/Hooks';
 
+
+//this is where i left off, this will be tricky
 function Pagination() {
     const page = useSelector(state => state.transactions.page);
     const dispatch = useDispatch();

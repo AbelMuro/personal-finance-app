@@ -10,6 +10,7 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function AllTransactions() {
     const isMenuMimized = useSelector(state => state.menu.minimize);
+    const transactions = useSelector(state => state.transactions.transactions);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
@@ -43,177 +44,36 @@ function AllTransactions() {
             </div>}
             {mobile ? <MobileTransactions/> : 
                 <section className={styles.transactions_all}>
-                     <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-                    <article className={chooseQueries('transaction')}>
-                        <div>
-                            <img className={styles.transaction_image} src={icons['placeholder']}/>
-                            <h1 className={styles.transaction_title}>
-                                Emma Richardson
-                            </h1>                        
-                        </div>
-                        <p className={styles.transaction_category}>
-                            General
-                        </p>
-                        <p className={styles.transaction_date}>
-                            19 Aug 2024
-                        </p>
-                        <p className={styles.transaction_amount}>
-                            +75.50
-                        </p>
-                    </article>
-            </section> }
+                     {transactions.map((transaction) => {
+                        const transactionsId = transaction.transactionId;
+                        const image = transaction.image;
+                        const recipient = transaction.recipient;
+                        const category = transaction.category;
+                        const date = transaction.date;
+                        const amount = transaction.amount;
+                        const plusOrMinus = transaction.plusOrMinus;
+
+                        return(
+                            <article className={chooseQueries('transaction')} key={transactionsId}>
+                                <div>
+                                    <img className={styles.transaction_image} src={image ? image : icons['placeholder']}/>
+                                    <h1 className={styles.transaction_title}>
+                                        {recipient}
+                                    </h1>                        
+                                </div>
+                                <p className={styles.transaction_category}>
+                                    {category}
+                                </p>
+                                <p className={styles.transaction_date}>
+                                    {date}
+                                </p>
+                                <p className={styles.transaction_amount} style={plusOrMinus === '+' ? {color: '#277C78'} : {color: '#201F24'}}>
+                                    {plusOrMinus}${amount.toFixed(2)}
+                                </p>
+                            </article>
+                        )
+                     })}
+            </section>}
         </div>
     )
 }

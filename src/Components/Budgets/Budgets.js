@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
 import {useMediaQuery} from '~/Hooks';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
@@ -14,8 +14,9 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function Budgets() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
-    const [allBudgets, setAllBudgets] = useState([]);
+    const allBudgets = useSelector(state => state.budgets.budgets);
     const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
@@ -34,7 +35,7 @@ function Budgets() {
 
         if(response.status === 200){
             const budgets = await response.json();
-            setAllBudgets(budgets);
+            dispatch({type: 'UPDATE_BUDGETS', payload: budgets});
         }
         else if(response.status === 500){
             const message = await response.text();
@@ -68,7 +69,7 @@ function Budgets() {
             <Header/>
             {loading ? 
                 <Skeleton width='100%' height='300px' borderRadius={8}/> : 
-                <SpendingSummary budgets={allBudgets}/>}
+                <SpendingSummary/>}
             <div className={chooseQueries('allBudgets')}>
                 {loading ? 
                     <>

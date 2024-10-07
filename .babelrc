@@ -11,6 +11,10 @@
               {
                 "rootPathSuffix": "./src/Components/Budgets/DisplayBudget",
                 "rootPathPrefix": "`/"
+              },
+              {
+                "rootPathSuffix": "./src/Components/Transactions/DisplayTransactions",
+                "rootPathPrefix": "!/"
               }
             ]
           }

@@ -16,7 +16,7 @@ function UploadImage(){
             {image && <img className={styles.image} src={URL.createObjectURL(image)}/>}
             <label htmlFor='upload' className={styles.button}> 
                 <input id='upload' type='file' name='image' onChange={handleImage} accept="image/png, image/jpeg"/>
-                Upload Image
+                Upload Image (optional)
             </label>        
         </>
 
