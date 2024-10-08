@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState, useMemo, useRef} from 'react';
 import MobilePagination from './MobilePagination';
 import {useSelector, useDispatch} from 'react-redux';
 import * as styles from './styles.module.css'
 import {useMediaQuery} from '~/Hooks';
 
-
-//this is where i left off, this will be tricky
 function Pagination() {
-    const page = useSelector(state => state.transactions.page);
+    const totalPages = useRef(0);
+    const currentPage = useSelector(state => state.transactions.page);
+    const transactions = useSelector(state => state.transactions.transactions);
     const dispatch = useDispatch();
     const [mobile] = useMediaQuery('(max-width: 620px)');
 
@@ -16,13 +16,43 @@ function Pagination() {
     }
 
     const handleNext = () => {
-        dispatch({type: 'UPDATE_PAGE', payload: page + 1})
+        if(currentPage === totalPages.current) return;
+        dispatch({type: 'UPDATE_PAGE', payload: currentPage + 1})
     }
 
     const handlePrev = () => {
-        if(page > 1)
-            dispatch({type: 'UPDATE_PAGE', payload: page - 1});
+        if(currentPage === 1) return;
+        dispatch({type: 'UPDATE_PAGE', payload: currentPage - 1});
     }
+
+    const displayPages = useMemo(() => {
+        const allPages = transactions.length / 10;
+        let fullPages = Math.floor(allPages);
+        const halfPages = allPages - Math.floor(allPages).toFixed(1);
+        totalPages.current = fullPages
+        if(halfPages > 0)   
+            totalPages.current += 1;
+
+        const buttonsPerPage = 5;
+        const start = Math.max(1, currentPage - Math.floor(buttonsPerPage / 2));
+        const end = Math.min(totalPages.current, start + buttonsPerPage - 1);
+        const pages = [];
+
+        for(let i = start; i <= end; i++){
+            pages.push(                
+                <button 
+                    className={styles.pagination_page} 
+                    onClick={() => handlePage(i)} 
+                    style={currentPage === i ? {backgroundColor: '#201F24', color: '#FFF'} : {}}
+                    key={i}>
+                        {i}
+                </button>
+            )
+        }
+
+        return pages;
+    }, [currentPage, transactions])
+
 
 
     return(
@@ -33,21 +63,7 @@ function Pagination() {
             </button>
             {mobile ? <MobilePagination/> : 
                 <div className={styles.pagination_pages}>
-                    <button className={styles.pagination_page} onClick={() => handlePage(1)} style={page === 1 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                        1
-                    </button>
-                    <button className={styles.pagination_page} onClick={() => handlePage(2)} style={page === 2 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                        2
-                    </button>
-                    <button className={styles.pagination_page} onClick={() => handlePage(3)} style={page === 3 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                        3
-                    </button>
-                    <button className={styles.pagination_page} onClick={() => handlePage(4)} style={page === 4 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                        4
-                    </button>
-                    <button className={styles.pagination_page} onClick={() => handlePage(5)} style={page === 5 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                        5
-                    </button>
+                    {displayPages}
                 </div>}
             <button className={styles.pagination_next} onClick={handleNext}>
                 {!mobile && 'Next'}

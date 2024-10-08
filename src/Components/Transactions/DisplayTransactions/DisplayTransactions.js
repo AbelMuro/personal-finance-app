@@ -1,4 +1,4 @@
-import React, {useState, useEffect, createContext, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchBox from './SearchBox';
 import SortTransactions from './SortTransactions';
 import SelectCategory from './SelectCategory';

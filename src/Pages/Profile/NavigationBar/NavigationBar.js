@@ -40,7 +40,6 @@ function NavigationBar() {
 
     const handleLink = (link) => {
         setLink(link);
-        navigate(`/profile/${link}`);
     }
 
     const handleMinimize = () => {
@@ -48,9 +47,18 @@ function NavigationBar() {
     }
 
     useEffect(() => {
+        navigate(`/profile/${link}`);
+    }, [link])
+
+    /* 
+    useEffect(() => {
         const path = location.pathname.split('/')[2];
-        setLink(path)
+        if(path)
+            setLink(path);
     }, [location])
+    
+    
+    */
 
     return tablet ? <MobileNavBar link={link} setLink={setLink}/> : 
             <motion.nav 

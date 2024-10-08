@@ -9,7 +9,10 @@ function ProgressBar() {
 
     useEffect(() => {
         const percent = totalSpent / limit * 100;
-        setPercent(percent);
+        if(percent > 100)
+            setPercent('100%')
+        else
+            setPercent(percent);
     }, [limit, totalSpent])
 
     return(

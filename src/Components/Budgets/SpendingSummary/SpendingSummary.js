@@ -69,7 +69,7 @@ function SpendingSummary() {
                 style={{background: piechart}}>
                     <div className={chooseQueries('spending_whiteCircle')}>
                         <strong className={chooseQueries('spending_piechartTitle')}>
-                            ${totalSpent}
+                            ${totalSpent.toFixed(2)}
                         </strong>
                         <p className={chooseQueries('spending_piechartLimit')}>
                             of ${limit} limit
@@ -96,7 +96,7 @@ function SpendingSummary() {
                             </p>
                             <div className={chooseQueries('spending_flex')}>
                                 <strong className={styles.spending_total}>
-                                    ${totalSpent}
+                                    ${totalSpent.toFixed(2)}
                                 </strong>
                                 <p className={styles.spending_limit}>
                                     of ${limit}

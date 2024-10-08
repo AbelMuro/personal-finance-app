@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import MobileTransactions from './MobileTransactions';
 import icons from './icons';
 import {useMediaQuery} from '~/Hooks';
@@ -11,6 +11,7 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 function AllTransactions() {
     const isMenuMimized = useSelector(state => state.menu.minimize);
     const transactions = useSelector(state => state.transactions.transactions);
+    const page = useSelector(state => state.transactions.page);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
     const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
@@ -18,6 +19,15 @@ function AllTransactions() {
     const chooseQueries = (className) => {
         return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
     }
+
+    const paginatedTransactions = useMemo(() => {
+        const upper = page * 10;
+        const lower = upper - 10;
+        return transactions.filter((_, i) => {
+            const currentTransaction = i + 1;
+            return currentTransaction > lower && currentTransaction <= upper;
+        })
+    }, [page, transactions])
 
     useEffect(() => {
         if(isMenuMimized)
@@ -44,7 +54,8 @@ function AllTransactions() {
             </div>}
             {mobile ? <MobileTransactions/> : 
                 <section className={styles.transactions_all}>
-                     {transactions.map((transaction) => {
+                     {paginatedTransactions.map((transaction, i) => {
+
                         const transactionsId = transaction.transactionId;
                         const image = transaction.image;
                         const recipient = transaction.recipient;
