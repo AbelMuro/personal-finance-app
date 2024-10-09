@@ -5,6 +5,7 @@ import Profile from './Pages/Profile'
 import Overview from './Components/Overview'
 import Transactions from './Components/Transactions';
 import Budgets from './Components/Budgets';
+import Pots from './Components/Pots';
 import { Provider } from 'react-redux';
 import Store from './Store'
 import './styles.css';
@@ -19,6 +20,7 @@ function App() {
                         <Route path='/profile/overview' element={<Overview/>}/>
                         <Route path='/profile/budgets' element={<Budgets/>}/>
                         <Route path='/profile/transactions' element={<Transactions/>}/>
+                        <Route path='/profile/pots' element={<Pots/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

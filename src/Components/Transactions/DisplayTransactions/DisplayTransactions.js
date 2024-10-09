@@ -9,11 +9,14 @@ import {useNavigate} from 'react-router-dom';
 import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames';
 import {useSelector} from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
+import "react-loading-skeleton/dist/skeleton.css";
 import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function DisplayTransactions() {
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isMenuMimized = useSelector(state => state.menu.minimize);
@@ -21,6 +24,7 @@ function DisplayTransactions() {
     const [tablet] = useMediaQuery('(max-width: 850px)');
 
     const getTransactions = async () => {
+        setLoading(true);
         const response = await fetch('http://localhost:4000/get_transactions', {
             method: 'GET',
             credentials: 'include'
@@ -38,6 +42,7 @@ function DisplayTransactions() {
                 alert('You have been logged out, please log in again')
             }, 1000)
         }
+        setLoading && setLoading(false);
     }
 
     const chooseQueries = (className) => {
@@ -66,7 +71,16 @@ function DisplayTransactions() {
             <SearchBox/>
             <SortTransactions/>
             <SelectCategory/>
-            <AllTransactions/>
+            {loading ? 
+                <div className={styles.loading_container}>
+                    <Skeleton width='100%' height='73px' borderRadius={8}/>
+                    <Skeleton width='100%' height='73px' borderRadius={8}/>
+                    <Skeleton width='100%' height='73px' borderRadius={8}/>
+                    <Skeleton width='100%' height='73px' borderRadius={8}/>
+                    <Skeleton width='100%' height='73px' borderRadius={8}/>
+                    <Skeleton width='100%' height='73px' borderRadius={8}/>
+                </div> 
+                : <AllTransactions/>}
             <Pagination/>
         </div>
     )
