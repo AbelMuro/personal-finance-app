@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import * as styles from './styles.module.css';
 
@@ -13,35 +13,53 @@ function MobilePagination() {
     }
 
     const allButtons = useMemo(() => {
-        let totalPages = Math.floor(transactions.length / 10);
-        const halfPages = totalPages - Math.floor(totalPages).toFixed(1);
+        const allPages = transactions.length / 10;
+        let fullPages = Math.floor(allPages);
+        const halfPages = allPages - Math.floor(allPages).toFixed(1);
+        let totalPages = fullPages;
         if(halfPages > 0)   
             totalPages += 1;
-        const buttonsPerPage = 4;
-        
-        const start = Math.max(1, currentPage - Math.floor(buttonsPerPage / 2));
-        const end = Math.min(totalPages, start + buttonsPerPage - 1);
-        const pages = [];
+        /* 
+            const buttonsPerPage = 4;
+            
+            const start = Math.max(1, currentPage - Math.floor(buttonsPerPage / 2));
+            const end = Math.min(totalPages, start + buttonsPerPage - 1);
+            const pages = [];        
+        */
 
-        for(let i = start; i < end; i++){
+        const paginationButtons = [];
+        let hasOneDotButton = false;
 
+        for(let i = 1; i <= totalPages; i++){
+            if(i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1))
+                paginationButtons.push(
+                    <button 
+                        className={styles.pagination_page}
+                        onClick={() => handlePage(i)} 
+                        style={currentPage === i ? {backgroundColor: '#201F24', color: '#FFF'} : {}}
+                        key={i}
+                        >
+                            {i}
+                    </button>
+                )
+            else {
+                if(hasOneDotButton)
+                        continue;
+                hasOneDotButton = true;
+                paginationButtons.push(
+                    <button className={styles.pagination_page_dotted} key={i}>
+                        ...
+                    </button>                    
+                )
+            }
         }
-    })
+
+        return paginationButtons;
+    },[currentPage, transactions])
 
     return(
         <div className={styles.pagination}>
-            <button className={styles.pagination_page} onClick={() => handlePage(1)} style={currentPage === 1 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                1
-            </button>
-            <button className={styles.pagination_page} onClick={() => handlePage(2)} style={currentPage === 2 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                2
-            </button>
-            <button className={styles.pagination_page}>
-                ...
-            </button>
-            <button className={styles.pagination_page} onClick={() => handlePage(5)} style={currentPage === 5 ? {backgroundColor: '#201F24', color: '#FFF'} : {}}>
-                5
-            </button>
+            {allButtons}
         </div>
     )
 }

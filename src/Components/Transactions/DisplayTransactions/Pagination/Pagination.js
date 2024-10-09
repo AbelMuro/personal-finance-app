@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo, useRef} from 'react';
+import React, {useMemo, useRef} from 'react';
 import MobilePagination from './MobilePagination';
 import {useSelector, useDispatch} from 'react-redux';
 import * as styles from './styles.module.css'

@@ -6,11 +6,11 @@
     padding-top: 24px;
 }
 
-.pagination button{
+.pagination > button{
     cursor: pointer;
 }
 
-.pagination button:hover{
+.pagination > button:hover{
     background-color: #98908B;
     color: #FFFFFF;
 }
@@ -81,5 +81,11 @@
     .pagination_prev, .pagination_next{
         width: 50px;
         height: 40px;
+    }
+}
+
+@media(max-width: 470px){
+    .pagination_prev, .pagination_next{
+        width: 30px;
     }
 }

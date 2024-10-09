@@ -1,9 +1,11 @@
 .pagination{
     display: flex;
     gap: 8px;
+    flex-shrink: 1;
 }
 
-.pagination_page{
+.pagination_page,
+.pagination_page_dotted{
     width: 40px;
     height: 40px;
     border-radius: var(--spacing-100, 8px);
@@ -15,13 +17,22 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 21px */
-}
-
-.pagination_page{
-    cursor: pointer;
+    flex-shrink: 1;
 }
 
 .pagination_page:hover{
     background-color: #98908B;
     color: #FFFFFF;
+    cursor: pointer;
+}
+
+@media(max-width: 470px){
+    .pagination{
+        gap: 4px;
+    }
+
+    .pagination_page,
+    .pagination_page_dotted{
+        width: 30px;
+    }
 }

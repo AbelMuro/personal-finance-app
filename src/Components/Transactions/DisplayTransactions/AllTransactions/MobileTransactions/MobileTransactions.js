@@ -1,15 +1,25 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
 import icons from './icons';
 
 function MobileTransactions() {
     const transactions = useSelector(state => state.transactions.transactions);
+    const currentPage = useSelector(state => state.transactions.page);
+
+    const paginatedTransactions = useMemo(() => {
+        const upper = currentPage * 10;
+        const lower = upper - 10;
+        return transactions.filter((_, i) => {
+            const currentTransaction = i + 1;
+            return currentTransaction > lower && currentTransaction <= upper;
+        })
+    }, [currentPage, transactions])
 
     return(
         <div className={styles.container}>
             {
-                transactions.map((transaction) => {
+                paginatedTransactions.map((transaction) => {
                     const transactionId = transaction.transactionId;
                     const image = transaction.image;
                     const recipient = transaction.recipient;
