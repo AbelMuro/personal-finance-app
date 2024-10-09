@@ -11,6 +11,7 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
+///this is where i left off, i will need to make this component  dynamic
 function Overview(){
     const isMenuMimized = useSelector(state => state.menu.minimize);
     const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);

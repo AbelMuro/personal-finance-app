@@ -33,7 +33,7 @@ function Pagination() {
         if(halfPages > 0)   
             totalPages.current += 1;
 
-        const buttonsPerPage = 5;
+        const buttonsPerPage = 5;                           //2
         const start = Math.max(1, currentPage - Math.floor(buttonsPerPage / 2));
         const end = Math.min(totalPages.current, start + buttonsPerPage - 1);
         const pages = [];
