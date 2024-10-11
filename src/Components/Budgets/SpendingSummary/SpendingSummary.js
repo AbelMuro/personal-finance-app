@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import {useMediaQuery} from '~/Hooks';
 import classnames from 'classnames';
 import {useSelector} from 'react-redux';
@@ -110,4 +110,4 @@ function SpendingSummary() {
     )
 } 
 
-export default SpendingSummary;
+export default memo(SpendingSummary);

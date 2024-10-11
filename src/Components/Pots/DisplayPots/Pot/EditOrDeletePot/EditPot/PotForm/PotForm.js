@@ -1,13 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import EnterPotName from './EnterPotName';
 import EnterTarget from './EnterTarget';
 import EnterTheme from './EnterTheme';
-import { ClipLoader } from 'react-spinners';
-import {v4 as uuid} from 'uuid';
+import {PotsContext} from '@/Pot';
+import {ClipLoader} from 'react-spinners';
+import {useNavigate} from 'react-router-dom';
 import * as styles from './styles.module.css';
+
+//need to test out the /edit_pot endpoint
 
 function PotForm({handleOpen}) {
     const [loading, setLoading] = useState(false);
+    const {potId} = useContext(PotsContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,27 +20,25 @@ function PotForm({handleOpen}) {
         const name = e.target.elements.potName.value;
         const target = e.target.elements.target.value;
         const theme = e.target.elements.theme.value;
-        const potId = uuid();
 
-        const response = await fetch('http://localhost:4000/add_pot', {
-            method: 'POST',
+        const response = await fetch('http://localhost:4000/edit_pot', {
+            method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                id: potId,
                 name,
-                target,
-                theme,
-                potId,
-            }),
-            credentials: 'include'
-        })
-
+                target: Number(target),
+                theme
+            })
+        });
+        
         if(response.status === 200){
-            const result = await response.text();
-            console.log(result);
+            handleOpen();
             const event = new Event('database-update');
-            document.dispatchEvent(event);
+            document.dispatchEvent(event);            
         }
         else if(response.status === 500){
             const message = await response.text();
@@ -45,9 +48,7 @@ function PotForm({handleOpen}) {
                 alert('You have been logged out, please log in again')
             }, 1000)
         }
-
-        setLoading && setLoading(false);
-        handleOpen && handleOpen();
+        setLoading(false);
     }
 
     return(
@@ -56,7 +57,7 @@ function PotForm({handleOpen}) {
             <EnterTarget/>
             <EnterTheme/>
             <button className={styles.form_submit}>
-                {loading ? <ClipLoader size='35px' color='white'/> :  'Add Pot'}
+                {loading ? <ClipLoader size={35} color='white'/> : 'Edit Budget'}
             </button>
         </form>
     )

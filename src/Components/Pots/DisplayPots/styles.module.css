@@ -1,0 +1,5 @@
+.pots{
+    display: grid;
+    grid-template-columns: repeat(2, 518px);
+    gap: 24px;
+}

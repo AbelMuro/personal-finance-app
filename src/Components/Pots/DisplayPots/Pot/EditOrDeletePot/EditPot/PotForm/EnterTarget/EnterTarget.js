@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {PotsContext} from '@/Pot'
 import * as styles from './styles.module.css';
 
 function EnterTarget() {
-    const [target, setTarget] = useState('');
+    const {target} = useContext(PotsContext);
+    const [newTarget, setNewTarget] = useState(target);
     const [error, setError] = useState('');
 
     const handleTarget = (e) => {
@@ -10,7 +12,7 @@ function EnterTarget() {
         if(input.match(/\D/) || Number(input) > 9999) return;
         e.target.setCustomValidity('');
         setError('');
-        setTarget(e.target.value);
+        setNewTarget(input);
     }
 
     const handleBlur = (e) => {
@@ -36,7 +38,7 @@ function EnterTarget() {
                     name='target'
                     placeholder='e.g 2000' 
                     className={styles.input}
-                    value={target}
+                    value={newTarget}
                     onChange={handleTarget}
                     onBlur={handleBlur}
                     onInvalid={handleInvalid}

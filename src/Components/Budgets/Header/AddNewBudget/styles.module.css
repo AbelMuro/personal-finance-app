@@ -34,7 +34,6 @@
     grid-template-columns: 1fr 32px;
     row-gap: 20px;
     width: 560px;
-    height: 490px;
     border-radius: var(--spacing-150, 12px);
     background-color: var(--color-white, #FFF);
     padding: 32px;

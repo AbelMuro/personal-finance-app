@@ -15,6 +15,10 @@
               {
                 "rootPathSuffix": "./src/Components/Transactions/DisplayTransactions",
                 "rootPathPrefix": "!/"
+              },
+              {
+                "rootPathSuffix": "./src/Components/Pots/DisplayPots/Pot",
+                "rootPathPrefix": "@/"
               }
             ]
           }

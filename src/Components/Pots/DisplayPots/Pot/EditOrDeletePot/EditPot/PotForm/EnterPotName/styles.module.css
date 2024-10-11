@@ -1,6 +1,6 @@
 .container{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
     gap: 4px;
     border: none;
     padding: 0px;
@@ -17,15 +17,9 @@
     grid-column: 1/2; 
 }
 
-.input_container{
-    position: relative;
-    width: 100%;
-}
-
 .input{
-    width: 100%;
     height: 45px;
-    padding: 12px 20px 12px 42px;
+    padding: 12px 20px;
     border-radius: 8px;
     border: 1px solid var(--color-beige-500, #98908B);
     background-color: white;
@@ -45,23 +39,6 @@
 
 .input:hover{
     border: 1px solid var(--color-grey-500, #696868);
-}
-
-.dollarSign{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-beige-500, #98908B);
-    font-family: var(--font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 21px */
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 20px;
-    margin: auto;
 }
 
 .error_message{
