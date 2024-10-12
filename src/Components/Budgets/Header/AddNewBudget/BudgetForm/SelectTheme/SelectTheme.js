@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import React, {useState, useEffect, useRef} from 'react';
 import Themes from '~/Themes';
 import * as styles from './styles.module.css';
 import {useNavigate} from 'react-router-dom'
@@ -11,7 +10,7 @@ function SelectTheme() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState('');
-    const [allThemes, setAllThemes] = useState([]);
+    const [budgetThemes, setBudgetThemes] = useState([]);
 
     const openArrowStyles = {
         transform: 'rotate(180deg)'
@@ -21,7 +20,7 @@ function SelectTheme() {
         setOpen(!open);
     }
 
-    const handleColor = (color, e) => {
+    const handleColor = (color) => {
         setColor(color);
     }
 
@@ -33,40 +32,24 @@ function SelectTheme() {
 
         if(response.status === 200){
             const budgets = await response.json();
-            const budgetThemes = budgets.map(budget => budget.theme)
-            let temp = true;                                                    //temp will be used to get the first available theme
-            const formatThemes = Object.entries(Themes).map((theme) => {
+            const budgetThemes = budgets.map(budget => budget.theme);
+            let temp = true;
+            Object.entries(Themes).some((theme) => {                //this loop will check for the first available theme
                 const themeName = theme[0];
-                const themeColor = theme[1];
-
-                if(budgetThemes.includes(themeName))
-                    return (
-                        <li key={themeName} style={{pointerEvents: 'none'}}>
-                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
-                            <span style={{color: '#696868'}}>{themeName}</span>
-                            <p>
-                                Already used
-                            </p> 
-                         </li>
-                    )
-                else{
-                    temp && setColor(themeName);
+                if(!budgetThemes.includes(themeName)){
                     temp = false;
-                    return (                         
-                        <li onClick={(e) => handleColor(themeName, e)} key={themeName}>
-                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
-                            <span>{themeName}</span>
-                            {color === themeName && <img className={styles.checkmark} src={icons['checkmark']}/>}       {/* this is where i left off */}
-                        </li>
-                    )                     
+                    setColor(themeName);
+                    return true;
                 }
+                else
+                    return false;
             });
             if(temp){                                                       //if there are no available themes
                 alert('You cannot make any more budgets, consider deleting some of your existing budgets');
                 window.location.reload();
                 return;
-            }
-            setAllThemes(formatThemes);
+            }   
+            setBudgetThemes(budgetThemes);
         }
         else if(response.status === 500){
             const message = await response.text();
@@ -74,13 +57,14 @@ function SelectTheme() {
             navigate('/');
             setTimeout(() => {
                 alert('You have been logged out, please log in again')
-            }, 1000)
+            }, 1000);
         }        
     }
 
     useEffect(() => {
         getBudgets();
     }, []);
+
 
     return(
         <fieldset className={styles.container} onClick={handleOpen}>
@@ -92,7 +76,6 @@ function SelectTheme() {
                     {<div className={styles.theme_dot} style={{backgroundColor: Themes[color]}}/>}
                     {color}
                 </div>
-                
                 <img className={styles.selectbox_arrow} src={icons['arrow']} style={open ? openArrowStyles : {}}/>
             </div>
             <AnimatePresence>
@@ -104,7 +87,30 @@ function SelectTheme() {
                         animate='show'
                         exit='exit'
                         >
-                            {allThemes}
+                            {Object.entries(Themes).map((theme) => {
+                                const themeName = theme[0];
+                                const themeColor = theme[1];
+                                
+                                if(budgetThemes.includes(themeName))
+                                    return (
+                                        <li key={themeName} style={{pointerEvents: 'none'}}>
+                                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
+                                                <span style={{color: '#696868'}}>{themeName}</span>
+                                                 <p>
+                                                    Already used
+                                                </p> 
+                                        </li>
+                                    )
+                                else{
+                                    return (                         
+                                        <li onClick={() => handleColor(themeName)} key={themeName}>
+                                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
+                                                <span>{themeName}</span>
+                                                {color === themeName && <img className={styles.checkmark} src={icons['checkmark']}/>}  
+                                            </li>
+                                        )                     
+                                    }
+                            })}
                     </motion.ul>}
             </AnimatePresence>
             <input type='hidden' name='theme' value={color}/>

@@ -99,10 +99,8 @@
     width: 16px;
     height: 16px;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 20px;
-    margin: auto;
+    top: 3px;
+    right: 0px;
 }
 
 .dropdown > li > p{
