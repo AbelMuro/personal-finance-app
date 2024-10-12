@@ -7,8 +7,6 @@ import {ClipLoader} from 'react-spinners';
 import {useNavigate} from 'react-router-dom';
 import * as styles from './styles.module.css';
 
-//need to test out the /edit_pot endpoint
-
 function PotForm({handleOpen}) {
     const [loading, setLoading] = useState(false);
     const {potId} = useContext(PotsContext);
@@ -28,7 +26,7 @@ function PotForm({handleOpen}) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: potId,
+                potId: potId,
                 name,
                 target: Number(target),
                 theme
@@ -36,6 +34,8 @@ function PotForm({handleOpen}) {
         });
         
         if(response.status === 200){
+            const result = await response.text();
+            console.log(result);
             handleOpen();
             const event = new Event('database-update');
             document.dispatchEvent(event);            
@@ -48,7 +48,7 @@ function PotForm({handleOpen}) {
                 alert('You have been logged out, please log in again')
             }, 1000)
         }
-        setLoading(false);
+        setLoading && setLoading(false);
     }
 
     return(
@@ -57,7 +57,7 @@ function PotForm({handleOpen}) {
             <EnterTarget/>
             <EnterTheme/>
             <button className={styles.form_submit}>
-                {loading ? <ClipLoader size={35} color='white'/> : 'Edit Budget'}
+                {loading ? <ClipLoader size={35} color='white'/> : 'Save Changes'}
             </button>
         </form>
     )

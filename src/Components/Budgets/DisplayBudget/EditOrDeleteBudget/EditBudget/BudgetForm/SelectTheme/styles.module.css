@@ -17,6 +17,12 @@
     line-height: 150%; /* 18px */
 }
 
+.theme_dot{
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+}
+
 .selectbox{
     display: flex;
     justify-content: space-between;
@@ -59,7 +65,8 @@
 
 .dropdown{
     width: 100%;
-    height: auto;
+    height: 200px;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
     padding: 12px 20px;
@@ -71,7 +78,7 @@
     list-style-type: none;
     transition: all 0.2s linear, transform 0s;
     position: absolute;
-    bottom: -330px;
+    top: 79px;
 }
 
 .dropdown > li{

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import EditPot from './EditPot';
+import DeletePot from './DeletePot';
 import { AnimatePresence, motion } from 'framer-motion';
 import {dropdownVariant} from './Variants'
 import * as styles from './styles.module.css';
@@ -53,6 +54,9 @@ function EditOrDeletePot(){
             <AnimatePresence>
                 {
                     openEdit && <EditPot handleOpen={handleOpenEdit} key='edit'/>
+                }
+                {
+                    openDelete && <DeletePot handleOpen={handleOpenDelete} key='delete'/>
                 }
             </AnimatePresence>
         </>

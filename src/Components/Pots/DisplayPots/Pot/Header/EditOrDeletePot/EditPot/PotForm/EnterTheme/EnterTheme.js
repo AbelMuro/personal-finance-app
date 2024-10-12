@@ -1,4 +1,5 @@
-import React, {useState, useRef, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import Themes from '~/Themes';
 import {PotsContext} from '@/Pot'
 import {useNavigate} from 'react-router-dom';
 import {dropdownVariant} from './Variants';
@@ -12,7 +13,6 @@ function EnterTheme() {
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState(theme);
     const [allThemes, setAllThemes] = useState([]);
-    const allThemesRef = useRef(['Green', 'Yellow', 'Cyan', 'Navy', 'Red', 'Purple', 'Turquoise']);
 
     const openArrowStyles = {
         transform: 'rotate(180deg)'
@@ -35,12 +35,15 @@ function EnterTheme() {
         if(response.status === 200){
             const pots = await response.json();
             const potThemes = pots.map(pot => pot.theme)
-            const formatThemes = allThemesRef.current.map((theme) => {
-                if(potThemes.includes(theme))
+            const formatThemes = Object.entries(Themes).map((theme) => {
+                const themeName = theme[0];
+                const themeColor = theme[1];
+
+                if(potThemes.includes(themeName) && themeName !== color)
                     return (
-                        <li key={theme} style={{pointerEvents: 'none'}}>
-                            <img src={icons[theme]} style={{opacity: 0.25}}/> 
-                            <span style={{color: '#696868'}}>{theme}</span>
+                        <li key={themeName} style={{pointerEvents: 'none'}}>
+                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
+                            <span style={{color: '#696868'}}>{themeName}</span>
                             <p>
                                 Already used
                             </p> 
@@ -48,9 +51,9 @@ function EnterTheme() {
                     )
                 else{
                     return (                         
-                        <li onClick={() => handleColor(theme)} key={theme}>
-                            <img src={icons[theme]}/> 
-                            <span>{theme}</span>
+                        <li onClick={() => handleColor(themeName)} key={themeName}>
+                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
+                            <span>{themeName}</span>
                         </li>
                     )                     
                 }
@@ -79,7 +82,7 @@ function EnterTheme() {
             </strong>
             <div className={styles.selectbox}>
                 <div>
-                    {<img className={styles.selectbox_color} src={icons[color]}/>}
+                    {<div className={styles.theme_dot} style={{backgroundColor: Themes[color]}}/>}
                     {color}
                 </div>
                 

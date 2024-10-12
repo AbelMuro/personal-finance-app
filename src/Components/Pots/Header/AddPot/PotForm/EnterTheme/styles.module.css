@@ -17,6 +17,13 @@
     line-height: 150%; /* 18px */
 }
 
+.theme_dot{
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+}
+
+
 .selectbox{
     display: flex;
     justify-content: space-between;

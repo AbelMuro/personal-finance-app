@@ -1,0 +1,63 @@
+.pot{
+    height: 114px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 16px;
+    justify-content: center;
+}
+
+.pot_title{
+    align-self: center;
+    color: var(--color-grey-500, #696868);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+    margin: 0px;
+}
+
+.pot_saved{
+    justify-self: end;
+    align-self: center;
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+}
+
+.pot_progress{
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background-color: var(--color-beige-100, #F8F4F0);
+    grid-column: 1/3;
+}
+
+.pot_bar{
+    height: 8px;
+    border-radius: 4px;
+    background-color: #277C78;
+}
+
+.pot_percent{
+    color: var(--color-grey-500, #696868);
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 18px */
+}
+
+.pot_target{
+    justify-self: end;
+    color: var(--color-grey-500, #696868);
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 18px */
+    margin: 0px;
+}

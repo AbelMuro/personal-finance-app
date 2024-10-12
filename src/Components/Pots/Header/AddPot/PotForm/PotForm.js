@@ -15,6 +15,7 @@ function PotForm({handleOpen}) {
         const name = e.target.elements.potName.value;
         const target = e.target.elements.target.value;
         const theme = e.target.elements.theme.value;
+        const savings = 0;
         const potId = uuid();
 
         const response = await fetch('http://localhost:4000/add_pot', {
@@ -24,9 +25,10 @@ function PotForm({handleOpen}) {
             },
             body: JSON.stringify({
                 name,
-                target,
+                target: Number(target),
                 theme,
                 potId,
+                savings,
             }),
             credentials: 'include'
         })

@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
+import Themes from '~/Themes';
 import * as styles from './styles.module.css';
 import {useNavigate} from 'react-router-dom'
 import { dropdownVariant } from './Variants';
@@ -10,7 +11,6 @@ function SelectTheme() {
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState('');
     const [allThemes, setAllThemes] = useState([]);
-    const allThemesRef = useRef(['Green', 'Yellow', 'Cyan', 'Navy', 'Red', 'Purple', 'Turquoise']);
 
     const openArrowStyles = {
         transform: 'rotate(180deg)'
@@ -34,24 +34,27 @@ function SelectTheme() {
             const budgets = await response.json();
             const budgetThemes = budgets.map(budget => budget.theme)
             let temp = true;                                                    //temp will be used to get the first available theme
-            const formatThemes = allThemesRef.current.map((theme) => {
-                if(budgetThemes.includes(theme))
+            const formatThemes = Object.entries(Themes).map((theme) => {
+                const name = theme[0];
+                const color = theme[1];
+
+                if(budgetThemes.includes(name))
                     return (
-                        <li key={theme} style={{pointerEvents: 'none'}}>
-                            <img src={icons[theme]} style={{opacity: 0.25}}/> 
-                            <span style={{color: '#696868'}}>{theme}</span>
+                        <li key={name} style={{pointerEvents: 'none'}}>
+                            <div className={styles.theme_dot} style={{backgroundColor: color, opacity: 0.25}}/>
+                            <span style={{color: '#696868'}}>{name}</span>
                             <p>
                                 Already used
                             </p> 
                          </li>
                     )
                 else{
-                    temp && setColor(theme);
+                    temp && setColor(name);
                     temp = false;
                     return (                         
-                        <li onClick={() => handleColor(theme)} key={theme}>
-                            <img src={icons[theme]}/> 
-                            <span>{theme}</span>
+                        <li onClick={() => handleColor(name)} key={name}>
+                            <div className={styles.theme_dot} style={{backgroundColor: color}}/>
+                            <span>{name}</span>
                         </li>
                     )                     
                 }
@@ -85,7 +88,7 @@ function SelectTheme() {
             </strong>
             <div className={styles.selectbox}>
                 <div>
-                    {<img className={styles.selectbox_color} src={icons[color]}/>}
+                    {<div className={styles.theme_dot} style={{backgroundColor: Themes[color]}}/>}
                     {color}
                 </div>
                 

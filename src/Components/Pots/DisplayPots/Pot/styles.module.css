@@ -8,32 +8,3 @@
     border-radius: 12px;
     background-color: var(--color-white, #FFF); 
 }
-
-.pot_header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-
-.pot_title{
-    display: flex;
-    align-items: center;
-    gap: 16px;     
-}
-
-.pot_title > div{
-    width: 16px;
-    height: 16px;
-    border-radius: 100%;
-}
-
-.pot_title > h2{
-    color: var(--color-grey-900, #201F24);
-    font-family: var(--font);
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%; /* 24px */
-    margin: 0px;
-}

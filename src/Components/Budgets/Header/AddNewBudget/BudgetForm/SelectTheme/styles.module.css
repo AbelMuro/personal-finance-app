@@ -8,6 +8,12 @@
     position: relative;
 }
 
+.theme_dot{
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+}
+
 .container > strong{
     color: var(--color-grey-500, #696868);
     font-family: var(--font);
