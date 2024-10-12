@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import ReactDOM from 'react-dom';
 import Themes from '~/Themes';
 import * as styles from './styles.module.css';
 import {useNavigate} from 'react-router-dom'
@@ -20,8 +21,8 @@ function SelectTheme() {
         setOpen(!open);
     }
 
-    const handleColor = (color) => {
-        setColor(color)
+    const handleColor = (color, e) => {
+        setColor(color);
     }
 
     const getBudgets = async () => {
@@ -35,26 +36,27 @@ function SelectTheme() {
             const budgetThemes = budgets.map(budget => budget.theme)
             let temp = true;                                                    //temp will be used to get the first available theme
             const formatThemes = Object.entries(Themes).map((theme) => {
-                const name = theme[0];
-                const color = theme[1];
+                const themeName = theme[0];
+                const themeColor = theme[1];
 
-                if(budgetThemes.includes(name))
+                if(budgetThemes.includes(themeName))
                     return (
-                        <li key={name} style={{pointerEvents: 'none'}}>
-                            <div className={styles.theme_dot} style={{backgroundColor: color, opacity: 0.25}}/>
-                            <span style={{color: '#696868'}}>{name}</span>
+                        <li key={themeName} style={{pointerEvents: 'none'}}>
+                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
+                            <span style={{color: '#696868'}}>{themeName}</span>
                             <p>
                                 Already used
                             </p> 
                          </li>
                     )
                 else{
-                    temp && setColor(name);
+                    temp && setColor(themeName);
                     temp = false;
                     return (                         
-                        <li onClick={() => handleColor(name)} key={name}>
-                            <div className={styles.theme_dot} style={{backgroundColor: color}}/>
-                            <span>{name}</span>
+                        <li onClick={(e) => handleColor(themeName, e)} key={themeName}>
+                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
+                            <span>{themeName}</span>
+                            {color === themeName && <img className={styles.checkmark} src={icons['checkmark']}/>}       {/* this is where i left off */}
                         </li>
                     )                     
                 }
@@ -78,8 +80,7 @@ function SelectTheme() {
 
     useEffect(() => {
         getBudgets();
-    }, [])
-
+    }, []);
 
     return(
         <fieldset className={styles.container} onClick={handleOpen}>

@@ -19,13 +19,6 @@ function MobilePagination() {
         let totalPages = fullPages;
         if(halfPages > 0)   
             totalPages += 1;
-        /* 
-            const buttonsPerPage = 4;
-            
-            const start = Math.max(1, currentPage - Math.floor(buttonsPerPage / 2));
-            const end = Math.min(totalPages, start + buttonsPerPage - 1);
-            const pages = [];        
-        */
 
         const paginationButtons = [];
         let hasOneDotButton = false;
