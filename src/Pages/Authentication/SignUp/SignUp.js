@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import EnterName from './EnterName';
 import EnterEmail from './EnterEmail';
 import EnterPassword from './EnterPassword';
+import { ClipLoader } from 'react-spinners';
 import * as styles from './styles.module.css';
 
 function SignUp({setPage}) {
+    const [loading, setLoading] = useState(false);
     
     const handleLogin = () => {
         setPage('Login');
@@ -12,6 +14,7 @@ function SignUp({setPage}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const name = e.target.elements.name.value;
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
@@ -29,13 +32,20 @@ function SignUp({setPage}) {
         });
 
         if(response.status === 200){
+            setLoading(false);
             setPage('Login');
-            alert('Account has been created, you can now login');
+            setTimeout(() => {
+                alert('Account has been created, you can now login');
+            }, 1000)
+            
         }
         else{
             const error = await response.json();
             console.log(error);
-            alert('Email already exists');
+            setLoading(false);
+            setTimeout(() => {
+                alert('Email already exists');
+            }, 1000)
         }
             
     }
@@ -49,7 +59,7 @@ function SignUp({setPage}) {
             <EnterEmail/>
             <EnterPassword/>
             <button className={styles.form_submit}>
-                Create Account
+                {loading ? <ClipLoader size='35px' color='white'/> : 'Create Account'}
             </button>
             <p className={styles.form_login}>
                 Already have an account? <a onClick={handleLogin}>Login</a>

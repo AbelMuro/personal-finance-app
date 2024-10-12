@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { ClipLoader } from 'react-spinners';
 import EnterEmail from './EnterEmail';
 import EnterPassword from './EnterPassword';
 import {useNavigate} from 'react-router-dom';
@@ -6,9 +7,11 @@ import * as styles from './styles.module.css';
 
 function Login({setPage}) {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
 
@@ -26,11 +29,13 @@ function Login({setPage}) {
 
         if(response.status === 200){
             console.log('Login Successfull');
+            setLoading(false);
             navigate('/profile');
         }
         else{
             const error = await response.json();
-            console.log(error);            
+            console.log(error);   
+            setLoading(false);         
             alert('Email or password is incorrect');
         }   
     }
@@ -47,7 +52,7 @@ function Login({setPage}) {
             <EnterEmail/>
             <EnterPassword/>
             <button className={styles.form_submit}>
-                Login
+                {loading ? <ClipLoader size='35px' color='white'/> : 'Login'}
             </button>
             <p className={styles.form_register}>
                 Need to create an account? <a onClick={handleSignUp}>Sign Up</a>
