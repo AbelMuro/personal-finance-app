@@ -12,7 +12,7 @@ function EnterTheme() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState(theme);
-    const [allThemes, setAllThemes] = useState([]);
+    const [potThemes, setPotThemes] = useState([]);
 
     const openArrowStyles = {
         transform: 'rotate(180deg)'
@@ -35,30 +35,8 @@ function EnterTheme() {
         if(response.status === 200){
             const pots = await response.json();
             const potThemes = pots.map(pot => pot.theme)
-            const formatThemes = Object.entries(Themes).map((theme) => {
-                const themeName = theme[0];
-                const themeColor = theme[1];
-
-                if(potThemes.includes(themeName) && themeName !== color)
-                    return (
-                        <li key={themeName} style={{pointerEvents: 'none'}}>
-                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
-                            <span style={{color: '#696868'}}>{themeName}</span>
-                            <p>
-                                Already used
-                            </p> 
-                         </li>
-                    )
-                else{
-                    return (                         
-                        <li onClick={() => handleColor(themeName)} key={themeName}>
-                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
-                            <span>{themeName}</span>
-                        </li>
-                    )                     
-                }
-            });
-            setAllThemes(formatThemes);
+            setPotThemes(potThemes);
+         
         }
         else if(response.status === 500){
             const message = await response.text();
@@ -97,7 +75,30 @@ function EnterTheme() {
                         animate='show'
                         exit='exit'
                         >
-                           {allThemes}
+                           {Object.entries(Themes).map((currentTheme) => {
+                                const themeName = currentTheme[0];
+                                const themeColor = currentTheme[1];
+                                
+                                if(potThemes.includes(themeName) && themeName !== theme)
+                                    return (
+                                        <li key={themeName} style={{pointerEvents: 'none'}}>
+                                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
+                                                <span style={{color: '#696868'}}>{themeName}</span>
+                                                 <p>
+                                                    Already used
+                                                </p> 
+                                        </li>
+                                    )
+                                else{
+                                    return (                         
+                                        <li onClick={() => handleColor(themeName)} key={themeName}>
+                                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
+                                                <span>{themeName}</span>
+                                                {color === themeName && <img className={styles.checkmark} src={icons['checkmark']}/>}  
+                                            </li>
+                                        )                     
+                                    }
+                            })}
                     </motion.ul>}
             </AnimatePresence>
             <input type='hidden' name='theme' value={color}/>

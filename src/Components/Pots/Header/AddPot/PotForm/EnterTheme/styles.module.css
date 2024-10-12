@@ -24,6 +24,14 @@
 }
 
 
+.checkmark{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 3px;
+    right: 0px;
+}
+
 .selectbox{
     display: flex;
     justify-content: space-between;
@@ -104,7 +112,7 @@
     font-weight: 400;
     line-height: 150%; /* 18px */
     position: absolute;
-    right: 20px;
+    right: 0px;
     top: 0;
     bottom: 0;
     margin: auto;

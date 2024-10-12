@@ -10,7 +10,7 @@ function EnterTheme() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState('Green');
-    const [allThemes, setAllThemes] = useState([]);
+    const [potThemes, setPotThemes] = useState([]);
 
     const openArrowStyles = {
         transform: 'rotate(180deg)'
@@ -32,39 +32,24 @@ function EnterTheme() {
 
         if(response.status === 200){
             const pots = await response.json();
-            const potThemes = pots.map(pot => pot.theme)
-            let temp = true;                                                    //temp will be used to get the first available theme
-            const formatThemes = Object.entries(Themes).map((theme) => {
-                const name = theme[0];
-                const color = theme[1];
-
-                if(potThemes.includes(name))
-                    return (
-                        <li key={name} style={{pointerEvents: 'none'}}>
-                            <div className={styles.theme_dot} style={{backgroundColor: color, opacity: 0.25}}/>
-                            <span style={{color: '#696868'}}>{name}</span>
-                            <p>
-                                Already used
-                            </p> 
-                         </li>
-                    )
-                else{
-                    temp && setColor(name);
+            const potThemes = pots.map(pot => pot.theme);            
+            let temp = true;
+            Object.entries(Themes).some((theme) => {                //this loop will check for the first available theme
+                const themeName = theme[0];
+                if(!potThemes.includes(themeName)){
                     temp = false;
-                    return (                         
-                        <li onClick={() => handleColor(name)} key={name}>
-                            <div className={styles.theme_dot} style={{backgroundColor: color}}/>
-                            <span>{name}</span>
-                        </li>
-                    )                     
+                    setColor(themeName);
+                    return true;
                 }
+                else
+                    return false;
             });
             if(temp){                                                       //if there are no available themes
                 alert('You cannot make any more pots, consider deleting some of your existing pots');
                 window.location.reload();
                 return;
-            }
-            setAllThemes(formatThemes);
+            }   
+            setPotThemes(potThemes);
         }
         else if(response.status === 500){
             const message = await response.text();
@@ -103,7 +88,30 @@ function EnterTheme() {
                         animate='show'
                         exit='exit'
                         >
-                           {allThemes}
+                            {Object.entries(Themes).map((theme) => {
+                                const themeName = theme[0];
+                                const themeColor = theme[1];
+                                
+                                if(potThemes.includes(themeName))
+                                    return (
+                                        <li key={themeName} style={{pointerEvents: 'none'}}>
+                                            <div className={styles.theme_dot} style={{backgroundColor: themeColor, opacity: 0.25}}/>
+                                                <span style={{color: '#696868'}}>{themeName}</span>
+                                                 <p>
+                                                    Already used
+                                                </p> 
+                                        </li>
+                                    )
+                                else{
+                                    return (                         
+                                        <li onClick={() => handleColor(themeName)} key={themeName}>
+                                            <div className={styles.theme_dot} style={{backgroundColor: themeColor}}/>
+                                                <span>{themeName}</span>
+                                                {color === themeName && <img className={styles.checkmark} src={icons['checkmark']}/>}  
+                                            </li>
+                                        )                     
+                                    }
+                            })}
                     </motion.ul>}
             </AnimatePresence>
             <input type='hidden' name='theme' value={color}/>
