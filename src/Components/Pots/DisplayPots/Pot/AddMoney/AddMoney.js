@@ -4,6 +4,7 @@ import {overlayVariant, dialogVariant} from './Variants';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as styles from './styles.module.css';
 
+//this is where i left off
 function AddMoney() {
     const [open, setOpen] = useState(false);
     const {name} = useContext(PotsContext);
