@@ -1,27 +1,20 @@
-import React, {useState, useEffect, memo} from 'react';
+import React, {useState, memo} from 'react';
 import {useDispatch} from 'react-redux'
 import MobileSort from './MobileSort';
 import { dropdownVariant } from './Variants';
 import {motion, AnimatePresence} from 'framer-motion'
 import {useSelector} from 'react-redux';
-import {useMediaQuery} from '~/Hooks'
-import classnames from 'classnames';
+import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks'
 import icons from './icons';
 import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function SortTransactions() {
+    const [chooseQueries] = useMenuMinMaxStyles({}, mediaQueryMax, styles);
     const dispatch = useDispatch();
     const sort = useSelector(state => state.transactions.sort)
     const [open, setOpen] = useState(false);
-    const isMenuMimized = useSelector(state => state.menu.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
 
     const handleOpen = () => {
         setOpen(!open);
@@ -30,13 +23,6 @@ function SortTransactions() {
     const handleSort = (query) => {
         dispatch({type: 'UPDATE_SORT', payload: query});
     }
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery({});
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);    
 
 
     return mobile ? <MobileSort/> : 

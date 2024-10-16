@@ -6,9 +6,7 @@ import AllTransactions from './AllTransactions';
 import Pagination from './Pagination';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {useMediaQuery} from '~/Hooks';
-import classnames from 'classnames';
-import {useSelector} from 'react-redux';
+import {useMenuMinMaxStyles} from '~/Hooks';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
 import * as styles from './styles.module.css';
@@ -16,12 +14,10 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function DisplayTransactions() {
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isMenuMimized = useSelector(state => state.menu.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
 
     const getTransactions = async () => {
         setLoading(true);
@@ -44,17 +40,6 @@ function DisplayTransactions() {
         }
         setLoading && setLoading(false);
     }
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery(mediaQueryMin);
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);
 
     useEffect(() => {
         getTransactions();

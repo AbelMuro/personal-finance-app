@@ -2,10 +2,9 @@ import React, {useState, useEffect} from 'react'
 import Header from './Header';
 import SpendingSummary from './SpendingSummary';
 import DisplayBudget from './DisplayBudget';
-import classnames from 'classnames';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
-import {useMediaQuery} from '~/Hooks';
+import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as styles from './styles.module.css';
@@ -13,18 +12,13 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function Budgets() {
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const allBudgets = useSelector(state => state.budgets.budgets);
-    const isMenuMimized = useSelector(state => state.menu.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
 
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
 
     const getBudgets = async () => {
         setLoading(true);
@@ -47,13 +41,6 @@ function Budgets() {
         }   
         setLoading(false);     
     }
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery(mediaQueryMin);
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);
 
     useEffect(() => {
         getBudgets();

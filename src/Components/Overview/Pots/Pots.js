@@ -1,29 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {useMediaQuery} from '~/Hooks';
-import classnames from 'classnames';
+import React from 'react';
+import {useMenuMinMaxStyles} from '~/Hooks';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 import icons from './icons';
 
-//this is where i left off, i will need to work on the tablet styles for this component
 function Pots(){    
-    const isMenuMimized = useSelector(state => state.menu.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
-
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery(mediaQueryMin);
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized])
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
 
     return(
         <article className={chooseQueries('pots')}>

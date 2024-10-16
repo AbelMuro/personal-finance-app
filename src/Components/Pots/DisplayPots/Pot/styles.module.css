@@ -8,3 +8,14 @@
     border-radius: 12px;
     background-color: var(--color-white, #FFF); 
 }
+
+.pot_buttons{
+    display: flex;
+    gap: 16px;
+}
+
+@media(max-width: 620px){
+    .pot{
+        padding: 24px 20px;
+    }
+}

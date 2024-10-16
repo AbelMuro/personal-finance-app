@@ -1,0 +1,5 @@
+@media(max-width: 1245px){
+    .pots{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

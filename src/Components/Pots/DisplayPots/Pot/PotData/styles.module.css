@@ -7,14 +7,14 @@
 }
 
 .pot_title{
-    align-self: center;
+    align-self: end;
     color: var(--color-grey-500, #696868);
     font-family: var(--font);
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 21px */
-    margin: 0px;
+    margin: 0px 0px 8.5px 0px;
 }
 
 .pot_saved{
@@ -60,4 +60,10 @@
     font-weight: 400;
     line-height: 150%; /* 18px */
     margin: 0px;
+}
+
+@media(max-width: 620px){
+    .pot_progress{
+        margin-bottom: -3px;
+    }
 }

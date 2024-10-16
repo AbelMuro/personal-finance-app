@@ -1,26 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import MobileCategory from './MobileCategory';
 import {dropdownVariant} from './Variants';
 import {motion, AnimatePresence} from 'framer-motion'
 import icons from './icons';
 import {useSelector, useDispatch} from 'react-redux'
-import {useMediaQuery} from '~/Hooks'
-import classnames from 'classnames';
+import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks'
 import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function SelectCategory() {
+    const [chooseQueries] = useMenuMinMaxStyles({}, mediaQueryMax, styles);
     const dispatch = useDispatch();
     const category = useSelector(state => state.transactions.category);
     const [open, setOpen] = useState(false);
-    const isMenuMimized = useSelector(state => state.menu.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
 
     const handleOpen = () => {
         setOpen(!open);
@@ -28,14 +21,7 @@ function SelectCategory() {
 
     const handleCategory = (category) => {
         dispatch({type: 'UPDATE_CATEGORY', payload: category})
-    }
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery({});
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);    
+    } 
 
     return mobile ? <MobileCategory/> : 
         <div className={chooseQueries('category')} onClick={handleOpen}>

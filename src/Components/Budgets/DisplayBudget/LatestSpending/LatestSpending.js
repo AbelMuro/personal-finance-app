@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom'
-import {useMediaQuery} from '~/Hooks';
+import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks';
 import classnames from 'classnames';
 import {Budget} from '../DisplayBudget';
 import icons from './icons';
@@ -10,26 +10,13 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function LatestSpending(){
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const navigate = useNavigate();
     const {transactions, category} = useContext(Budget);
-    const isMenuMimized = useSelector(state => state.menu.minimize);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
 
     const handleSeeAll = () => {
         navigate('/profile/transactions', {state: category})
     }
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery(mediaQueryMin);
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);
 
     return(
         <section className={styles.spending}>

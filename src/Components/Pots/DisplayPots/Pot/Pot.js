@@ -2,6 +2,7 @@ import React, {createContext} from 'react';
 import Header from './Header';
 import PotData from './PotData';
 import AddMoney from './AddMoney';
+import Withdraw from './Withdraw';
 import * as styles from './styles.module.css';
 
 export const PotsContext = createContext();
@@ -19,7 +20,11 @@ function Pot({name, target, theme, potId, savings}) {
             <section className={styles.pot}>
                 <Header/>
                 <PotData/>
-                <AddMoney/>
+                <div className={styles.pot_buttons}>
+                    <AddMoney/>
+                    <Withdraw/>                    
+                </div>
+
             </section>
         </PotsContext.Provider>
     )

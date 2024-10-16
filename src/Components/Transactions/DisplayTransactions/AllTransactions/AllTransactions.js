@@ -1,24 +1,17 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import MobileTransactions from './MobileTransactions';
 import icons from './icons';
-import {useMediaQuery} from '~/Hooks';
-import classnames from 'classnames'
+import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function AllTransactions() {
-    const isMenuMimized = useSelector(state => state.menu.minimize);
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const transactions = useSelector(state => state.transactions.transactions);
     const page = useSelector(state => state.transactions.page);
-    const [mediaQuery, setMediaQuery] = useState(mediaQueryMax);
-    const [tablet] = useMediaQuery('(max-width: 850px)');
     const [mobile] = useMediaQuery('(max-width: 620px)');
-
-    const chooseQueries = (className) => {
-        return tablet ? styles[className] : classnames(styles[className], mediaQuery[className])
-    }
 
     const paginatedTransactions = useMemo(() => {
         const upper = page * 10;
@@ -28,13 +21,6 @@ function AllTransactions() {
             return currentTransaction > lower && currentTransaction <= upper;
         })
     }, [page, transactions])
-
-    useEffect(() => {
-        if(isMenuMimized)
-            setMediaQuery(mediaQueryMin);
-        else
-            setMediaQuery(mediaQueryMax);
-    }, [isMenuMimized]);
 
     return(
         <div className={chooseQueries('transactions')}>

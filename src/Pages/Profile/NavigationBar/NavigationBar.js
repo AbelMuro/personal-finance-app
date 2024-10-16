@@ -2,14 +2,13 @@ import React, {useState, useEffect} from 'react';
 import MobileNavBar from './MobileNavBar';
 import { useMediaQuery } from '~/Hooks';
 import * as styles from './styles.module.css';
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {menuVariants} from './Variants';
 import {useDispatch, useSelector} from 'react-redux';
 import icons from './icons';
 
 function NavigationBar() {
-    const location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [link, setLink] = useState('overview');
@@ -48,17 +47,7 @@ function NavigationBar() {
 
     useEffect(() => {
         navigate(`/profile/${link}`);
-    }, [link])
-
-    /* 
-    useEffect(() => {
-        const path = location.pathname.split('/')[2];
-        if(path)
-            setLink(path);
-    }, [location])
-    
-    
-    */
+    }, [link]);
 
     return tablet ? <MobileNavBar link={link} setLink={setLink}/> : 
             <motion.nav 

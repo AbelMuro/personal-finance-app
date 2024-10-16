@@ -2,10 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
+import {useMenuMinMaxStyles} from '~/Hooks';
 import Pot from './Pot';
 import * as styles from './styles.module.css';
+import * as mediaQueryMin from './mediaQueryMin.module.css';
+import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function DisplayPots() {
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const [pots, setPots] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -44,7 +48,7 @@ function DisplayPots() {
     }, [])
 
     return(
-        <div className={styles.pots}>
+        <div className={chooseQueries('pots')}>
             {loading ?  
                 <>
                     <Skeleton width='100%' height='300px' borderRadius={8}/>

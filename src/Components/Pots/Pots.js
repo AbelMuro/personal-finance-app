@@ -1,12 +1,17 @@
 import React from 'react';
+import {useMenuMinMaxStyles} from '~/Hooks';
 import Header from './Header';
 import DisplayPots from './DisplayPots';
 import * as styles from './styles.module.css';
+import * as mediaQueryMax from './mediaQueryMax.module.css'
+import * as mediaQueryMin from './mediaQueryMin.module.css'
 
-//need to display all the pots from data base now
 function Pots() {
+    const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
+
+
     return(
-        <section className={styles.container}>
+        <section className={chooseQueries('container')}>
             <Header/>
             <DisplayPots/>
         </section>
