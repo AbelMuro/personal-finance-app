@@ -9,7 +9,6 @@ import * as mediaQueryMin from './mediaQueryMin.module.css'
 function Pots() {
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
 
-
     return(
         <section className={chooseQueries('container')}>
             <Header/>
