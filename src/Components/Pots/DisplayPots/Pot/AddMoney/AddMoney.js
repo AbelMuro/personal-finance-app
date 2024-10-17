@@ -1,16 +1,56 @@
 import React, {useState, useContext} from 'react';
+import { ClipLoader } from 'react-spinners';
+import DisplayTotalAmount from './DisplayTotalAmount';
+import EnterAmount from './EnterAmount';
+import { useNavigate} from 'react-router-dom';
 import { PotsContext } from '@/Pot';
 import {overlayVariant, dialogVariant} from './Variants';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as styles from './styles.module.css';
 
-//this is where i left off
 function AddMoney() {
+    const [amount, setAmount] = useState(0);
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-    const {name} = useContext(PotsContext);
+    const [loading, setLoading] = useState(false);
+    const {name, potId} = useContext(PotsContext);
 
     const handleOpen = () => {
         setOpen(!open);
+    }
+
+        //this is where i left off, i will need to test this fetch request
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const amount = e.target.elements.amount.value;
+        const response = await fetch('http://localhost:4000/edit_pot', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                potId,
+                savings: amount
+            }),
+            credentials: 'include'
+        });
+
+        if(response.status === 200){
+            const result = await response.text();
+            console.log(result);
+            handleOpen();
+        }
+        else if(response.status === 500){
+            const message = await response.text();
+            console.log(message);
+            navigate('/');
+            setTimeout(() => {
+                alert('You have been logged out, please log in again')
+            }, 1000)
+        }
+
+        setLoading && setLoading(false);
     }
 
     return(
@@ -41,6 +81,13 @@ function AddMoney() {
                                 <p className={styles.dialog_desc}>
                                     Enter the amount that you would like to add to this pot
                                 </p>
+                                <DisplayTotalAmount amount={amount}/>
+                                <form className={styles.form} onSubmit={handleSubmit}>
+                                    <EnterAmount amount={amount} setAmount={setAmount} />
+                                    <button className={styles.form_button}>
+                                        {loading ? <ClipLoader size='35px' color='white'/> : 'Confirm Addition'}
+                                    </button>
+                                </form>
                         </motion.dialog>
                 </motion.div>}
             </AnimatePresence>

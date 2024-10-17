@@ -24,7 +24,6 @@ function Pot({name, target, theme, potId, savings}) {
                     <AddMoney/>
                     <Withdraw/>                    
                 </div>
-
             </section>
         </PotsContext.Provider>
     )
