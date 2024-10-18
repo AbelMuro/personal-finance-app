@@ -1,0 +1,25 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    grid-column: 1/3;
+    grid-row: 3/4;
+}
+
+.form_submit{
+    height: 53px;
+    border-radius: 8px;
+    background-color: var(--color-grey-900, #201F24);
+    color: var(--color-white, #FFF);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 21px */
+    cursor: pointer;
+    border: none;
+}
+
+.form_submit:hover{
+    background-color: #696868;
+}

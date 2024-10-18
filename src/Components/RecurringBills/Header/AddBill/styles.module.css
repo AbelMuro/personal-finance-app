@@ -1,46 +1,9 @@
-.withdraw{
-    width: 100%;
+.addBill{
     height: 53px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background-color: var(--color-beige-100, #F8F4F0);
-    color: var(--color-grey-900, #201F24);
-    font-family: var(--font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 150%; /* 21px */
-    cursor: pointer;
-}
-
-.withdraw:hover{
-    border: 1px solid var(--color-beige-500, #98908B);
-    background-color: var(--color-white, #FFF);
-}
-
-
-.overlay{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    z-index: var(--closest, 100);
-    top: 0px;
-    left: 0px;
-    background-color: rgba(0, 0, 0, 0.50);
-}
-
-.form{
-    grid-column: 1/3;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form_button{
-    height: 53px;
+    border: none;
+    padding: 0px 16px;
     border-radius: 8px;
     background-color: var(--color-grey-900, #201F24);
-    border: none;
     color: var(--color-white, #FFF);
     font-family: var(--font);
     font-size: 0.875rem;
@@ -50,8 +13,18 @@
     cursor: pointer;
 }
 
-.form_button:hover{
+.addBill:hover{
     background-color: #696868;
+}
+
+.overlay{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: var(--closest, 100);
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.50);
 }
 
 .dialog{

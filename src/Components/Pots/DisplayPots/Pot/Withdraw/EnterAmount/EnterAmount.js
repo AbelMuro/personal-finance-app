@@ -5,14 +5,13 @@ import * as styles from './styles.module.css';
 
 function EnterAmount({amount, setAmount}) {
     const {target, savings} = useContext(PotsContext);
-    const dispatch = useDispatch();
     const [error, setError] = useState('');
 
     const handleAmount = (e) => {
         const input = e.target.value;
         const integer = Number(input);
-        const limit = target - savings;
-        if(input.match(/\D/) || integer > limit) return;
+        const limit = savings - input;
+        if(input.match(/\D/) || limit < 0) return;
         e.target.setCustomValidity('');
         setError('');
         setAmount(integer);
@@ -32,7 +31,7 @@ function EnterAmount({amount, setAmount}) {
     return(
         <fieldset className={styles.container}>
             <label className={styles.label}>
-                Amount to Add
+                Amount to Withdraw
             </label>
             <div className={styles.input_container}>
                 <input 

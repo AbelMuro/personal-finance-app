@@ -5,16 +5,16 @@ import * as styles from './styles.module.css';
 
 function DisplayTotalAmount({amount}) {
     const {savings, target} = useContext(PotsContext);
+    const [newPercent, setNewPercent] = useState('0%');
     const [oldPercent, setOldPercent] = useState('0%');
-    const [newPercent, setNewPercent]  = useState('0%');
     const [totalPercent, setTotalPercent] = useState(0);
 
     useEffect(() => {
         const oldPer = savings / target * 100;
-        const newPer = (savings + amount)/target * 100;
+        const newPer = (savings - amount)/target * 100;
+        setNewPercent(`${newPer}%`);
         setOldPercent(`${oldPer}%`);
-        setNewPercent(newPer > oldPer ? `${newPer}%` : `${oldPer}%`)
-        setTotalPercent(newPer > oldPer ? newPer : oldPer);
+        setTotalPercent(newPer > oldPer ? oldPer : newPer);
     }, [savings, target, amount])
 
     return(
@@ -23,13 +23,13 @@ function DisplayTotalAmount({amount}) {
                 New Amount
             </p>  
             <strong className={styles.amount_total}>
-                ${amount + savings}
+                ${savings - amount}
             </strong>  
             <div className={styles.amount_progress}>
-                {oldPercent !== '0%' && <div className={styles.amount_oldAmount} style={{width: oldPercent}}/>}
-                {newPercent !== '0%' && <div className={styles.amount_newAmount} style={{width: newPercent}}/>}
+                {newPercent !== '0%' && <div className={styles.amount_new} style={{width: newPercent}}/>}
+                {oldPercent !== '0%' && <div className={styles.amount_old} style={{width: oldPercent}}/>}
             </div>
-            <em className={styles.amount_percent} style={amount !== 0 ?  {color: '#277C78'} : {color: '#201F24'}}>
+            <em className={styles.amount_percent} style={amount !== 0 ?  {color: '#C94736'} : {color: '#201F24'}}>
                 {totalPercent.toFixed(2)}%
             </em>
             <p className={styles.amount_target}>

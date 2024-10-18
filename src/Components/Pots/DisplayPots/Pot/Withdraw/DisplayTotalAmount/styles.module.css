@@ -42,7 +42,7 @@
     position: relative;
 }
 
-.amount_oldAmount{
+.amount_new{
     position: absolute;
     left: 0px;
     z-index: var(--close, 1);
@@ -52,10 +52,10 @@
     border-right: 2px solid #F2F2F2;
 }
 
-.amount_newAmount{
+.amount_old{
     height: 8px;
     border-radius: 4px;
-    background-color: var(--color-green, #277C78);
+    background-color: #C94736;
 }
 
 .amount_percent{

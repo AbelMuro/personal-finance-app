@@ -13,13 +13,12 @@ function AddMoney() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const {name, potId} = useContext(PotsContext);
+    const {name, potId, savings} = useContext(PotsContext);
 
     const handleOpen = () => {
         setOpen(!open);
     }
 
-        //this is where i left off, i will need to test this fetch request
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -31,7 +30,7 @@ function AddMoney() {
             },
             body: JSON.stringify({
                 potId,
-                savings: amount
+                savings: Number(amount) + savings
             }),
             credentials: 'include'
         });
@@ -40,6 +39,8 @@ function AddMoney() {
             const result = await response.text();
             console.log(result);
             handleOpen();
+            const event = new Event('database-update');
+            document.dispatchEvent(event);
         }
         else if(response.status === 500){
             const message = await response.text();
@@ -51,6 +52,7 @@ function AddMoney() {
         }
 
         setLoading && setLoading(false);
+        setAmount && setAmount(0);
     }
 
     return(
