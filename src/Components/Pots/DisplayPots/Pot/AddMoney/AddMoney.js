@@ -42,13 +42,20 @@ function AddMoney() {
             const event = new Event('database-update');
             document.dispatchEvent(event);
         }
-        else if(response.status === 500){
+        else if(response.status === 401){
             const message = await response.text();
             console.log(message);
             navigate('/');
             setTimeout(() => {
                 alert('You have been logged out, please log in again')
             }, 1000)
+        }
+        else{
+            const message = await response.text();
+            console.log(message);
+            setTimeout(() => {
+                alert('Internal server error occured, please try again later')
+            }, 500)
         }
 
         setLoading && setLoading(false);

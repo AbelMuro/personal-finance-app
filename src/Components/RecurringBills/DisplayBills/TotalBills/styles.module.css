@@ -1,0 +1,40 @@
+.bills{
+    width: 100%;
+    padding: 24px;
+    height: 190px;
+    border-radius: 12px;
+    background-color: var(--color-grey-900, #201F24);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bills_icon{
+    width: 40px;
+    height: 40px;
+}
+
+.bills_desc{
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.bills_title{
+    color: var(--color-white, #FFF);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+    margin: 0px;
+}
+
+.bills_total{
+    color: var(--color-white, #FFF);
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+}

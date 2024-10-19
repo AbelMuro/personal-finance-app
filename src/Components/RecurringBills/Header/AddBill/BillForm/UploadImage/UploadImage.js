@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as styles from './styles.module.css';
 
-function UploadImage(){
+function UploadImage() {
     const [image, setImage] = useState('');
 
     const handleImage = (e) => {

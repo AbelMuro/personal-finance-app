@@ -4,7 +4,6 @@ import * as styles from './styles.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
 import {overlayVariant, dialogVariant} from './Variants';
 
-//this is where i left off, i will need to work on the mobile version of this component
 function AddTransaction() {
     const [open, setOpen] = useState(false);
 

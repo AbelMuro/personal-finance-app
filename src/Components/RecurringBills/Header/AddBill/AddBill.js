@@ -39,7 +39,7 @@ function AddBill() {
                                 <p className={styles.dialog_desc}>
                                     Enter the details for the bill.
                                 </p>
-                                <BillForm/>
+                                <BillForm handleOpen={handleOpen}/>
                         </motion.dialog>
                 </motion.div>}
             </AnimatePresence>

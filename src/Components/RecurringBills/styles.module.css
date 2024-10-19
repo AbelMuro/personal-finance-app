@@ -1,4 +1,5 @@
 .bills{
+    width: 1060px;
     display: flex;
     flex-direction: column;
     gap: 32px;
