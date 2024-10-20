@@ -1,0 +1,22 @@
+.container{
+    display: grid;
+    grid-template-columns: 337px 699px;
+    align-items: start;
+    gap: 24px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+} 
+
+.loading_summary{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.loading_bills{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}

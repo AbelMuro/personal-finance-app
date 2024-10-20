@@ -11,7 +11,7 @@ const sortTransactions = (transactions, state) => {
     transactions = transactions.filter((transaction) => {
         const recipient = transaction.recipient.toLowerCase();
         const query = state.search.toLowerCase();
-        return recipient.includes(query);
+        return recipient.startsWith(query);
     });
 
     if(state.category !== 'All Transactions')

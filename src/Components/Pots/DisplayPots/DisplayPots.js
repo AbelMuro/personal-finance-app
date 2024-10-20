@@ -25,14 +25,20 @@ function DisplayPots() {
             const results = await response.json();
             setPots(results);
         }
-        else if(response.status === 500) {
+        else if(response.status === 401){
             const message = await response.text();
             console.log(message);
             navigate('/');
             setTimeout(() => {
                 alert('You have been logged out, please log in again')
-            }, 1000);
-            return;
+            }, 1000)
+        }
+        else{
+            const message = await response.text();
+            console.log(message);
+            setTimeout(() => {
+                alert('Internal server error occured, please try again later')
+            }, 500)
         }
 
         setLoading && setLoading(false);

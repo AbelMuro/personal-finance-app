@@ -5,6 +5,7 @@ import EnterAmountDue from './EnterAmountDue';
 import UploadImage from './UploadImage';
 import {useNavigate} from 'react-router-dom'
 import {ClipLoader} from 'react-spinners';
+import {v4 as uuid} from 'uuid';
 import * as styles from './styles.module.css';
 
 function BillForm({handleOpen}) {
@@ -18,6 +19,7 @@ function BillForm({handleOpen}) {
         const dueDate = e.target.elements.dueDate.value;
         const amountDue = e.target.elements.amount.value;
         const image = e.target.elements.image.files[0];
+        const id = uuid();
 
         const formData = new FormData();
         formData.append('title', title);
@@ -25,6 +27,7 @@ function BillForm({handleOpen}) {
         formData.append('amountDue', amountDue);
         formData.append('image', image);
         formData.append('order', Date.now());
+        formData.append('id', id);
 
         const response = await fetch('http://localhost:4000/add_bill', {
             method: 'POST',

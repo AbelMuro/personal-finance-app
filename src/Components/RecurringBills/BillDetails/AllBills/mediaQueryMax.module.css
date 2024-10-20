@@ -1,0 +1,10 @@
+@media(max-width: 1200px){
+    .bills{
+        padding: 24px;
+    }
+
+    .bill, .allBills_headers{
+        grid-template-columns: 1fr 100px 62px;
+        column-gap: 24px;
+    }
+}
