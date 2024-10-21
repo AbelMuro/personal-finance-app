@@ -6,6 +6,12 @@
     gap: 32px;
 }
 
+.loading_header{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
 .overview_misc{
     display: grid;
     grid-template-columns: 608px 428px;

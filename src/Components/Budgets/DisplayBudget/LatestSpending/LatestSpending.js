@@ -1,8 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom'
-import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks';
-import classnames from 'classnames';
+import React, {useContext} from 'react';
+import {useDispatch} from 'react-redux';
+import {useMenuMinMaxStyles} from '~/Hooks';
 import {Budget} from '../DisplayBudget';
 import icons from './icons';
 import * as styles from './styles.module.css';
@@ -11,11 +9,12 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 
 function LatestSpending(){
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const {transactions, category} = useContext(Budget);
 
     const handleSeeAll = () => {
-        navigate('/profile/transactions', {state: category})
+        dispatch({type: 'CHANGE_LINK', payload: 'transactions'});
+        dispatch({type: 'UPDATE_CATEGORY', payload: category})
     }
 
     return(

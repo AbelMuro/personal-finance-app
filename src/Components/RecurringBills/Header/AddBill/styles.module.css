@@ -1,7 +1,7 @@
 .addBill{
+    width: 85px;
     height: 53px;
     border: none;
-    padding: 0px 16px;
     border-radius: 8px;
     background-color: var(--color-grey-900, #201F24);
     color: var(--color-white, #FFF);

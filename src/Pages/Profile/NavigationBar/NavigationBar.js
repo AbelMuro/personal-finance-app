@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import MobileNavBar from './MobileNavBar';
 import { useMediaQuery } from '~/Hooks';
 import * as styles from './styles.module.css';
@@ -11,9 +11,9 @@ import icons from './icons';
 function NavigationBar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [link, setLink] = useState('overview');
     const [tablet] = useMediaQuery('(max-width: 850px)');
     const minimize = useSelector(state => state.menu.minimize);
+    const link = useSelector(state => state.menu.link);
 
     const selectedStyles = {
         borderLeft: '4px solid var(--color-green, #277C78)',
@@ -38,7 +38,7 @@ function NavigationBar() {
     }
 
     const handleLink = (link) => {
-        setLink(link);
+        dispatch({type: 'CHANGE_LINK', payload: link});
     }
 
     const handleMinimize = () => {
@@ -49,7 +49,7 @@ function NavigationBar() {
         navigate(`/profile/${link}`);
     }, [link]);
 
-    return tablet ? <MobileNavBar link={link} setLink={setLink}/> : 
+    return tablet ? <MobileNavBar/> : 
             <motion.nav 
                 className={styles.navigation} 
                 initial={false}

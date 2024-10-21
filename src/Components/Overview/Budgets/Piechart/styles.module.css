@@ -2,12 +2,6 @@
     width: 240px;
     height: 240px;
     border-radius: 100%;
-    background: conic-gradient(
-        #82C9D7 0% 25%,
-        #F2CDAC 25% 50%,
-        #626070 50% 75%,
-        #277C78 75% 100%
-    );
     grid-column: 1/2;
     grid-row: 2/3;
     position: relative;

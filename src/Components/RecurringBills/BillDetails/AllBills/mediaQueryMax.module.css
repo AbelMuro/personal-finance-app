@@ -4,7 +4,7 @@
     }
 
     .bill, .allBills_headers{
-        grid-template-columns: 1fr 100px 62px;
+        grid-template-columns: 1fr 110px 62px;
         column-gap: 24px;
     }
 }

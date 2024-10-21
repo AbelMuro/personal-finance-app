@@ -50,12 +50,18 @@
 
 @media(max-width: 850px){
     .container{
-        width: 100%;
+        width: 320px;
     }
 }
 
 @media(max-width: 760px){
     .container{
         align-self: end;
+    }
+}
+
+@media(max-width: 670px){
+    .container{
+        width: 100%;
     }
 }

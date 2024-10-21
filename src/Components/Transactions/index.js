@@ -1,3 +1,3 @@
-import Transactions from './Transations.js';
+import Transactions from './Transactions.js';
 
 export default Transactions;

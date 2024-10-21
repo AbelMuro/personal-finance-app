@@ -19,4 +19,13 @@
     .column{
         flex-direction: row;
     }
+
+    .loading{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .loading_bills, .loading_summary{
+        height: 204px;
+    }
 }

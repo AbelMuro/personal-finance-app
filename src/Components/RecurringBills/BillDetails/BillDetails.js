@@ -59,11 +59,16 @@ function BillDetails() {
 
     return(
         <section className={chooseQueries('container')}>
-            <div className={chooseQueries('column')}>
-                {loading ? <Skeleton width='100%' height='190px' borderRadius={8}/> : <TotalBills/>}
-                {loading ? <Skeleton width='100%' height='204px' borderRadius={8} containerClassName={styles.loading_summary}/> : <Summary/>}                    
-            </div>
-            {loading ? <Skeleton width='100%' height='300px' borderRadius={8} containerClassName={styles.loading_bills}/> : <AllBills/>}
+            {loading ? 
+                <div className={chooseQueries('loading')}>
+                    <Skeleton borderRadius={8} className={chooseQueries('loading_bills')}/>
+                    <Skeleton borderRadius={8} className={chooseQueries('loading_summary')}/>
+                </div> : 
+                <div className={chooseQueries('column')}>
+                    <TotalBills/>
+                    <Summary/>                  
+                </div>}
+            {loading ? <Skeleton width='100%' height='300px' borderRadius={8}/> : <AllBills/>}
         </section>            
     )
 }

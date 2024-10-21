@@ -38,3 +38,24 @@
     font-weight: 700;
     line-height: 120%; /* 38.4px */
 }
+
+
+@media(max-width: 850px){
+    .bills{
+        height: 204px;
+        gap: 32px;
+        justify-content: center;
+    }
+}
+
+@media(max-width: 620px){
+    .bills{
+        height: 118px;
+        padding: 24px 20px;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        gap: 20px
+    }
+
+}

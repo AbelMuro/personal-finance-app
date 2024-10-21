@@ -4,6 +4,7 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css'
 
+///i will need to get the bills from the global state and get the total paid bills, total upcoming, and total due soon
 function RecurringBills(){
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
 

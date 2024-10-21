@@ -1,37 +1,26 @@
 import React, {useState} from 'react';
-import MobileSort from './MobileSort';
 import {useDispatch, useSelector} from 'react-redux';
-import * as styles from './styles.module.css';
-import icons from './icons';
 import { AnimatePresence, motion } from 'framer-motion';
-import{dropdownVariant} from './Variants';
-import {useMediaQuery} from '~/Hooks';
- 
-function SortBills(){
+import * as styles from './styles.module.css';
+import { dropdownVariant } from './Variants';
+
+function MobileSort() {
     const dispatch = useDispatch();
-    const sort = useSelector(state => state.bills.sort);
+    const sort = useSelector(state => state.transactions.sort);
     const [open, setOpen] = useState(false);
-    const [mobile] = useMediaQuery('(max-width: 620px)');
 
     const handleOpen = () => {
         setOpen(!open);
     }
 
-    const handleSort = (sort) => {
-        dispatch({type: 'UPDATE_SORT_BILLS', payload: sort})
-    } 
+    const handleSort = (query) => {
+        dispatch({type: 'UPDATE_SORT_BILLS', payload: query});
+    }
 
-    return mobile ? 
-        <MobileSort/> 
-        : 
-        <div className={styles.container} onClick={handleOpen}>
-            Sort by
-            <div className={styles.sort_container}>
-                <strong>
-                    {sort}
-                </strong>
-                <img className={styles.sort_icon} src={icons['arrow']} style={open ? {transform: 'rotate(180deg)'} : {}}/>
-                <AnimatePresence>
+    return(
+        <div className={styles.sort} onClick={handleOpen}>
+            <div className={styles.sort_icon}/>
+            <AnimatePresence>
                     {
                         open &&
                         <motion.div 
@@ -42,6 +31,9 @@ function SortBills(){
                             exit='exit'
                             >
                             <ul className={styles.sort_dropdown_list}>
+                                <li>
+                                    Sort by
+                                </li>
                                 <li onClick={() => handleSort('Latest')} style={sort === 'Latest' ? {fontWeight: 700} : {}}>
                                     Latest
                                 </li>
@@ -64,8 +56,8 @@ function SortBills(){
                         </motion.div>    
                     }                    
                 </AnimatePresence>
-            </div>
         </div>
+    )
 }
 
-export default SortBills;
+export default MobileSort;

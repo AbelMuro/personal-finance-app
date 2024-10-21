@@ -1,8 +1,11 @@
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import {useMediaQuery} from '~/Hooks'; 
 import * as styles from './styles.module.css';
 
-function MobileNavBar({link, setLink}){
+function MobileNavBar(){
+    const link = useSelector(state => state.menu.link);
+    const dispatch = useDispatch();
     const [mobile] = useMediaQuery('(max-width: 620px)');
 
     const selectedStyles = {
@@ -16,7 +19,7 @@ function MobileNavBar({link, setLink}){
     }
 
     const handleLink = (link) => {
-        setLink(link);
+        dispatch({type: 'CHANGE_LINK', payload: link})
     }
 
     return(

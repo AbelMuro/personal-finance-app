@@ -1,9 +1,10 @@
 import React from 'react';
 import SearchBox from './SearchBox';
 import SortBills from './SortBills';
+import MobileBills from './MobileBills';
 import {useSelector} from 'react-redux';
 import {extractNumbers, isBillDueSoonOrUpcoming} from '~/Common/functions'
-import {useMenuMinMaxStyles} from '~/Hooks';
+import {useMenuMinMaxStyles, useMediaQuery} from '~/Hooks';
 import icons from './icons';
 import * as styles from './styles.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
@@ -12,25 +13,29 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 function AllBills(){
     const bills = useSelector(state => state.bills.bills);
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
+    const [mobile] = useMediaQuery('(max-width: 620px)');
 
     return(
         <section className={chooseQueries('bills')}> 
             <SearchBox/>
             <SortBills/>
             <div className={styles.allBills}>
-                <div className={chooseQueries('allBills_headers')}>
-                    <h3>
-                        Bill Title
-                    </h3>
-                    <h3>
-                        Due Date
-                    </h3>
-                    <h3>
-                        Amount
-                    </h3>
-                </div>
                 {
-                    bills.map((bill, i) => {
+                    !mobile && 
+                    <div className={chooseQueries('allBills_headers')}>
+                        <h3>
+                            Bill Title
+                        </h3>
+                        <h3>
+                            Due Date
+                        </h3>
+                        <h3>
+                            Amount
+                        </h3>
+                    </div>                    
+                }
+                {mobile ? <MobileBills/> : 
+                    bills.map((bill) => {
                         const image = bill.image;
                         const title = bill.title;
                         const dueDate = bill.dueDate;
