@@ -44,9 +44,8 @@ function Pots(){
                     Total Saved
                 </h2>
                 <strong>
-                    ${total.toLocaleString({
-                        minFractionDigits: 2,
-                        maxFractionDigits: 2
+                    ${total.toLocaleString('en-US',{
+                        maximumFractionDigits: 0
                     })}
                 </strong>
             </div>
@@ -64,7 +63,9 @@ function Pots(){
                                 {name}
                             </h2>
                             <strong>
-                                ${savings}
+                                ${savings.toLocaleString('en-US',{
+                                    maximumFractionDigits: 2
+                                })}
                             </strong>
                         </div>
                     )

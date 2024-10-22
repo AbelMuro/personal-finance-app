@@ -56,21 +56,33 @@ function Summary() {
                     Paid Bills
                 </em>
                 <strong className={styles.summary_data}>
-                    {paidBills && paidBills[1]} (${paidBills && paidBills[0]})
+                    {paidBills && paidBills[1]} (${paidBills && 
+                        paidBills[0].toLocaleString('en-us', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })})
                 </strong>
                 <div className={styles.line}/>
                 <em className={styles.summary_detail}>
                     Total Upcoming
                 </em>
                 <strong className={styles.summary_data}>
-                    {upcomingBills && upcomingBills[1]} (${upcomingBills && upcomingBills[0]})
+                    {upcomingBills && upcomingBills[1]} (${upcomingBills && 
+                        upcomingBills[0].toLocaleString('en-us', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })})
                 </strong>
                 <div className={styles.line}/>
                 <em className={styles.summary_detail}>
                     Due Soon
                 </em>
                 <strong className={styles.summary_data}>
-                    {dueSoon && dueSoon[1]} (${dueSoon && dueSoon[0]})
+                    {dueSoon && dueSoon[1]} (${dueSoon && 
+                        dueSoon[0].toLocaleString('en-us', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })})
                 </strong>                
             </div>
         </section>

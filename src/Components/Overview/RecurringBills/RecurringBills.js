@@ -1,19 +1,60 @@
-import React from 'react';
+import React, {useMemo} from 'react';
+import {extractNumbers, isBillDueSoonOrUpcoming} from '~/Common/functions';
 import {useMenuMinMaxStyles} from '~/Hooks';
+import {useSelector, useDispatch} from 'react-redux';
 import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css'
 
-///i will need to get the bills from the global state and get the total paid bills, total upcoming, and total due soon
 function RecurringBills(){
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
+    const bills = useSelector(state => state.overview.data.bills);
+    const dispatch = useDispatch();
+    const currentDate = new Date().getDate();
+
+    const handleDetails = () => {
+        dispatch({type: 'CHANGE_LINK', payload: 'bills'})
+    }
+
+    const paidBills = useMemo(() => {
+        let total = 0;
+        bills.forEach((bill) => {
+            let billDate = extractNumbers(bill.dueDate);
+            if(isBillDueSoonOrUpcoming(billDate, currentDate) === 'paid'){
+                total += bill.amountDue;
+            }
+        }, 0)
+        return total;
+    }, [bills]);
+
+    const upcomingBills = useMemo(() => {
+        let total = 0;
+        bills.forEach((bill) => {
+            let billDate = extractNumbers(bill.dueDate);
+            if(isBillDueSoonOrUpcoming(billDate, currentDate) === 'upcoming'){
+                total += bill.amountDue;
+            }
+        }, 0)
+        return total;
+    }, [bills])
+
+    const dueSoon = useMemo(() => {
+        let total = 0;
+        bills.forEach((bill) => {
+            let billDate = extractNumbers(bill.dueDate);
+            if(isBillDueSoonOrUpcoming(billDate, currentDate) === 'due soon'){
+                total += bill.amountDue;
+            }
+        }, 0)
+        return total;
+    }, [bills])
 
     return(
         <section className={chooseQueries('bills')}>
             <h1 className={chooseQueries('bills_title')}>
                 Recurring bills
             </h1>
-            <button>
+            <button onClick={handleDetails}>
                 See Details
                 <div className={chooseQueries('bills_arrow')}/>
             </button>
@@ -23,7 +64,10 @@ function RecurringBills(){
                         Paid Bills
                     </h2>
                     <strong>
-                        $1,550.00
+                        ${paidBills.toLocaleString('en-US',{
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}
                     </strong>
                 </div>
                 <div className={styles.bills_detail}>
@@ -31,7 +75,10 @@ function RecurringBills(){
                         Total Upcoming
                     </h2>
                     <strong>
-                        $1,230.00
+                        ${upcomingBills.toLocaleString('en-US',{
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}
                     </strong>
                 </div>
                 <div className={styles.bills_detail}>
@@ -39,7 +86,10 @@ function RecurringBills(){
                         Due Soon
                     </h2>
                     <strong>
-                        $40.00
+                        ${dueSoon.toLocaleString('en-US',{
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}
                     </strong>
                 </div>
             </div>

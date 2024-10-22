@@ -39,9 +39,9 @@ function Header(){
                 <h2>
                     Current Balance
                 </h2>
-                ${balance.toLocaleString({
-                    minFractionDigits: 2,
-                    maxFractionDigits: 2
+                ${balance.toLocaleString('en-US',{
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
                 })}
             </div>  
             <div className={chooseQueries('header_detail')}>
@@ -54,9 +54,9 @@ function Header(){
                     <h2>
                         Expenses  
                     </h2>
-                    ${expenses.toLocaleString({
-                        minFractionDigits: 2,
-                        maxFractionDigits: 2
+                    ${expenses.toLocaleString('en-US',{
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
                     })}
                 </div>   
         </header>

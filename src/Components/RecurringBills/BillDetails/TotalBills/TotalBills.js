@@ -19,7 +19,10 @@ function TotalBills() {
                 <strong className={styles.bills_total}>
                     ${bills.reduce((acc, bill) => {
                         return acc + bill.amountDue;
-                    }, 0)}
+                    }, 0).toLocaleString('en-us', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}
                 </strong>                
             </div>
 

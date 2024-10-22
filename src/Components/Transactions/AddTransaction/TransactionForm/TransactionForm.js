@@ -59,7 +59,7 @@ function TransactionForm({handleOpen}) {
         else if(response.status === 403){
             const message = await response.text();
             console.log(message);
-            alert(`You must create a budget with the category '${category}' first`);
+            alert(`${message}' ${category}'`);
         }
         else if(response.status === 401) {
             const message = await response.text();

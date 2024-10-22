@@ -6,6 +6,9 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
+
+//this is where i left off, i will need to find a way that the total amount of the budgets does not overflow
+//i already finished the pot component of the overflow component
 function Piechart(){
     const budgets = useSelector(state => state.overview.data.budgets)
     const [fourBudgets, setFourBudgets] = useState([]);
@@ -55,9 +58,9 @@ function Piechart(){
             <div className={chooseQueries('piechart')} style={{background: piechart}}>
                 <div className={chooseQueries('piechart_whiteCircle')}>
                     <strong>
-                        ${spent.toLocaleString({
-                            minFractionDigits: 2,
-                            maxFractionDigits: 2
+                        ${spent.toLocaleString('en-US',{
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
                         })}
                     </strong>
                     <p>
@@ -73,15 +76,15 @@ function Piechart(){
                         const theme = budget.theme;
 
                         return(
-                            <div className={styles.piechart_budget}>
+                            <div className={styles.piechart_budget} key={category}>
                                 <div className={styles.piechart_color} style={{backgroundColor: Themes[theme]}}/>
                                 <h2>
                                     {category}
                                 </h2>
                                 <strong>
-                                    {limit.toLocaleString({
-                                        minFractionDigits: 2,
-                                        maxFractionDigits: 2
+                                    {limit.toLocaleString('en-US',{
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
                                     })}
                                 </strong>
                             </div>  

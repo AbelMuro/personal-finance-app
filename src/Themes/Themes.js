@@ -13,7 +13,7 @@ const themes = {
     Blue: '#3F82B2',
     'Navy Grey': '#97A0AC',
     'Army Green': '#7F9161',
-    Pink: '#826CB0',
+    Pink: '#ffc0cb',
     Gold: '#CAB361',
     Orange: '#BE6C49',
 }

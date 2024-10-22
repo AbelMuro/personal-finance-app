@@ -105,7 +105,7 @@
 }
 
 .transaction > strong{
-    color: var(--color-grey-900, #201F24);
+    justify-self: end;
     font-family: var(--font);
     font-size: 0.875rem;
     font-style: normal;
@@ -114,12 +114,23 @@
 }
 
 .transaction > time{
+    justify-self: end;
     color: var(--color-grey-500, #696868);
     font-family: var(--font);
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 18px */
+}
+
+.empty{
+    text-align: center;
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 21px */
 }
 
 @media(max-width: 620px){

@@ -40,7 +40,7 @@ function AllTransactions() {
             </div>}
             {mobile ? <MobileTransactions/> : 
                 <section className={styles.transactions_all}>
-                     {paginatedTransactions.map((transaction, i) => {
+                     {paginatedTransactions.length !== 0 ? paginatedTransactions.map((transaction, i) => {
 
                         const transactionsId = transaction.transactionId;
                         const image = transaction.image;
@@ -69,7 +69,7 @@ function AllTransactions() {
                                 </p>
                             </article>
                         )
-                     })}
+                     }) : <div className={styles.empty}> There are no transactions to display</div>}
             </section>}
         </div>
     )

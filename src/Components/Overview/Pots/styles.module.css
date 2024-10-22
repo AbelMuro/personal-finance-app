@@ -94,6 +94,8 @@
 }
 
 .pots_total > strong{
+    color: #ffc0cb;
+    text-overflow: ellipsis;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 2rem;
@@ -138,6 +140,7 @@
 }
 
 .pots_savings > h2{
+    word-break: break-all;
     color: var(--color-grey-500, #696868);
     font-family: var(--font);
     font-size: 0.75rem;

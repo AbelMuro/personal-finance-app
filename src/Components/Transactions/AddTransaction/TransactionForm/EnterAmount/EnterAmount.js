@@ -8,9 +8,11 @@ function EnterAmount() {
         const [error, setError] = useState('');
     
         const handleAmount = (e) => {
+            const input = e.target.value;
+            if(input > 9999) return;
             e.target.setCustomValidity('');
             setError('');
-            setAmount(e.target.value);
+            setAmount(input);
         }
     
         const handleBlur = (e) => {
