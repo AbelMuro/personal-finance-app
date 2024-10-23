@@ -55,9 +55,10 @@ function Transactions() {
                         const plusOrMinus = transaction.plusOrMinus;
                         const amount = transaction.amount;
                         const date = transaction.date;
+                        const id = transaction.transactionId;
 
                         return(
-                            <li className={styles.transaction}> 
+                            <li className={styles.transaction} key={id}> 
                                 <img className={styles.transactions_image} src={image ? image : icons['placeholder']}/>
                                 <h2>
                                     {recipient}

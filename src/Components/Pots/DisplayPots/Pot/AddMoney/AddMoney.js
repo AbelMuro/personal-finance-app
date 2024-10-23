@@ -23,6 +23,7 @@ function AddMoney() {
         e.preventDefault();
         setLoading(true);
         const amount = e.target.elements.amount.value;
+        let newSavings = Number((Number(amount) + savings).toFixed(2))
         const response = await fetch('http://localhost:4000/edit_pot', {
             method: 'PUT',
             headers: {
@@ -30,7 +31,7 @@ function AddMoney() {
             },
             body: JSON.stringify({
                 potId,
-                savings: Number(amount) + savings
+                savings: newSavings
             }),
             credentials: 'include'
         });

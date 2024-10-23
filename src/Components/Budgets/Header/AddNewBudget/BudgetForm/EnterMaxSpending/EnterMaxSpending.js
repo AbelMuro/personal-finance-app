@@ -8,11 +8,15 @@ function EnterMaxSpending() {
     
     const handleSpending = (e) => {
         const input = e.target.value;
-        e.target.setCustomValidity('');
-        setError('');
+        const integer = Number(input);
 
-        if((input.match(/\d/) && Number(input) <= 10000) || input === '')
+        if(integer > 9999) return;  
+
+        if(input === '' || input.match(/^\d+$/) || input.match(/^\d+\.{1}$/) || input.match(/^\d+\.\d{0,2}$/)){
+            e.target.setCustomValidity('');
+            setError('');                  
             setSpending(input);
+        }            
     }
 
     const handleBlur = (e) => {     

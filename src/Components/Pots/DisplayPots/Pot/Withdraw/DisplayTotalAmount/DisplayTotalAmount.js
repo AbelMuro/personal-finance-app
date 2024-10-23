@@ -1,9 +1,9 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
 import {PotsContext} from '@/Pot';
 import * as styles from './styles.module.css';
 
 function DisplayTotalAmount({amount}) {
+    let integerAmount = Number(amount);
     const {savings, target} = useContext(PotsContext);
     const [newPercent, setNewPercent] = useState('0%');
     const [oldPercent, setOldPercent] = useState('0%');
@@ -11,7 +11,7 @@ function DisplayTotalAmount({amount}) {
 
     useEffect(() => {
         const oldPer = savings / target * 100;
-        const newPer = (savings - amount)/target * 100;
+        const newPer = (savings - integerAmount)/target * 100;
         setNewPercent(`${newPer}%`);
         setOldPercent(`${oldPer}%`);
         setTotalPercent(newPer > oldPer ? oldPer : newPer);
@@ -23,13 +23,13 @@ function DisplayTotalAmount({amount}) {
                 New Amount
             </p>  
             <strong className={styles.amount_total}>
-                ${savings - amount}
+                ${(savings - integerAmount).toFixed(2)}
             </strong>  
             <div className={styles.amount_progress}>
                 {newPercent !== '0%' && <div className={styles.amount_new} style={{width: newPercent}}/>}
                 {oldPercent !== '0%' && <div className={styles.amount_old} style={{width: oldPercent}}/>}
             </div>
-            <em className={styles.amount_percent} style={amount !== 0 ?  {color: '#C94736'} : {color: '#201F24'}}>
+            <em className={styles.amount_percent} style={integerAmount !== 0 ?  {color: '#C94736'} : {color: '#201F24'}}>
                 {totalPercent.toFixed(2)}%
             </em>
             <p className={styles.amount_target}>

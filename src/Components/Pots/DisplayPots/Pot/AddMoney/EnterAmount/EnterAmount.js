@@ -1,21 +1,23 @@
 import React, {useState, useContext} from 'react';
 import { PotsContext } from '@/Pot';
-import {useDispatch} from 'react-redux';
 import * as styles from './styles.module.css';
 
 function EnterAmount({amount, setAmount}) {
     const {target, savings} = useContext(PotsContext);
-    const dispatch = useDispatch();
     const [error, setError] = useState('');
 
     const handleAmount = (e) => {
         const input = e.target.value;
         const integer = Number(input);
         const limit = target - savings;
-        if(input.match(/\D/) || integer > limit) return;
-        e.target.setCustomValidity('');
-        setError('');
-        setAmount(integer);
+        if(isNaN(integer) || integer < 0 || integer > limit) return;
+
+        if(input === '' || input.match(/^\d+$/) || input.match(/^\d+\.{1}$/) || input.match(/^\d+\.\d{0,2}$/)){
+            e.target.setCustomValidity('');
+            setError('');
+            setAmount(input);            
+        }
+
     }
 
     const handleBlur = (e) => {

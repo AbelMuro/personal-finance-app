@@ -12,7 +12,7 @@ function ProgressBar() {
         if(percent > 100)
             setPercent('100%')
         else
-            setPercent(percent);
+            setPercent(`${percent}%`);
     }, [limit, totalSpent])
 
     return(

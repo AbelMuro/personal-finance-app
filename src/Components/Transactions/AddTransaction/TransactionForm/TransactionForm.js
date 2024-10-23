@@ -59,7 +59,7 @@ function TransactionForm({handleOpen}) {
         else if(response.status === 403){
             const message = await response.text();
             console.log(message);
-            alert(`${message}' ${category}'`);
+            alert(`${message}`);
         }
         else if(response.status === 401) {
             const message = await response.text();

@@ -7,10 +7,15 @@ function EnterTarget() {
 
     const handleTarget = (e) => {
         const input = e.target.value;
-        if(input.match(/\D/) || Number(input) > 9999) return;
-        e.target.setCustomValidity('');
-        setError('');
-        setTarget(e.target.value);
+        const integer = Number(input);
+        if(integer > 9999) return;
+
+        if(input === '' || input.match(/^\d+$/) || input.match(/^\d+\.{1}$/) || input.match(/^\d+\.\d{0,2}$/)){
+            e.target.setCustomValidity('');
+            setError('');
+            setTarget(e.target.value);            
+        }
+
     }
 
     const handleBlur = (e) => {

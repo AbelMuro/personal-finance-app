@@ -29,6 +29,7 @@
 }
 
 .piechart_whiteCircle > strong{
+    word-break: break-word;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 2rem;

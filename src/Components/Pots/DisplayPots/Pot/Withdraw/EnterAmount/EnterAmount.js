@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react';
 import { PotsContext } from '@/Pot';
-import {useDispatch} from 'react-redux';
 import * as styles from './styles.module.css';
 
 function EnterAmount({amount, setAmount}) {
@@ -10,11 +9,15 @@ function EnterAmount({amount, setAmount}) {
     const handleAmount = (e) => {
         const input = e.target.value;
         const integer = Number(input);
-        const limit = savings - input;
-        if(input.match(/\D/) || limit < 0) return;
-        e.target.setCustomValidity('');
-        setError('');
-        setAmount(integer);
+        const limit = savings - integer;
+        if(limit < 0) return;
+        if(input === '' || input.match(/^\d+$/) || input.match(/^\d+\.{1}$/) || input.match(/^\d+\.\d{0,2}$/)){
+            e.target.setCustomValidity('');
+            setError('');
+            setAmount(input);            
+        }
+
+
     }
 
     const handleBlur = (e) => {

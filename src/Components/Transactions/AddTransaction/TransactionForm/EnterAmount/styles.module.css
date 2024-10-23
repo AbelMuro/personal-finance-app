@@ -42,6 +42,11 @@
     line-height: 150%; /* 21px */
 }
 
+.container_input > .input:user-invalid{
+    border-color: red;
+}
+
+
 .dollarSign{
     width: 10px;
     height: 21px;

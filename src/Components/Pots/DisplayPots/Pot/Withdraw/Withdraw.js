@@ -21,6 +21,7 @@ function Withdraw () {
         e.preventDefault();
         setLoading(true);
         const amount = e.target.elements.amount.value;
+        const newSavings = Number((savings - Number(amount)).toFixed(2))
         const response = await fetch('http://localhost:4000/edit_pot', {
             method: 'PUT',
             headers: {
@@ -28,7 +29,7 @@ function Withdraw () {
             },
             body: JSON.stringify({
                 potId,
-                savings: savings - Number(amount)
+                savings: newSavings
             }),
             credentials: 'include'
         });

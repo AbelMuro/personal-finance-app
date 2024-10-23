@@ -9,10 +9,15 @@ function EnterAmount() {
     
         const handleAmount = (e) => {
             const input = e.target.value;
-            if(input > 9999) return;
-            e.target.setCustomValidity('');
-            setError('');
-            setAmount(input);
+            const integer = Number(input);
+            if(integer > 9999)
+                return;
+
+            if(input === '' || input.match(/^\d+$/) || input.match(/^\d+\.{1}$/) || input.match(/^\d+\.\d{0,2}$/)){
+                e.target.setCustomValidity('');
+                setError('');
+                setAmount(input);                
+            }
         }
     
         const handleBlur = (e) => {
@@ -22,7 +27,7 @@ function EnterAmount() {
                 setError("Can't be empty");
         }
     
-        const handleInvalid = () => {
+        const handleInvalid = (e) => {
             e.target.setCustomValidity(' ');
             setError("Can't be empty")
         }

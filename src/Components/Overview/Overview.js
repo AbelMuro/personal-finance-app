@@ -6,6 +6,7 @@ import Budgets from './Budgets';
 import Transactions from './Transactions';
 import RecurringBills from './RecurringBills';
 import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
 import * as styles from './styles.module.css';
@@ -15,6 +16,7 @@ import * as mediaQueryMax from './mediaQueryMax.module.css';
 function Overview(){
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
     const getAllData = async () => {

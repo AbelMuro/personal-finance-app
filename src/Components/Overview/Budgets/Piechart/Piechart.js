@@ -6,9 +6,8 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-
-//this is where i left off, i will need to find a way that the total amount of the budgets does not overflow
-//i already finished the pot component of the overflow component
+//this is where i left off, 
+//i will need to make a function that displays a bunch of dots next to a number that is too large to fit its continer
 function Piechart(){
     const budgets = useSelector(state => state.overview.data.budgets)
     const [fourBudgets, setFourBudgets] = useState([]);

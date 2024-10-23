@@ -5,7 +5,6 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-
 function Header(){
     const budgets = useSelector(state => state.overview.data.budgets);
     const bills = useSelector(state => state.overview.data.bills);
