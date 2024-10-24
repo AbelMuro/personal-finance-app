@@ -1,0 +1,14 @@
+.messageBox{
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: rgba(135, 115, 81, 0.7);
+    position: absolute;
+}   

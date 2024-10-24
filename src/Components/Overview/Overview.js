@@ -41,9 +41,10 @@ function Overview(){
         else{
             const message = await response.text();
             console.log(message);
+            navigate('/');            
             setTimeout(() => {
                 alert('Internal server error occured, please try again later')
-            }, 500)
+            }, 500);
         }
         setLoading && setLoading(false);
     }

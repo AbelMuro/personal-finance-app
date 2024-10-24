@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import MessageBox from '~/Common/Components/MessageBox';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import Themes from '~/Themes';
 import {useSelector} from 'react-redux';
@@ -6,8 +7,7 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-//this is where i left off, 
-//i will need to make a function that displays a bunch of dots next to a number that is too large to fit its continer
+//the issue here is that the whiteCircle has a position absolute that is messing up the messagebox position
 function Piechart(){
     const budgets = useSelector(state => state.overview.data.budgets)
     const [fourBudgets, setFourBudgets] = useState([]);
@@ -56,12 +56,18 @@ function Piechart(){
         <>
             <div className={chooseQueries('piechart')} style={{background: piechart}}>
                 <div className={chooseQueries('piechart_whiteCircle')}>
-                    <strong>
-                        ${spent.toLocaleString('en-US',{
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })}
-                    </strong>
+                    <MessageBox
+                        Component={({children, onMouseEnter, onMouseLeave}) => {
+                        return(
+                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                ${spent.toLocaleString('en-US',{
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                })}
+                                {children}
+                            </strong>
+                        )
+                    }}/>
                     <p>
                         of ${limit} limit
                     </p>

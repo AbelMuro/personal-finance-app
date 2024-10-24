@@ -1,4 +1,5 @@
 import React, {useState, useMemo} from 'react';
+import MessageBox from '~/Common/Components/MessageBox';
 import Themes from '~/Themes';
 import {useDispatch, useSelector} from 'react-redux';
 import {useMenuMinMaxStyles} from '~/Hooks';
@@ -43,11 +44,18 @@ function Pots(){
                 <h2>
                     Total Saved
                 </h2>
-                <strong>
-                    ${total.toLocaleString('en-US',{
-                        maximumFractionDigits: 0
-                    })}
-                </strong>
+                <MessageBox 
+                    total={total}
+                    Component={({children, onMouseEnter, onMouseLeave}) => {
+                        return (
+                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                ${total.toLocaleString('en-US',{
+                                    maximumFractionDigits: 0
+                                })}
+                                {children}
+                            </strong>
+                        )
+                    }}/>
             </div>
             {
                 fourPots.map((pot) => {

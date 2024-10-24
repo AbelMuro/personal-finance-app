@@ -64,7 +64,7 @@
 
 .pots_total{
     width: 100%;
-    min-height: 110px;
+    height: 110px;
     padding: 16px;
     border-radius: 12px;
     background-color: var(--color-beige-100, #F8F4F0);
@@ -94,7 +94,9 @@
 }
 
 .pots_total > strong{
-    word-break: break-word;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #ffc0cb;
     text-overflow: ellipsis;
     color: var(--color-grey-900, #201F24);

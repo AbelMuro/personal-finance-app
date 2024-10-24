@@ -29,7 +29,10 @@
 }
 
 .piechart_whiteCircle > strong{
-    word-break: break-word;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 2rem;
