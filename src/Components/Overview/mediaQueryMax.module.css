@@ -10,11 +10,6 @@
     }
 }
 
-@media(max-width: 1021px){
-    .overview_misc{
-        grid-template-columns: 385px 1fr;
-    }
-}
 
 
 @media(max-width: 950px){

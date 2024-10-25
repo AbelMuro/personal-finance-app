@@ -1,4 +1,5 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, forwardRef} from 'react';
+import MessageBox from '~/Common/Components/MessageBox';
 import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
 import icons from './icons';
@@ -31,9 +32,20 @@ function MobileTransactions() {
                     return(
                         <section className={styles.transactions} key={transactionId}>
                             <img className={styles.transactions_image} src={image ? image : icons['placeholder']}/>
-                            <h2 className={styles.transactions_title}>
-                                {recipient}
-                            </h2>
+                            <MessageBox 
+                                total={recipient} 
+                                Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                                    return(
+                                        <h2 
+                                            className={styles.transactions_title}
+                                            onMouseEnter={onMouseEnter}
+                                            onMouseLeave={onMouseLeave}
+                                            ref={ref}>
+                                                {recipient}
+                                                {children}
+                                        </h2>
+                                    )
+                            })}/>
                             <p className={styles.transactions_category}>
                                 {category}
                             </p>

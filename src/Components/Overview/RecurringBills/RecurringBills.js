@@ -1,4 +1,5 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, forwardRef} from 'react';
+import MessageBox from '~/Common/Components/MessageBox';
 import {extractNumbers, isBillDueSoonOrUpcoming} from '~/Common/functions';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector, useDispatch} from 'react-redux';
@@ -63,34 +64,56 @@ function RecurringBills(){
                     <h2>
                         Paid Bills
                     </h2>
-                    <strong>
-                        ${paidBills.toLocaleString('en-US',{
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })}
-                    </strong>
+                    <MessageBox 
+                        total={paidBills}
+                        Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                            return(
+                                <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
+                                    ${paidBills.toLocaleString('en-US',{
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    })}
+                                    {children}
+                                </strong>                                
+                            )
+                        })}/>
+
                 </div>
                 <div className={styles.bills_detail}>
                     <h2>
                         Total Upcoming
                     </h2>
-                    <strong>
-                        ${upcomingBills.toLocaleString('en-US',{
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })}
-                    </strong>
+                    <MessageBox 
+                        total={upcomingBills}
+                        Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                            return(
+                                <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
+                                    ${upcomingBills.toLocaleString('en-US',{
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    })}
+                                    {children}
+                                </strong>                                
+                            )
+                        })}/>
                 </div>
                 <div className={styles.bills_detail}>
                     <h2>
                         Due Soon
                     </h2>
-                    <strong>
-                        ${dueSoon.toLocaleString('en-US',{
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })}
-                    </strong>
+                    <MessageBox 
+                        total={dueSoon}
+                        Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                            return(
+                                <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
+                                    ${dueSoon.toLocaleString('en-US',{
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    })}
+                                    {children}
+                                </strong>                                
+                            )
+                        })}/>
                 </div>
             </div>
 

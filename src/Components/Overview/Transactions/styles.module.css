@@ -91,6 +91,7 @@
 }
 
 .transaction > h2{
+    word-break: break-all;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 0.875rem;

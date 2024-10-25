@@ -4,7 +4,7 @@
     }
 }
 
-@media(max-width: 975px){
+@media(max-width: 1000px){
     .container{
         grid-template-columns: 200px 1fr;
     }

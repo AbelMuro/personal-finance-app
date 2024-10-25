@@ -84,6 +84,10 @@
 }
 
 .bills_detail > strong{
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 0.875rem;
@@ -107,5 +111,9 @@
 @media(max-width: 620px){
     .bills{
         padding: 24px 20px;
+    }
+
+    .bills_detail > strong{
+        width: 100px;
     }
 }

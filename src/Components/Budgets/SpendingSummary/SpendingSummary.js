@@ -1,4 +1,4 @@
-import React, {useState, useEffect, memo} from 'react';
+import React, {useState, useEffect, memo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
@@ -58,12 +58,13 @@ function SpendingSummary() {
                     <div className={chooseQueries('spending_whiteCircle')}>
                         <MessageBox 
                             total={totalSpent} 
-                            Component={({children, onMouseEnter, onMouseLeave}) => {
+                            Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                                 return(
                                     <strong 
                                         className={chooseQueries('spending_piechartTitle')}
                                         onMouseEnter={onMouseEnter}
-                                        onMouseLeave={onMouseLeave}>
+                                        onMouseLeave={onMouseLeave}
+                                        ref={ref}>
                                             ${totalSpent.toLocaleString('en-us', {
                                                 minimumFractionDigits: 2,
                                                 maximumFractionDigits: 2,
@@ -71,7 +72,7 @@ function SpendingSummary() {
                                             {children}
                                     </strong>
                                 )
-                            }}/>
+                            })}/>
                         <p className={chooseQueries('spending_piechartLimit')}>
                             of ${limit.toLocaleString('en-us', {
                                     minimumFractionDigits: 2,

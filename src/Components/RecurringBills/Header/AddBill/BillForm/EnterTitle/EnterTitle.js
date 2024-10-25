@@ -6,9 +6,11 @@ function EnterTitle() {
     const [error, setError] = useState('');
     
     const handleSpending = (e) => {
+        const input = e.target.value;
+        if(input.length > 30) return;
         e.target.setCustomValidity('');
         setError('');
-        setTitle(e.target.value);
+        setTitle(input);
     }
 
     const handleBlur = (e) => {     

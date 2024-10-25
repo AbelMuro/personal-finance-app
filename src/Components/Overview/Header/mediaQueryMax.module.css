@@ -1,6 +1,6 @@
 @media(max-width: 1430px){
     .header{
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import Themes from '~/Themes';
@@ -58,9 +58,9 @@ function Piechart(){
                 <div className={chooseQueries('piechart_whiteCircle')}>
                     <MessageBox
                         total={spent}
-                        Component={({children, onMouseEnter, onMouseLeave}) => {
+                        Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                         return(
-                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
                                 ${spent.toLocaleString('en-US',{
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2
@@ -68,20 +68,12 @@ function Piechart(){
                                 {children}
                             </strong>
                         )
-                    }}/>
-                    <MessageBox 
-                        total={limit} 
-                        Component={({children, onMouseEnter, onMouseLeave}) => {
-                            return(
-                                <p onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                                    of ${limit.toLocaleString('en-us', {
-                                        maximumFractionDigits: 2,
-                                        minimumFractionDigits: 2,
-                                    })} limit
-                                    {children}
-                                </p>
-                            )
-                        }}/>
+                    })}/>
+                    <p>
+                        of ${limit.toLocaleString('en-us', {
+                            minimumFractionDigits: 0,
+                            })} limit
+                    </p>
                 </div>
             </div>
             <section className={chooseQueries('piechart_allBudgets')}>
@@ -98,9 +90,8 @@ function Piechart(){
                                     {category}
                                 </h2>
                                 <strong>
-                                    {limit.toLocaleString('en-US',{
-                                        minimumFractionDigits: 2,
-                                        maximumFractionDigits: 2
+                                    ${limit.toLocaleString('en-US',{
+                                        maximumFractionDigits: 0
                                     })}
                                 </strong>
                             </div>  

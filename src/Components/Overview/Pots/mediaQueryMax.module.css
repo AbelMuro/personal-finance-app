@@ -4,9 +4,10 @@
     }
 }
 
+
 @media(max-width: 1170px){
     .pots{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 30px 1fr 1fr 30px;
         padding: 24px;
     }
 
@@ -50,8 +51,22 @@
     }
 }
 
+@media(max-width: 1033px){
+    .pots_total{
+        width: 200px
+    }
+}
+
 
 @media(max-width: 950px){
+    .pots{
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .pots_total{
+        width: 247px
+    }
+
     .pots_savings:nth-child(4){
         grid-column: 1/2;
         grid-row: 4/5;

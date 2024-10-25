@@ -6,9 +6,11 @@ function EnterRecipient() {
     const [error, setError] = useState('');
 
     const handleSender = (e) => {
+        const input = e.target.value;
+        if(input.length > 20) return;
         e.target.setCustomValidity('');
         setError('');
-        setSender(e.target.value);
+        setSender(input);
     }
 
     const handleBlur = (e) => {

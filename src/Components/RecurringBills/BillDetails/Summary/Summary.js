@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
 import {useSelector} from 'react-redux';
 import {extractNumbers, isBillDueSoonOrUpcoming} from '~/Common/functions'
@@ -61,9 +61,9 @@ function Summary() {
                     {paidBills && paidBills[1]} 
                     {paidBills && <MessageBox 
                         total={paidBills[0]} 
-                        Component={({children, onMouseEnter, onMouseLeave}) => {
+                        Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                             return(
-                                <p onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                <p onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
                                     (${paidBills[0].toLocaleString('en-us', {
                                             minimumFractionDigits: 2,
                                             maximumFractionDigits: 2
@@ -71,7 +71,7 @@ function Summary() {
                                         {children}                  
                                 </p>
                             )
-                        }}/>}
+                        })}/>}
 
                 </strong>
                 <div className={styles.line}/>
@@ -79,22 +79,50 @@ function Summary() {
                     Total Upcoming
                 </em>
                 <strong className={styles.summary_data}>
-                    {upcomingBills && upcomingBills[1]} (${upcomingBills && 
-                        upcomingBills[0].toLocaleString('en-us', {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })})
+                    {upcomingBills && upcomingBills[1]} 
+                    {upcomingBills && 
+                        <MessageBox 
+                            total={upcomingBills[0]}
+                            Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                                return(
+                                    <p 
+                                        className={styles.summary_data}
+                                        onMouseEnter={onMouseEnter}
+                                        onMouseLeave={onMouseLeave}
+                                        ref={ref}> 
+                                            (${upcomingBills[0].toLocaleString('en-us', {
+                                                minimumFractionDigits: 2,
+                                                maximumFractionDigits: 2
+                                            })})
+                                            {children}
+                                    </p>
+                                )
+                            })}/>}
                 </strong>
                 <div className={styles.line}/>
                 <em className={styles.summary_detail}>
                     Due Soon
                 </em>
                 <strong className={styles.summary_data}>
-                    {dueSoon && dueSoon[1]} (${dueSoon && 
-                        dueSoon[0].toLocaleString('en-us', {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })})
+                    {dueSoon && dueSoon[1]} 
+                    {dueSoon && 
+                        <MessageBox 
+                            total={dueSoon[0]}
+                            Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                                return(
+                                    <p 
+                                        className={styles.summary_data}
+                                        onMouseEnter={onMouseEnter}
+                                        onMouseLeave={onMouseLeave}
+                                        ref={ref}> 
+                                            (${dueSoon[0].toLocaleString('en-us', {
+                                                minimumFractionDigits: 2,
+                                                maximumFractionDigits: 2
+                                            })})
+                                            {children}
+                                    </p>
+                                )
+                            })}/>}
                 </strong>                
             </div>
         </section>

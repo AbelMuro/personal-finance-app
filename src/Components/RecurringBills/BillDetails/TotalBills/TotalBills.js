@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
@@ -26,12 +26,13 @@ function TotalBills() {
                 </h2>
                 <MessageBox 
                     total={total}
-                    Component={({children, onMouseEnter, onMouseLeave}) => {
+                    Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                         return(
                             <strong 
                                 className={styles.bills_total}
                                 onMouseEnter={onMouseEnter}
                                 onMouseLeave={onMouseLeave}
+                                ref={ref}
                                 >
                                     ${total.toLocaleString('en-us', {
                                         minimumFractionDigits: 2,
@@ -40,7 +41,7 @@ function TotalBills() {
                                     {children}
                             </strong>                             
                         )
-                    }}/>
+                    })}/>
             </div>
         </div>
     )

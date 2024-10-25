@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
 import Themes from '~/Themes';
 import {useDispatch, useSelector} from 'react-redux';
@@ -46,16 +46,16 @@ function Pots(){
                 </h2>
                 <MessageBox 
                     total={total}
-                    Component={({children, onMouseEnter, onMouseLeave}) => {
+                    Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                         return (
-                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
                                 ${total.toLocaleString('en-US',{
                                     maximumFractionDigits: 0
                                 })}
                                 {children}
                             </strong>
                         )
-                    }}/>
+                    })}/>
             </div>
             {
                 fourPots.map((pot) => {
@@ -72,16 +72,16 @@ function Pots(){
                             </h2>
                             <MessageBox 
                                 total={savings} 
-                                Component={({children, onMouseEnter, onMouseLeave}) => {
+                                Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                                     return(
-                                        <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                        <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
                                             ${savings.toLocaleString('en-US',{
-                                                maximumFractionDigits: 2
+                                                maximumFractionDigits: 0
                                             })}
                                             {children}
                                         </strong>        
                                     ) 
-                                }}/>
+                                })}/>
                         </div>
                     )
                 })

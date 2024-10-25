@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
@@ -41,9 +41,9 @@ function Header(){
                 </h2>
                 <MessageBox 
                     total={balance} 
-                    Component={({children, onMouseEnter, onMouseLeave}) => {
+                    Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                         return(
-                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
                                 ${balance.toLocaleString('en-US',{
                                     minimumFractionDigits: 2,
                                     maximumFractionDigits: 2
@@ -51,7 +51,7 @@ function Header(){
                                 {children}
                             </strong>
                         )
-                }}/>
+                })}/>
             </div>  
             <div className={chooseQueries('header_detail')}>
                 <h2>
@@ -59,24 +59,24 @@ function Header(){
                 </h2>
                 $3,814.25
             </div> 
-                <div className={chooseQueries('header_detail')}>
-                    <h2>
-                        Expenses  
-                    </h2>
-                    <MessageBox 
-                        total={expenses} 
-                        Component={({children, onMouseEnter, onMouseLeave}) => {
-                            return(
-                                <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                                    ${expenses.toLocaleString('en-US',{
-                                        minimumFractionDigits: 2,
-                                        maximumFractionDigits: 2
-                                    })}
-                                    {children}
-                                </strong>
-                            )
-                }}/>
-                </div>   
+            <div className={chooseQueries('header_detail')}>
+                <h2>
+                    Expenses  
+                </h2>
+                <MessageBox 
+                    total={expenses} 
+                    Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
+                        return(
+                            <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
+                                ${expenses.toLocaleString('en-US',{
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                })}
+                                {children}
+                            </strong>
+                        )
+                })}/>
+            </div>   
         </header>
     )
 }
