@@ -16,6 +16,7 @@
     width: 16px;
     height: 16px;
     border-radius: 100%;
+    flex-shrink: 0;
 }
 
 .pot_title > h2{
@@ -26,4 +27,5 @@
     font-weight: 700;
     line-height: 120%; /* 24px */
     margin: 0px;
+    word-break: break-all;
 }

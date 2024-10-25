@@ -19,9 +19,8 @@
 }
 
 .header_balance{
-    word-break: break-word;
     width: 100%;
-    min-height: 119px;
+    height: 119px;
     padding: 24px;
     border-radius: 12px;
     background-color: var(--color-grey-900, #201F24);
@@ -35,6 +34,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 38.4px */
+    transition: all 0.2s linear, font-size 0s;
 }
 
 .header_balance > h2{
@@ -48,9 +48,8 @@
 }
 
 .header_detail{
-    word-break: break-word;
     width: 100%;
-    min-height: 119px;
+    height: 119px;
     border-radius: 12px;
     background-color: var(--color-white, #FFF);
     padding: 24px;
@@ -64,6 +63,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 38.4px */
+    transition: all 0.2s linear, font-size 0s;
 }
 
 .header_detail > h2{

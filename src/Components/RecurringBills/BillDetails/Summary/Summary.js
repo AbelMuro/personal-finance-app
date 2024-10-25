@@ -1,8 +1,10 @@
 import React, {useMemo} from 'react';
+import MessageBox from '~/Common/Components/MessageBox';
 import {useSelector} from 'react-redux';
 import {extractNumbers, isBillDueSoonOrUpcoming} from '~/Common/functions'
 import * as styles from './styles.module.css';
 
+//this is where i left off
 function Summary() {
     const bills = useSelector(state => state.bills.bills);
     const currentDate = new Date().getDate();
@@ -56,11 +58,21 @@ function Summary() {
                     Paid Bills
                 </em>
                 <strong className={styles.summary_data}>
-                    {paidBills && paidBills[1]} (${paidBills && 
-                        paidBills[0].toLocaleString('en-us', {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })})
+                    {paidBills && paidBills[1]} 
+                    {paidBills && <MessageBox 
+                        total={paidBills[0]} 
+                        Component={({children, onMouseEnter, onMouseLeave}) => {
+                            return(
+                                <p onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                    (${paidBills[0].toLocaleString('en-us', {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        })})      
+                                        {children}                  
+                                </p>
+                            )
+                        }}/>}
+
                 </strong>
                 <div className={styles.line}/>
                 <em className={styles.summary_detail}>

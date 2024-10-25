@@ -44,11 +44,6 @@ function EnterTheme() {
                 else
                     return false;
             });
-            if(temp){                                                       //if there are no available themes
-                alert('You cannot make any more pots, consider deleting some of your existing pots');
-                window.location.reload();
-                return;
-            }   
             setPotThemes(potThemes);
         }
         else if(response.status === 500){

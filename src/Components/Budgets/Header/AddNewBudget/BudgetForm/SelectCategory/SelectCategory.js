@@ -6,7 +6,7 @@ import { dropdownVariant } from './Variants';
 import icons from './icons';
 
 
-function SelectCategory() {
+function SelectCategory({handleOpenDialog}) {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState('');
@@ -53,11 +53,6 @@ function SelectCategory() {
                 }
 
             });
-            if(temp){                           //if there are no available categories
-                alert('You cannot make any more budgets, consider deleting some of your existing budgets');
-                window.location.reload();
-                return;
-            }
             setAllCategories(formatCategories);
         }
         else if(response.status === 500){

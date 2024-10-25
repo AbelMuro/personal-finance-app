@@ -1,13 +1,19 @@
 import React, {useState} from 'react';
 import PotForm from './PotForm';
+import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
 import { overlayVariant, dialogVariant } from './Variants';
 
 function AddPot() {
     const [open, setOpen] = useState(false);
+    const pots = useSelector(state => state.pots.pots);
 
     const handleOpen = () => {
+        if(pots.length === 15){
+            alert("You can't create any more pots, consider deleting existing pots");
+            return;
+        }
         setOpen(!open);
     }
 

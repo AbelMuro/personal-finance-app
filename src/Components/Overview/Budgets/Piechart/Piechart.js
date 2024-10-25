@@ -57,6 +57,7 @@ function Piechart(){
             <div className={chooseQueries('piechart')} style={{background: piechart}}>
                 <div className={chooseQueries('piechart_whiteCircle')}>
                     <MessageBox
+                        total={spent}
                         Component={({children, onMouseEnter, onMouseLeave}) => {
                         return(
                             <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -68,9 +69,19 @@ function Piechart(){
                             </strong>
                         )
                     }}/>
-                    <p>
-                        of ${limit} limit
-                    </p>
+                    <MessageBox 
+                        total={limit} 
+                        Component={({children, onMouseEnter, onMouseLeave}) => {
+                            return(
+                                <p onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                    of ${limit.toLocaleString('en-us', {
+                                        maximumFractionDigits: 2,
+                                        minimumFractionDigits: 2,
+                                    })} limit
+                                    {children}
+                                </p>
+                            )
+                        }}/>
                 </div>
             </div>
             <section className={chooseQueries('piechart_allBudgets')}>

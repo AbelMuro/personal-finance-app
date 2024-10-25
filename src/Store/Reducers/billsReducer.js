@@ -30,7 +30,7 @@ const sortBills = (bills, state) => {
     return bills
 }
 
-const menuReducer = createReducer(initialState, (builder) => {       //builder, as the name implies, is an object that builds the reducer with .addCase
+const billsReducer = createReducer(initialState, (builder) => {       //builder, as the name implies, is an object that builds the reducer with .addCase
   builder
     .addCase(updateSearch, (state, action) => {    
         state.search = action.payload;
@@ -54,4 +54,4 @@ const menuReducer = createReducer(initialState, (builder) => {       //builder, 
     })
 })
 
-export default menuReducer;
+export default billsReducer;

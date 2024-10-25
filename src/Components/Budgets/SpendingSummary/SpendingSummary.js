@@ -1,4 +1,5 @@
 import React, {useState, useEffect, memo} from 'react';
+import MessageBox from '~/Common/Components/MessageBox';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
 import Themes from '~/Themes';
@@ -55,11 +56,27 @@ function SpendingSummary() {
                 className={chooseQueries('spending_piechart')} 
                 style={{background: piechart}}>
                     <div className={chooseQueries('spending_whiteCircle')}>
-                        <strong className={chooseQueries('spending_piechartTitle')}>
-                            ${totalSpent.toFixed(2)}
-                        </strong>
+                        <MessageBox 
+                            total={totalSpent} 
+                            Component={({children, onMouseEnter, onMouseLeave}) => {
+                                return(
+                                    <strong 
+                                        className={chooseQueries('spending_piechartTitle')}
+                                        onMouseEnter={onMouseEnter}
+                                        onMouseLeave={onMouseLeave}>
+                                            ${totalSpent.toLocaleString('en-us', {
+                                                minimumFractionDigits: 2,
+                                                maximumFractionDigits: 2,
+                                            })}
+                                            {children}
+                                    </strong>
+                                )
+                            }}/>
                         <p className={chooseQueries('spending_piechartLimit')}>
-                            of ${limit} limit
+                            of ${limit.toLocaleString('en-us', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                            })} limit
                         </p>
                     </div>
             </div>

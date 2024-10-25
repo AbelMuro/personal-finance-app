@@ -12,7 +12,6 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 
-//i need to test this component by adding transactions to a specific budget, it should not exceed the limit or 0
 function Budgets() {
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const navigate = useNavigate();
@@ -20,7 +19,6 @@ function Budgets() {
     const [loading, setLoading] = useState(true);
     const allBudgets = useSelector(state => state.budgets.budgets);
     const [mobile] = useMediaQuery('(max-width: 620px)');
-
 
     const getBudgets = async () => {
         setLoading(true);

@@ -108,6 +108,7 @@
 }
 
 .pots_savings{
+    align-self: start;
     display: grid;
     grid-template-columns: 4px 1fr;
     column-gap: 16px;
@@ -154,7 +155,6 @@
 }
 
 .pots_savings > strong{
-    word-break: break-word;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 0.875rem;

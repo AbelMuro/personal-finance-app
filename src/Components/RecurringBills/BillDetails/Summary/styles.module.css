@@ -73,6 +73,14 @@
     font-style: normal;
     font-weight: 700;
     line-height: 150%; /* 18px */
+    display: flex;
+    align-items: center;
+    gap: 2px
+}
+
+.summary_data > p{
+    width: 66px;
+    margin: 0px;
 }
 
 .line{

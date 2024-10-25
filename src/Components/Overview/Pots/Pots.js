@@ -70,11 +70,18 @@ function Pots(){
                             <h2>
                                 {name}
                             </h2>
-                            <strong>
-                                ${savings.toLocaleString('en-US',{
-                                    maximumFractionDigits: 2
-                                })}
-                            </strong>
+                            <MessageBox 
+                                total={savings} 
+                                Component={({children, onMouseEnter, onMouseLeave}) => {
+                                    return(
+                                        <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                                            ${savings.toLocaleString('en-US',{
+                                                maximumFractionDigits: 2
+                                            })}
+                                            {children}
+                                        </strong>        
+                                    ) 
+                                }}/>
                         </div>
                     )
                 })

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
@@ -9,6 +10,7 @@ import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
 function DisplayPots() {
+    const dispatch = useDispatch();
     const [chooseQueries] = useMenuMinMaxStyles(mediaQueryMin, mediaQueryMax, styles);
     const [pots, setPots] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -23,6 +25,7 @@ function DisplayPots() {
 
         if(response.status === 200){
             const results = await response.json();
+            dispatch({type: 'UPDATE_POTS', payload: results})
             setPots(results);
         }
         else if(response.status === 401){

@@ -31,6 +31,8 @@
 }
 
 .bills_total{
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: var(--color-white, #FFF);
     font-family: var(--font);
     font-size: 2rem;

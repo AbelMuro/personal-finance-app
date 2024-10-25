@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import * as styles from './styles.module.css';
 
-function MessageBox({Component}) {
+function MessageBox({total, Component}) {
     const [hover, setHover] = useState(false);
     const messageBoxRef = useRef();
 
@@ -37,7 +37,8 @@ function MessageBox({Component}) {
             {hover && 
                 <div className={styles.messageBox} ref={messageBoxRef}>
                     {total.toLocaleString('en-US',{
-                        maximumFractionDigits: 0
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
                     })}
                 </div>
             }            

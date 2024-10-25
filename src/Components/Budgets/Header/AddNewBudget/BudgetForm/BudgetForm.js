@@ -60,7 +60,7 @@ function BudgetForm({handleOpen}) {
 
     return(
         <form className={styles.form} onSubmit={handleSubmit}>
-            <SelectCategory/>
+            <SelectCategory handleOpenDialog={handleOpen}/>
             <EnterMaxSpending/>
             <SelectTheme/>
             <button className={styles.form_submit}>

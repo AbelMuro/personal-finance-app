@@ -6,6 +6,13 @@
 
     .overview_misc{
         grid-template-columns: 1fr 0.7fr;
+        transition: all 0.2s linear, grid-template-columns 0s;
+    }
+}
+
+@media(max-width: 1021px){
+    .overview_misc{
+        grid-template-columns: 385px 1fr;
     }
 }
 
