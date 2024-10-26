@@ -1,5 +1,7 @@
 import React, {useMemo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
+import UpdateIncome from './UpdateIncome';
+import DisplayIncome from './DisplayIncome';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
 import * as styles from './styles.module.css';
@@ -35,6 +37,7 @@ function Header(){
             <h1 className={chooseQueries('header_title')}>
                 Overview
             </h1>   
+            <UpdateIncome/>
             <div className={chooseQueries('header_balance')}>
                 <h2>
                     Current Balance
@@ -53,12 +56,7 @@ function Header(){
                         )
                 })}/>
             </div>  
-            <div className={chooseQueries('header_detail')}>
-                <h2>
-                    Income
-                </h2>
-                $3,814.25
-            </div> 
+            <DisplayIncome className={chooseQueries('header_detail')}/>
             <div className={chooseQueries('header_detail')}>
                 <h2>
                     Expenses  
