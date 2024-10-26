@@ -9,7 +9,7 @@ function MobileBills() {
 
     return (
         <section className={styles.bills}>
-            {
+            {bills.length !== 0 ? 
                 bills.map((bill) => {
                     const image = bill.image;
                     const title = bill.title;
@@ -35,7 +35,7 @@ function MobileBills() {
                             </strong>
                         </div>            
                     )
-                })           
+                }) : <p className={styles.message}>No Bills</p>        
             }
         </section> 
     )

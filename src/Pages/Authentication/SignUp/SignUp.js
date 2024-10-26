@@ -36,7 +36,7 @@ function SignUp({setPage}) {
             setPage('Login');
             setTimeout(() => {
                 alert('Account has been created, you can now login');
-            }, 1000)
+            }, 200)
             
         }
         else{
@@ -45,7 +45,7 @@ function SignUp({setPage}) {
             setLoading(false);
             setTimeout(() => {
                 alert('Email already exists');
-            }, 1000)
+            }, 200)
         }
             
     }

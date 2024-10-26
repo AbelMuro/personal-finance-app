@@ -49,6 +49,11 @@
         grid-column: 3/4;
         grid-row: 5/6;
     }
+
+    .message{
+        grid-column: 1/5;
+        grid-row: 4/5;
+    }
 }
 
 @media(max-width: 1033px){

@@ -58,7 +58,7 @@ function Pots(){
                     })}/>
             </div>
             {
-                fourPots.map((pot) => {
+                fourPots.length !== 0 ? fourPots.map((pot) => {
                     const name = pot.name
                     const theme = pot.theme;
                     const savings = pot.savings;
@@ -84,7 +84,7 @@ function Pots(){
                                 })}/>
                         </div>
                     )
-                })
+                }) : <p className={chooseQueries('message')}> No Pots</p>
             }
         </article>
     )

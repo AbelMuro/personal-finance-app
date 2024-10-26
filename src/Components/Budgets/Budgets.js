@@ -69,7 +69,7 @@ function Budgets() {
                     <>
                         <Skeleton width='100%' height='400px' borderRadius={8}/>
                         {!mobile && <Skeleton width='100%' height='400px' borderRadius={8}/>}
-                    </> : allBudgets.map((budget) => {
+                    </> : allBudgets.length !== 0 ? allBudgets.map((budget) => {
                         return (
                             <DisplayBudget 
                                 key={budget.category}
@@ -80,7 +80,8 @@ function Budgets() {
                                 theme={budget.theme}
                                 transactions={budget.transactions}/>
                         )
-                    })}
+                    }) : <p className={styles.message}>No Budgets Available</p>
+                }
             </div>
         </section>
     )

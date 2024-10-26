@@ -35,7 +35,7 @@ function AllBills(){
                     </div>                    
                 }
                 {mobile ? <MobileBills/> : 
-                    bills.map((bill) => {
+                    bills.length !== 0 ? bills.map((bill) => {
                         const image = bill.image;
                         const title = bill.title;
                         const dueDate = bill.dueDate;
@@ -63,7 +63,7 @@ function AllBills(){
                                 </strong>
                             </div>
                         )
-                    })
+                    }) : <p className={styles.message}> There are no bills to display</p>
                 }                
             </div>
         </section>

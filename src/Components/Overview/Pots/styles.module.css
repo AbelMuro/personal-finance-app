@@ -164,6 +164,21 @@
     line-height: 150%; /* 21px */
 }
 
+.message{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 24px */
+    margin: 0px;
+    grid-row: 2/4;
+    grid-column: 2/4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media(max-width: 850px){
     .pots{
         grid-template-columns: 247px 1fr 1fr;
@@ -188,7 +203,7 @@
     .pots{
         padding: 24px 20px;
         grid-template-columns: 1fr 1fr;
-        column-gap: 16px;
+        column-gap: 0px;
     }
 
     .pots_button{
@@ -222,5 +237,10 @@
         grid-column: 2/3;
         grid-row: 4/5;
         margin-left: 0px;
+    }
+
+    .message{
+        grid-column: 1/4;
+        grid-row: 3/4;
     }
 }

@@ -19,7 +19,7 @@ function MobileTransactions() {
 
     return(
         <div className={styles.container}>
-            {
+            {paginatedTransactions.length !== 0 ? 
                 paginatedTransactions.map((transaction) => {
                     const transactionId = transaction.transactionId;
                     const image = transaction.image;
@@ -57,7 +57,7 @@ function MobileTransactions() {
                             </p>
                         </section>    
                     )
-                })
+                }) : <p className={styles.message}>No Transactions</p>
             }     
         </div>
     )

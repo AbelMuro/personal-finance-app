@@ -13,7 +13,6 @@ function Header(){
 
     const balance = useMemo(() => {
         let total = 0;
-
         budgets.forEach((budget) => {
             const amount = budget.totalSpent;
             total += amount;

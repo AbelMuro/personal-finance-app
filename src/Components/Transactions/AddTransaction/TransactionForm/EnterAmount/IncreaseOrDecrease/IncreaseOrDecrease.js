@@ -5,7 +5,7 @@ import * as styles from './styles.module.css';
 import { dropdownVariant } from './Variants';
 
 function IncreaseOrDecrease() {
-    const [option, setOption] = useState('+');
+    const [option, setOption] = useState('-');
     const [open, setOpen] = useState(false);
 
     const rotateArrow = {

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import MobileTransactions from './MobileTransactions';
 import icons from './icons';
 import {useMediaQuery, useMenuMinMaxStyles} from '~/Hooks';

@@ -99,10 +99,11 @@
     text-align: center;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 38.4px */
+    margin: 0px;
 }
 
 @media(max-width: 850px){

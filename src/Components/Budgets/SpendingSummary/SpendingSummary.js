@@ -81,12 +81,13 @@ function SpendingSummary() {
                         </p>
                     </div>
             </div>
+
+            {budgets.length !== 0 && 
             <ul className={styles.spending_summary}>
                 <li className={chooseQueries('spending_title')}>
                     Spending Summary
                 </li>
-
-                {budgets && budgets.map((budget, i) => {
+                {budgets.map((budget, i) => {
                     if(i >= 5) return;
                     const category = budget.category;
                     const totalSpent = budget.totalSpent;
@@ -110,7 +111,7 @@ function SpendingSummary() {
                         </li>
                     )
                 })}
-            </ul>
+            </ul> }
         </section>
     )
 } 

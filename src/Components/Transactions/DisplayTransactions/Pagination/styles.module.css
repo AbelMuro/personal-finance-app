@@ -22,9 +22,15 @@
     font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 21px */
-
+    line-height: 150%; 
+    cursor: pointer;
 }
+
+.pagination_prev:hover, .pagination_next:hover{
+    background-color: #98908B;
+    color: white;
+}
+
 
 .pagination_prev_arrow, .pagination_next_arrow{
     width: 16px;

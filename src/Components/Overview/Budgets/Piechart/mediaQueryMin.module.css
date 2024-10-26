@@ -30,4 +30,9 @@
         grid-row: 3/4;
         column-gap: 5px;
     }
+
+    .message{
+        text-align: center;
+        grid-column: 1/3;
+    }
 }

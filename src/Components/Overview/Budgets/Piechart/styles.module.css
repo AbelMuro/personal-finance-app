@@ -98,6 +98,18 @@
     grid-row: 2/3;
 }
 
+.message{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin: 0px;
+    align-self: center;
+    justify-self: center;
+}
+
 @media(max-width: 620px){
     .piechart{
         grid-column: 1/3;
@@ -107,6 +119,11 @@
     .piechart_allBudgets{
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-column: 1/3;
+    }
+
+    .message{
+        text-align: center;
         grid-column: 1/3;
     }
 }

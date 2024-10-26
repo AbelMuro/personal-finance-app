@@ -83,6 +83,7 @@
 }
 
 .spending_transactionTitle{
+    word-break: break-all;
     color: var(--color-grey-900, #201F24);
     font-family: var(--font);
     font-size: 0.75rem;

@@ -76,29 +76,30 @@ function Piechart(){
                     </p>
                 </div>
             </div>
-            <section className={chooseQueries('piechart_allBudgets')}>
-                {
-                    fourBudgets.map((budget) => {
-                        const category = budget.category;
-                        const limit = budget.limit;
-                        const theme = budget.theme;
 
-                        return(
-                            <div className={styles.piechart_budget} key={category}>
-                                <div className={styles.piechart_color} style={{backgroundColor: Themes[theme]}}/>
-                                <h2>
-                                    {category}
-                                </h2>
-                                <strong>
-                                    ${limit.toLocaleString('en-US',{
-                                        maximumFractionDigits: 0
-                                    })}
-                                </strong>
-                            </div>  
-                        )
-                    })
+            {fourBudgets.length !== 0 ?
+                <section className={chooseQueries('piechart_allBudgets')}>
+                        {fourBudgets.map((budget) => {
+                            const category = budget.category;
+                            const limit = budget.limit;
+                            const theme = budget.theme;
+
+                            return(
+                                <div className={styles.piechart_budget} key={category}>
+                                    <div className={styles.piechart_color} style={{backgroundColor: Themes[theme]}}/>
+                                    <h2>
+                                        {category}
+                                    </h2>
+                                    <strong>
+                                        ${limit.toLocaleString('en-US',{
+                                            maximumFractionDigits: 0
+                                        })}
+                                    </strong>
+                                </div>  
+                            )
+                        })}
+                    </section> : <p className={chooseQueries('message')}>No Budgets</p>
                 }       
-            </section>
         </>
     )
 }

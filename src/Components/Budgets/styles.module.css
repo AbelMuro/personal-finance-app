@@ -16,6 +16,20 @@
     grid-column: 2/3;
 }
 
+.message{
+    height: 228px;
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media(max-width: 850px){
     .container{
         width: 100%;

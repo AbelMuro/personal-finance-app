@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext, useMemo} from 'react';
 import {Budget} from '`/DisplayBudget';
 import * as styles from './styles.module.css';
 import themes from '~/Themes';
@@ -7,6 +7,10 @@ function ProgressBar() {
     const {limit, theme, totalSpent} = useContext(Budget);
     const [percent, setPercent] = useState('0%');
 
+    const newLimit = useMemo(() => {
+        return limit - totalSpent;
+    }, [limit, totalSpent])
+
     useEffect(() => {
         const percent = totalSpent / limit * 100;
         if(percent > 100)
@@ -14,6 +18,8 @@ function ProgressBar() {
         else
             setPercent(`${percent}%`);
     }, [limit, totalSpent])
+
+
 
     return(
         <div className={styles.progress}>
@@ -44,7 +50,7 @@ function ProgressBar() {
                     Remaining
                 </p>
                 <strong className={styles.progress_total}>
-                    ${limit.toLocaleString('en-US', {
+                    ${newLimit.toLocaleString('en-US', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     })}

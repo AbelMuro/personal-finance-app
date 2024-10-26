@@ -137,6 +137,16 @@
     background-color: var(--color-green, #277C78);
 }
 
+.message{
+    color: var(--color-grey-900, #201F24);
+    font-family: var(--font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    margin: 0px;
+}
+
 @media(max-width: 850px){
     .spending{
         flex-direction: row;
