@@ -16,6 +16,7 @@
     display: grid;
     grid-template-columns: 608px 428px;
     gap: 24px;
+    transition: all 0.2s linear, grid-template-columns 0.2s linear;
 }
 
 .overview_columnOne, .overview_columnTwo{

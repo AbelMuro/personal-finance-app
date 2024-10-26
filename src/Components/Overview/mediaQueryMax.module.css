@@ -1,4 +1,4 @@
-@media(max-width: 1430px){
+@media(max-width: 1455px){
     .overview{
         width: 100%;
         padding: 32px 20px;
@@ -6,11 +6,8 @@
 
     .overview_misc{
         grid-template-columns: 1fr 0.7fr;
-        transition: all 0.2s linear, grid-template-columns 0s;
     }
 }
-
-
 
 @media(max-width: 950px){
     .overview_misc{

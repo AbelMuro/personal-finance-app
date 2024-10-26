@@ -3,6 +3,7 @@
     grid-template-columns: repeat(3, 337px);
     column-gap: 24px;
     row-gap: 32px;
+    transition: all 0.2s linear, grid-template-columns 0.2s linear;
 }
 
 

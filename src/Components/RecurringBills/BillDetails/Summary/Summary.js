@@ -72,7 +72,6 @@ function Summary() {
                                 </p>
                             )
                         })}/>}
-
                 </strong>
                 <div className={styles.line}/>
                 <em className={styles.summary_detail}>

@@ -81,7 +81,7 @@
 .summary_data > p{
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 66px;
+    max-width: 66px;
     margin: 0px;
 }
 
