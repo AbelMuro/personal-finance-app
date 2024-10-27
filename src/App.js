@@ -7,9 +7,12 @@ import Transactions from './Components/Transactions';
 import Budgets from './Components/Budgets';
 import Pots from './Components/Pots';
 import RecurringBills from './Components/RecurringBills';
+import NotFound from './Pages/NotFound'
+import NoInternet from './Pages/NoInternet'
 import { Provider } from 'react-redux';
 import Store from './Store'
 import './styles.css';
+//npm install is-online         to check if the user has internet connection, if they dont, then redirect them to another component
 
 function App() {
     return(
@@ -24,6 +27,8 @@ function App() {
                         <Route path='/profile/pots' element={<Pots/>}/>
                         <Route path='/profile/bills' element={<RecurringBills/>}/>
                     </Route>
+                    <Route path='*' element={<NotFound/>}/>
+                    <Route path='/NoInternet' element={<NoInternet/>}/>
                 </Routes>
             </BrowserRouter>
         </Provider>
