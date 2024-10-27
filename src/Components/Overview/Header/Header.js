@@ -8,7 +8,6 @@ import * as styles from './styles.module.css';
 import * as mediaQueryMin from './mediaQueryMin.module.css';
 import * as mediaQueryMax from './mediaQueryMax.module.css';
 
-//i need to add a button component that displays a dialog that will enable users to enter their income
 function Header(){
     const budgets = useSelector(state => state.overview.data.budgets);
     const bills = useSelector(state => state.overview.data.bills);
