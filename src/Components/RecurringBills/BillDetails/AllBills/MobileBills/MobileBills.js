@@ -11,6 +11,7 @@ function MobileBills() {
         <section className={styles.bills}>
             {bills.length !== 0 ? 
                 bills.map((bill) => {
+                    const id = bill.id
                     const image = bill.image;
                     const title = bill.title;
                     const dueDate = bill.dueDate;
@@ -20,7 +21,7 @@ function MobileBills() {
                     const billStatus = isBillDueSoonOrUpcoming(billDate, currentDate);
 
                     return(
-                        <div className={styles.bill}>
+                        <div className={styles.bill} key={id}>
                             <img className={styles.bill_image} src={image ? image : icons['placeholder']}/>
                             <h2 className={styles.bill_title}> 
                                 {title}

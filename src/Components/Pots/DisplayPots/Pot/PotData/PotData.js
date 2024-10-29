@@ -10,9 +10,9 @@ function PotData(){
     useEffect(() => {
         const percent = savings / target * 100;
         if(percent > 100)
-            setPercent('100%')
+            setPercent(100)
         else
-            setPercent(`${percent}%`);
+            setPercent(percent);
     }, [savings, target])
 
 
@@ -25,10 +25,12 @@ function PotData(){
                 ${savings.toFixed(2)}
             </strong>
             <div className={styles.pot_progress} aria-description='progress bar'> 
-                <div className={styles.pot_bar} style={{backgroundColor: Themes[theme], width: percent}}/>
+                <div className={styles.pot_bar} style={{backgroundColor: Themes[theme], width: `${percent}%`}}/>
             </div>
             <em className={styles.pot_percent}>
-                7.95%
+                {percent.toLocaleString('us-en', {
+                    maximumFractionDigits: 2
+                })}%
             </em>
             <p className={styles.pot_target}>
                 Target of ${target.toFixed(2)}

@@ -63,13 +63,13 @@ function Summary() {
                         total={paidBills[0]} 
                         Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                             return(
-                                <p onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
+                                <strong onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={ref}>
                                     (${paidBills[0].toLocaleString('en-us', {
                                             minimumFractionDigits: 2,
                                             maximumFractionDigits: 2
                                         })})      
                                         {children}                  
-                                </p>
+                                </strong>
                             )
                         })}/>}
                 </strong>
@@ -84,7 +84,7 @@ function Summary() {
                             total={upcomingBills[0]}
                             Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                                 return(
-                                    <p 
+                                    <strong 
                                         className={styles.summary_data}
                                         onMouseEnter={onMouseEnter}
                                         onMouseLeave={onMouseLeave}
@@ -94,7 +94,7 @@ function Summary() {
                                                 maximumFractionDigits: 2
                                             })})
                                             {children}
-                                    </p>
+                                    </strong>
                                 )
                             })}/>}
                 </strong>
@@ -109,7 +109,7 @@ function Summary() {
                             total={dueSoon[0]}
                             Component={forwardRef(({children, onMouseEnter, onMouseLeave}, ref) => {
                                 return(
-                                    <p 
+                                    <strong 
                                         className={styles.summary_data}
                                         onMouseEnter={onMouseEnter}
                                         onMouseLeave={onMouseLeave}
@@ -119,7 +119,7 @@ function Summary() {
                                                 maximumFractionDigits: 2
                                             })})
                                             {children}
-                                    </p>
+                                    </strong>
                                 )
                             })}/>}
                 </strong>                

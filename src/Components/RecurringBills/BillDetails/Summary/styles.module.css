@@ -78,7 +78,7 @@
     gap: 2px
 }
 
-.summary_data > p{
+.summary_data > strong{
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 66px;
