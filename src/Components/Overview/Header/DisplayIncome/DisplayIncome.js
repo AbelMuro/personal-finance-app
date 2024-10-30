@@ -11,7 +11,7 @@ function DisplayIncome({className}) {
 
     const getIncome = async () => {
         setLoading(true);
-        const response = await fetch('http://localhost:4000/get_income', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/get_income', {
             method: 'GET',
             credentials: 'include'
         })

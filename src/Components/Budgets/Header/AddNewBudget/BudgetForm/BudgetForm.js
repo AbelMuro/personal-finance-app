@@ -17,7 +17,7 @@ function BudgetForm({handleOpen}) {
         const theme = e.target.elements.theme.value;
         const id = uuid();
 
-        const response = await fetch('http://localhost:4000/add_budget', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/add_budget', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

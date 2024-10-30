@@ -19,7 +19,7 @@ function BudgetForm({handleOpen}) {
         const limit = e.target.elements.limit.value;
         const theme = e.target.elements.theme.value;
 
-        const response = await fetch('http://localhost:4000/edit_budget', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/edit_budget', {
             method: 'PUT',
             credentials: 'include',
             headers: {

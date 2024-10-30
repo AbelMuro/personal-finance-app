@@ -43,7 +43,7 @@ function TransactionForm({handleOpen}) {
         formData.append('date', date);
         formData.append('order', Date.now());
 
-        const response = await fetch('http://localhost:4000/add_transaction', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/add_transaction', {
             method: 'POST',
             body: formData,
             credentials: 'include'

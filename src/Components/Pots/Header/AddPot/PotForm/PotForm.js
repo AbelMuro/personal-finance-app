@@ -18,7 +18,7 @@ function PotForm({handleOpen}) {
         const savings = 0;
         const potId = uuid();
 
-        const response = await fetch('http://localhost:4000/add_pot', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/add_pot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -22,7 +22,7 @@ function Budgets() {
 
     const getBudgets = async () => {
         setLoading(true);
-        const response = await fetch('http://localhost:4000/get_budgets', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/get_budgets', {
             method: 'GET',        
             credentials: 'include',
         }); 
