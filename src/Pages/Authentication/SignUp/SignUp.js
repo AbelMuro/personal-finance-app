@@ -19,7 +19,7 @@ function SignUp({setPage}) {
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
         
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.comregister', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

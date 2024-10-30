@@ -21,7 +21,7 @@ function Overview(){
 
     const getAllData = async () => {
         setLoading(true);
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.comget_allData', {
+        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/get_allData', {
             method: 'GET',
             credentials: 'include'
         })
