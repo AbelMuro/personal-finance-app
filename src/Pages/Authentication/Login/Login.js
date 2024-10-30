@@ -29,15 +29,18 @@ function Login({setPage}) {
 
         if(response.status === 200){
             console.log('Login Successfull');
-            setLoading(false);
             navigate('/profile');
+        }
+        else if(response.status === 401){
+            alert('Email or password is incorrect');
         }
         else{
             const error = await response.json();
-            console.log(error);   
-            setLoading(false);         
-            alert('Email or password is incorrect');
+            console.log(error);       
+            alert('Internal server error occured, please try again later')
         }   
+
+        setLoading && setLoading(false);
     }
 
     const handleSignUp = () => {

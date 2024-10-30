@@ -40,8 +40,7 @@ function Overview(){
         }
         else{
             const message = await response.text();
-            console.log(message);
-            navigate('/');            
+            console.log(message);         
             setTimeout(() => {
                 alert('Internal server error occured, please try again later')
             }, 500);
