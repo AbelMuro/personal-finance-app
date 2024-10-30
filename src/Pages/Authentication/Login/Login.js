@@ -28,7 +28,8 @@ function Login({setPage}) {
         });
 
         if(response.status === 200){
-            console.log('Login Successfull');
+            const result = await response.text();
+            console.log(result);
             navigate('/profile');
         }
         else if(response.status === 401){
