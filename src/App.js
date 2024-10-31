@@ -8,7 +8,6 @@ import Budgets from './Components/Budgets';
 import Pots from './Components/Pots';
 import RecurringBills from './Components/RecurringBills';
 import NotFound from './Pages/NotFound'
-import NoInternet from './Pages/NoInternet'
 import { Provider } from 'react-redux';
 import Store from './Store'
 import './styles.css';
@@ -28,7 +27,6 @@ function App() {
                         <Route path='/profile/bills' element={<RecurringBills/>}/>
                     </Route>
                     <Route path='*' element={<NotFound/>}/>
-                    <Route path='/NoInternet' element={<NoInternet/>}/>
                 </Routes>
             </BrowserRouter>
         </Provider>
