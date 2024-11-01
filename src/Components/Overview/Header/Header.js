@@ -1,6 +1,5 @@
 import React, {useMemo, forwardRef} from 'react';
 import MessageBox from '~/Common/Components/MessageBox';
-import UpdateIncome from './UpdateIncome';
 import DisplayIncome from './DisplayIncome';
 import {useMenuMinMaxStyles} from '~/Hooks';
 import {useSelector} from 'react-redux';
@@ -33,10 +32,6 @@ function Header(){
  
     return(
         <header className={chooseQueries('header')}>
-            <h1 className={chooseQueries('header_title')}>
-                Overview
-            </h1>   
-            <UpdateIncome/>
             <div className={chooseQueries('header_balance')}>
                 <h2>
                     Current Balance

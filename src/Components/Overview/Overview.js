@@ -54,6 +54,13 @@ function Overview(){
 
     return(
         <section className={chooseQueries('overview')}>
+            <div className={styles.overview_intro}>
+                <h1 className={styles.overview_title}>
+                    Overview
+                </h1>   
+                <UpdateIncome/>                
+            </div>
+
             {loading ? 
                 <div className={styles.loading_header}>
                     <Skeleton width='100%' height='119px' borderRadius={8}/>

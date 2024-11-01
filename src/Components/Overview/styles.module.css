@@ -6,6 +6,26 @@
     gap: 32px;
 }
 
+.overview_intro{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overview_title{
+    color: var(--color-grey-900, #201F24);
+    margin: 0px;
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+    grid-column: 1/4;
+    grid-row: 1/2;
+}
+
+
 .loading_header{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
