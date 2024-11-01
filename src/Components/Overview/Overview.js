@@ -7,6 +7,7 @@ import Transactions from './Transactions';
 import RecurringBills from './RecurringBills';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import UpdateIncome from './UpdateIncome';
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
 import * as styles from './styles.module.css';
