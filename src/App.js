@@ -25,7 +25,6 @@ function App() {
                         <Route path='/profile/transactions' element={<Transactions/>}/>
                         <Route path='/profile/pots' element={<Pots/>}/>
                         <Route path='/profile/bills' element={<RecurringBills/>}/>
-                        <Route path='/profile/*' element={<NotFound/>}/>
                     </Route>
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
