@@ -10,6 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "homepage": ".",
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "classnames": "^2.5.1",
