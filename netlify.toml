@@ -5,5 +5,5 @@ status = 200
 
 [[redirects]]
 from = "/profile/*"
-to = "/index.html/profile"
+to = "/index.html/profile/overview"
 status = 200
