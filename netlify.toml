@@ -1,9 +1,10 @@
 [[redirects]]
-from = "/*"
+from = "/profile/*"
 to = "/index.html"
 status = 200
 
 [[redirects]]
-from = "/*/*"
-to = "/index.html/profile"
+from = "/*"
+to = "/index.html"
 status = 200
+
