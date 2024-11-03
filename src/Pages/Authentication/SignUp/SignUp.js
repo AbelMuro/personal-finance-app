@@ -41,7 +41,7 @@ function SignUp({setPage}) {
         }
         else{
             const error = await response.text();
-            console.log(JSON.parse(error));
+            console.log(error);
             setLoading(false);
             setTimeout(() => {
                 alert('Email already exists');
