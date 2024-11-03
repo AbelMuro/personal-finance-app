@@ -47,7 +47,6 @@ function SignUp({setPage}) {
                 alert('Email already exists');
             }, 200)
         }
-            
     }
 
     return(
