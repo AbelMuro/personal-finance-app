@@ -40,7 +40,7 @@ function SignUp({setPage}) {
             
         }
         else{
-            const error = await response.text();
+            const error = await response.json();
             console.log(error);
             setLoading(false);
             setTimeout(() => {
