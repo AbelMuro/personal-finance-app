@@ -20,11 +20,11 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Authentication/>}/>
                     <Route path='/profile' element={<Profile/>}>
-                        <Route path='/profile/overview' element={<Overview/>}/>
-                        <Route path='/profile/budgets' element={<Budgets/>}/>
-                        <Route path='/profile/transactions' element={<Transactions/>}/>
-                        <Route path='/profile/pots' element={<Pots/>}/>
-                        <Route path='/profile/bills' element={<RecurringBills/>}/>
+                        <Route path='overview' element={<Overview/>}/>
+                        <Route path='budgets' element={<Budgets/>}/>
+                        <Route path='transactions' element={<Transactions/>}/>
+                        <Route path='pots' element={<Pots/>}/>
+                        <Route path='bills' element={<RecurringBills/>}/>
                     </Route>
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
