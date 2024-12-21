@@ -21,7 +21,7 @@ function DisplayTransactions() {
 
     const getTransactions = async () => {
         setLoading(true);
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/get_transactions', {
+        const response = await fetch('https://finance-app-server.netlify.app/get_transactions', {
             method: 'GET',
             credentials: 'include'
         });

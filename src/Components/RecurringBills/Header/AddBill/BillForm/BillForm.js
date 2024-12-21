@@ -29,7 +29,7 @@ function BillForm({handleOpen}) {
         formData.append('order', Date.now());
         formData.append('id', id);
 
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/add_bill', {
+        const response = await fetch('https://finance-app-server.netlify.app/add_bill', {
             method: 'POST',
             body: formData,
             credentials: 'include'

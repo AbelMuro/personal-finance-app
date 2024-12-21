@@ -27,7 +27,7 @@ function EnterTheme() {
     }
 
     const getPots = async () => {
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/get_pots', {
+        const response = await fetch('https://finance-app-server.netlify.app/get_pots', {
             method: 'GET',        
             credentials: 'include',
         }); 

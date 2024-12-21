@@ -24,7 +24,7 @@ function AddMoney() {
         setLoading(true);
         const amount = e.target.elements.amount.value;
         let newSavings = Number((Number(amount) + savings).toFixed(2))
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/edit_pot', {
+        const response = await fetch('https://finance-app-server.netlify.app/edit_pot', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

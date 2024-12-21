@@ -19,7 +19,7 @@ function PotForm({handleOpen}) {
         const target = e.target.elements.target.value;
         const theme = e.target.elements.theme.value;
 
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/edit_pot', {
+        const response = await fetch('https://finance-app-server.netlify.app/edit_pot', {
             method: 'PUT',
             credentials: 'include',
             headers: {

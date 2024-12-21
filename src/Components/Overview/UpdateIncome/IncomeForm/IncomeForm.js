@@ -14,7 +14,7 @@ function IncomeForm({handleOpen}) {
         setLoading(true);
         const income = e.target.elements.income.value;
 
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/update_income', {
+        const response = await fetch('https://finance-app-server.netlify.app/update_income', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

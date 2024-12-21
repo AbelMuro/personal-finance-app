@@ -22,7 +22,7 @@ function Withdraw () {
         setLoading(true);
         const amount = e.target.elements.amount.value;
         const newSavings = Number((savings - Number(amount)).toFixed(2))
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/edit_pot', {
+        const response = await fetch('https://finance-app-server.netlify.app/edit_pot', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

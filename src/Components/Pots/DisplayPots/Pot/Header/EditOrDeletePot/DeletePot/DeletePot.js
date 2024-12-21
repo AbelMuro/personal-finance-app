@@ -13,7 +13,7 @@ function DeletePot({handleOpen}) {
 
     const handleDelete = async () => {
         setLoading(true);
-        const response = await fetch(`https://finance-app-server-5991576c358c.herokuapp.com/delete_pot/${potId}`, {
+        const response = await fetch(`https://finance-app-server.netlify.app/delete_pot/${potId}`, {
             method: 'DELETE',
             credentials: 'include',
         });

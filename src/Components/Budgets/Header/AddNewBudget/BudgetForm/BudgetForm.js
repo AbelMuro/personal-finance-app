@@ -17,7 +17,7 @@ function BudgetForm({handleOpen}) {
         const theme = e.target.elements.theme.value;
         const id = uuid();
 
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/add_budget', {
+        const response = await fetch('https://finance-app-server.netlify.app/add_budget', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

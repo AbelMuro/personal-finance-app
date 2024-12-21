@@ -19,7 +19,7 @@ function BillDetails() {
 
     const getBills = async () => {
         setLoading(true);
-        const response = await fetch('https://finance-app-server-5991576c358c.herokuapp.com/get_bills', {
+        const response = await fetch('https://finance-app-server.netlify.app/get_bills', {
             method: 'GET',
             credentials: 'include'
         });
